@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="image.css">
+</head>
+<body>
+<header>
+    <h1>Customer Reviews</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="business_profile.html">Business Profile</a></li>
+            <li><a href="manage_products.html">Manage Products</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="logout.html">Logout</a></li>
+
+        </ul>
+    </nav>
+</header>
+<main>
+    <h2>View and Respond to Customer Feedback</h2>
+    <div>
+        <h3>Feedback for Soccer Ball</h3>
+        <p><strong>Review:</strong> Great product! I love it!</p>
+        <img src="images/customer_image.jpg" alt="Customer using Soccer Ball"><br><br>
+
+
+        <div>
+            <h4>Your Reply:</h4>
+            <textarea rows="4" cols="50" placeholder="Write your response..."></textarea><br><br>
+            <button type="submit">Submit</button>
+
+        </div>
+
+
+        <div>
+            <p><strong>Your Reply:</strong> Thank you for your feedback! We're glad you love the soccer ball!</p><br>
+
+
+            <a href="edit_reply.html"><button>Edit Reply</button></a>
+
+
+            <button onclick="confirm('Are you sure you want to remove this reply?')">Remove Reply</button>
+        </div>
+    </div>
+</main>
+</body>
+</html>
