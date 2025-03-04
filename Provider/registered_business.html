@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registered Business</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="image.css">
+</head>
+<body>
+<header>
+  <h1>Registered Business</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="manage_products.html">Manage Products</a></li>
+      <li><a href="events.html">Manage Events</a></li>
+      <li><a href="customer_reviews.html">Customer Reviews</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="logout.html">Logout</a></li>
+
+    </ul>
+  </nav>
+</header>
+<main>
+  <h3>Business Details</h3>
+
+  <!-- Business Information Card -->
+  <div class="business-card">
+    <img src="images/popstreet_logo.jpg" alt="Popstreet Logo" class="business-logo">
+    <h4>Business Name: Popstreet</h4>
+    <p><strong>Business Description:</strong> Popstreet was founded in 2023 by David Hill. As a business, we want to make sure that our customers are satisfied with our products. We specialize in selling good quality home decor that will complement every room in your house.</p>
+
+    <!-- Buttons to Edit or Remove Profile -->
+    <a href="edit_profile.html"><button>Edit Profile</button></a>
+    <button onclick="confirm('Are you sure you want to remove your profile?')">Remove Profile</button>
+  </div>
+
+  <br><br>
+  <a href="business_profile.html"><button>Back to Add Business</button></a>
+</main>
+</body>
+</html>

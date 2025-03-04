@@ -1,0 +1,318 @@
+/* Resetting margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* Colors */
+:root {
+    --primary-color: #4169E1;  /* Royal Blue */
+    --secondary-color: #FFD700;  /* Gold */
+    --background-color: #ffffff;
+    --gray-light: #f9f9f9;
+    --gray-dark: #333333;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--primary-color);
+    padding: 30px 0;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin-right: 25px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Main Content */
+main {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.card h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--gray-dark);
+    font-size: 1.1rem;
+}
+
+/* Form Styling */
+form {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background-color: #f9f9f9;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form input[type="submit"], .button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+form input[type="submit"]:hover, .button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Button Styling (for Edit, Reply, Remove, etc.) */
+button, .button, .edit-button, .remove-button, .reply-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover, .edit-button:hover, .remove-button:hover, .reply-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Centering the logo and making it responsive */
+header div img {
+    width: 40%;
+    max-width: 250px;
+    display: block;
+    margin: 20px auto;
+}
+
+/* Resize other images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+/* Images in cards */
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Images for product/event listings */
+.listing-img, .product-img, .event-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Success/Error Messages */
+.success-message {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 15px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+td {
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    header div img {
+        width: 60%;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    table th, table td {
+        padding: 10px;
+    }
+
+    .edit-button, .remove-button, .reply-button {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+}
+
+/* Specific Page Adjustments */
+.business-profile .card, .customer-reviews .review-card {
+    max-width: 600px;
+}
+
+.upcoming-events, .listed-products, .registered-business {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.edit-event, .edit-product, .edit-profile, .edit-reply, .manage-products {
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+/* Special Buttons for Event Pages */
+.events-page .event-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.events-page .event-date {
+    font-size: 1.2rem;
+    color: var(--gray-dark);
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: var(--secondary-color);
+}

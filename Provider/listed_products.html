@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listed Products</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="image.css">
+</head>
+<body>
+<header>
+  <h1>Listed Products</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="business_profile.html">Business Profile</a></li>
+      <li><a href="manage_products.html">Manage Products</a></li>
+      <li><a href="events.html">Manage Events</a></li>
+      <li><a href="customer_reviews.html">Customer Reviews</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="logout.html">Logout</a></li>
+
+    </ul>
+  </nav>
+</header>
+<main>
+  <h2>Your Listed Products</h2>
+
+  <!-- Sample Product Listing -->
+  <div class="product-card">
+    <img src="images/soccer_ball.jpg" alt="Soccer Ball">
+    <h3>Soccer Ball</h3>
+    <p><strong>Description:</strong> Official 2022 World Cup ball, size 5</p>
+    <p><strong>Price:</strong> $29.99</p>
+    <p><strong>Quantity:</strong> 10</p>
+    <p><strong>Category:</strong> Toys</p>
+    <a href="edit_product.html"><button>Edit Product</button></a>
+    <button onclick="confirm('Are you sure you want to remove this product?')">Remove Product</button>
+  </div>
+
+  <br><br>
+  <a href="manage_products.html"><button>Back to Manage Products</button></a>
+</main>
+</body>
+</html>

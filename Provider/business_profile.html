@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Business Profile</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="manage_products.html">Manage Products</a></li>
+            <li><a href="events.html">Manage Events</a></li>
+            <li><a href="customer_reviews.html">Customer Reviews</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="logout.html">Logout</a></li>
+
+        </ul>
+    </nav>
+</header>
+<main>
+    <h2>Add Business Profile</h2>
+    <form action="#">
+        <label for="business_name">Business Name:</label>
+        <input type="text" id="business_name" name="business_name" placeholder="Enter Business Name" required><br><br>
+
+        <label for="business_description">Business Description:</label>
+        <textarea id="business_description" name="business_description" rows="4" cols="50" placeholder="Enter Business Description" required></textarea><br><br>
+
+        <label for="business_logo">Upload Logo:</label>
+        <input type="file" id="business_logo" name="business_logo" accept="image/*"><br><br>
+
+        <input type="submit" value="Save Profile">
+    </form>
+
+    <!-- Button to view the registered business details -->
+    <a href="registered_business.html"><button>View Registered Business</button></a>
+</main>
+</body>
+</html>

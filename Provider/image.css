@@ -1,0 +1,51 @@
+/* Separate Style Sheet for Resizing Images to 70% Smaller */
+
+/* General Image Resizing */
+img {
+    max-width: 30%; /* Resize to 30% of the original size (70% smaller) */
+    height: auto; /* Maintain the aspect ratio */
+    display: block;
+    margin: 10px auto; /* Center the images */
+}
+
+/* Specific images for cards, logos, profile pictures, etc. */
+
+/* Resize images within cards */
+.card img {
+    max-width: 30%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+/* Resize images within profile sections */
+.profile-img, .avatar-img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 50%; /* Keep the circular shape for avatars */
+    display: block;
+    margin: 10px auto;
+}
+
+/* Resize product images in listings */
+.product-img, .listing-img, .gallery-img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Resize event images */
+.event-img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+/* Resize logo in index.html */
+header div img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Edit Product</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="business_profile.html">Business Profile</a></li>
+      <li><a href="manage_products.html">Manage Products</a></li>
+      <li><a href="events.html">Manage Events</a></li>
+      <li><a href="customer_reviews.html">Customer Reviews</a></li>
+      <li><a href="statistics.html">Statistics</a></li>
+      <li><a href="logout.html">Logout</a></li>
+
+    </ul>
+  </nav>
+</header>
+<main>
+  <h2>Update Product Information</h2>
+
+  <form action="#">
+    <label for="product_name">Product Name:</label>
+    <input type="text" id="product_name" name="product_name" value="Soccer Ball" required><br><br>
+
+    <label for="product_description">Description:</label>
+    <textarea id="product_description" name="product_description" rows="4" cols="50" required>Official 2022 World Cup ball, size 5</textarea><br><br>
+
+    <label for="product_price">Price:</label>
+    <input type="number" id="product_price" name="product_price" value="29.99" required><br><br>
+
+    <label for="product_quantity">Quantity:</label>
+    <input type="number" id="product_quantity" name="product_quantity" value="10" required><br><br>
+
+    <label for="product_category">Category:</label>
+    <select id="product_category" name="product_category">
+      <option value="category1" selected>Toys</option>
+      <option value="category2">Clothing</option>
+      <option value="category3">Home Decor</option>
+    </select><br><br>
+
+    <label for="product_image">Upload Product Image:</label>
+    <input type="file" id="product_image" name="product_image" accept="image/*"><br><br>
+
+    <input type="submit" value="Update Product">
+  </form>
+
+  <br><br>
+  <a href="listed_products.html"><button>Back to Listed Products</button></a>
+</main>
+</body>
+</html>
