@@ -1,13 +1,35 @@
+
 #content {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: flex-start; /* Align items at the top */
     margin-top: 10px;
-    border: 2px solid darkolivegreen; /* Border styling */
     padding: 10px; /* Padding inside the container */
 }
+#container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top:10px;
+    border:darkolivegreen;
+    position: relative;
+}
+.card{
+    width:30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin:auto;
 
+
+}
 #list-students {
     display: flex;
     flex-direction: column; /* Stack tables vertically */
@@ -39,3 +61,15 @@
     font-weight: bold;
 }
 
+.navbar a {
+    color: black; /* Ensure contrast with the background */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 5px; /* Rounded edges for aesthetics */
+    transition: background 0.3s ease-in-out;
+}
+.navbar a:hover {
+    background-color: lightblue;
+    color: black;
+}
