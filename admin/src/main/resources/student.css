@@ -62,7 +62,7 @@
 }
 
 .navbar a {
-    color: black; /* Ensure contrast with the background */
+    color: white; /* Ensure contrast with the background */
     text-decoration: none;
     padding: 10px 15px;
     display: inline-block;

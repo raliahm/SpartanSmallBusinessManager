@@ -13,13 +13,30 @@
   <div class="input-group mb-3">
     <input type="text" id="search-bar" class="form-control" placeholder="Search Business by Name" aria-label="Search Business">
   </div>
-  </div>
+
   <div id="buttons">
     <button type="button" class="btn btn-primary" id="delete-btn">Delete Business</button>
     <button type="button" class="btn btn-primary" id="restrict-btn">Restrict Business</button>
     <button type="button" class="btn btn-primary" id="unrestrict-btn">Unrestrict Business</button>
-
+    <button type="button" class="btn btn-primary" id="expand-form-btn" data-bs-toggle="collapse" data-bs-target="#add-business-form">Add Business</button>
   </div>
+<div class="collapse" id="add-business-form">
+  <form>
+    <div class="form-group">
+      <label for="business-name">Business Name</label>
+      <input type="text" class="form-control" id="business-name" aria-describedby="emailHelp" placeholder="Enter business name">
+    </div>
+    <div class="form-group">
+      <label for="business-owner">Owner Name</label>
+      <input type="text" class="form-control" id="business-owner" placeholder="John Doe" required>
+    </div>
+    <div class="form-group">
+      <label for="business-id">Business ID</label>
+      <input type="text" class="form-control" id="business-id" placeholder="@xyz" required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
   <div id="list-students">
     <table class="table">
       <thead class="thead-dark">
@@ -151,6 +168,63 @@
       alert("No business found with that name.");
     }
   });
+
+  //adding businesses to the website
+  document.getElementById('add-business-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Get form values
+    const businessName = document.getElementById('business-name').value;
+    const businessOwner = document.getElementById('business-owner').value;
+    const businessId = document.getElementById('business-id').value;
+
+    // Get the table body
+    const tableBody = document.getElementById('table-body');
+
+    // Create a new row with the form values
+    const newRow = document.createElement('tr');
+
+    //setting the attribute
+    newRow.setAttribute('data-name', businessName.toLowerCase()); // Store business name in data-name (lowercase for easy search)
+
+    // Create the columns (cells) for the new row
+    const rowNumberCell = document.createElement('th');
+    rowNumberCell.scope = 'row';
+    rowNumberCell.textContent = tableBody.rows.length + 1;
+
+    const nameCell = document.createElement('td');
+    nameCell.textContent = businessName;
+
+    const ownerCell = document.createElement('td');
+    ownerCell.textContent = businessOwner;
+
+    const idCell = document.createElement('td');
+    idCell.textContent = businessId;
+
+    const statusCell = document.createElement('td');
+    statusCell.innerHTML = '<span class="status">Active</span>';
+
+    // Append the cells to the new row
+    newRow.appendChild(rowNumberCell);
+    newRow.appendChild(nameCell);
+    newRow.appendChild(ownerCell);
+    newRow.appendChild(idCell);
+    newRow.appendChild(statusCell);
+
+    // Append the new row to the table body
+    tableBody.appendChild(newRow);
+
+    // Optionally, reset the form fields
+    document.getElementById('business-name').value = '';
+    document.getElementById('business-owner').value = '';
+    document.getElementById('business-id').value = '';
+
+    // Close the form (if you want it to collapse after submitting)
+    const collapseElement = document.getElementById('add-business-form');
+    const collapse = new bootstrap.Collapse(collapseElement, {toggle: true});
+
+  });
+
 </script>
 </body>
 
