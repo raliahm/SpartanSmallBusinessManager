@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavTogglerDemo02" aria-controls="navbarNavTogglerDemo02" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavTogglerDemo02">
+    <a class="navbar-brand" href="#"><h2>Spartan Small Business Manager</h2></a>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav">
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="home.html"><h5>Home</h5></a></li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="home.html"><h5>Featured Business</h5></a></li>
+        <li class="nav-item mx-3">
+        <a class="nav-link" href="customer-profile.html"><h5>Account</h5></a></li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="shopping-cart.html"><h5>Shopping Cart</h5></a>
+        </li>
+      </ul>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Shopping Cart</h2>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <!--Table header tag to make ordered list of items in cart-->
+      <table class="table table-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><img src="71upvATuSAL.png" alt="Big K Lip Gloss" style="width:100px; height: auto;">Big K Lip Gloss</td>
+          <td>$25.99</td>
+          <td>1</td>
+          <td>$25.99</td>
+          <td><button class="btn btn-danger btn-sm disabled">Remove</button></td>
+        </tr>
+        <tr>
+          <td><img src="s-l1200.png" alt="Y2K Print Beanie" style="width:100px; height: auto;">Y2K Print Beanie</td>
+          <td>$15.00</td>
+          <td>1</td>
+          <td>$15.00</td>
+          <td><button class="btn btn-danger btn-sm disabled">Remove</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Cart Summary</h4>
+          <p><strong>Subtotal:</strong> $40.99</p>
+          <button class="btn btn-success w-100" type ="submit">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
