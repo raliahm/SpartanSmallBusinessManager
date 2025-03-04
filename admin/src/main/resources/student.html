@@ -103,7 +103,7 @@
         });
     });
 
-    //deleting a business
+    //deleting a student
     document.getElementById('delete-btn').addEventListener('click', function () {
         let searchValue = document.getElementById('search-bar').value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
@@ -182,7 +182,7 @@
         // Create a new row with the form values
         const newRow = document.createElement('tr');
 
-        newRow.setAttribute('data-name', studentFirstName.toLowerCase()); // Store business name in data-name (lowercase for easy search)
+        newRow.setAttribute('data-name', studentFirstName   .toLowerCase()); // Store business name in data-name (lowercase for easy search)
 
         // Create the columns (cells) for the new row
         const rowNumberCell = document.createElement('th');
