@@ -13,7 +13,7 @@
 <div id="container">
     <div class="card" >
         <div class="card-body">
-            <canvas id="chart1"></canvas>
+            <canvas id="chart1" width="400" height="400"></canvas>
             <h5 class="card-title">Student</h5>
             <h6 class="card-subtitle mb-2 text-muted">Number of Student Users</h6>
             <p class="card-text">Basic Statistics of Students</p>
@@ -21,7 +21,7 @@
     </div>
     <div class="card" >
         <div class="card-body">
-            <canvas id="chart2"></canvas>
+            <canvas id="chart2" width="400" height="400"></canvas>
             <h5 class="card-title">Small Business</h5>
             <h6 class="card-subtitle mb-2 text-muted">Number of Small Business Users</h6>
             <p class="card-text">Basic Statistics of Small Buisness users</p>
@@ -29,7 +29,7 @@
     </div>
     <div class="card" >
         <div class="card-body">
-            <canvas id="chart3"></canvas>
+            <canvas id="chart3" wifth="400" height="400"></canvas>
             <h5 class="card-title">Reviews</h5>
             <h6 class="card-subtitle mb-2 text-muted">Engagement Statistics</h6>
             <p class="card-text">Basic Statistics of Reviews</p>
@@ -49,6 +49,79 @@
         .catch(error => console.error('Error loading navbar:', error));  // To catch any fetch errors
 
 </script>
+<script>
+    const c = document.getElementById("chart3");
+    const ctx = c.getContext("2d");
+    const data = [30, 20, 50]; // Example values
+    const colors = ["#FF6384", "#36A2EB", "#FFCE56"];
+    const total = data.reduce((sum, value) => sum + value, 0);
+    const centerX = c.width / 2;
+    const centerY = c.height / 2;
+    const radius = 100;
+    const holeRadius = 50;
+    let startAngle = 0;
+
+    data.forEach((value, index) => {
+        const sliceAngle = (value / total) * (2 * Math.PI);
+        const endAngle = startAngle + sliceAngle;
+
+        // Draw slice
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = colors[index];
+        ctx.fill();
+
+        startAngle = endAngle;
+    });
+
+    // Draw center hole
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, holeRadius, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+</script>
+<script>
+    function drawDonutChart(canvasId, data, colors) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext("2d");
+        const total = data.reduce((sum, value) => sum + value, 0);
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 100;
+        const holeRadius = 50;
+        let startAngle = 0;
+
+        data.forEach((value, index) => {
+            const sliceAngle = (value / total) * (2 * Math.PI);
+            const endAngle = startAngle + sliceAngle;
+
+            // Draw slice
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = colors[index];
+            ctx.fill();
+
+            startAngle = endAngle;
+        });
+
+        // Draw center hole
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, holeRadius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.globalCompositeOperation = "source-over";
+    }
+
+    drawDonutChart("chart1", [30, 20, 50], ["#FF6384", "#36A2EB", "#FFCE56"]);
+    drawDonutChart("chart2", [40, 30, 30], ["#4BC0C0", "#9966FF", "#FF9F40"]);
+    drawDonutChart("chart3", [25, 25, 50], ["#FF6384", "#FFCE56", "#36A2EB"]);
+</script>
+
 </body>
 
 </html>
