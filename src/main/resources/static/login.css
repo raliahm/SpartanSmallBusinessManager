@@ -1,0 +1,70 @@
+body {
+    background-color: #111154; /* dark blue */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#card {
+    background-color: #111154;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    padding: 2rem;
+    width: 350px;
+    color: #FFD700; /* gold */
+}
+
+h5 {
+    color: #FFD700;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    color: #CCCCFF; /* light purple */
+}
+
+.form-control {
+    background-color: #111154;
+    border: 1px solid #FFD700;
+    color: #FFD700;
+}
+
+.form-control:focus {
+    border-color: #CCCCFF;
+    box-shadow: 0 0 5px #CCCCFF;
+    background-color: #111154;
+    color: #FFD700;
+}
+
+.login-btn {
+    background-color: #663399; /* purple */
+    color: #FFD700;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #4B0082; /* darker purple */
+    color: #FFFACD; /* lighter gold */
+}
+
+.alternate-signup {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.alternate-signup span {
+    color: #CCCCFF;
+    cursor: pointer;
+}
+
+.alternate-signup span:hover {
+    text-decoration: underline;
+}

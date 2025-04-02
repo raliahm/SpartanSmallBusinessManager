@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="../static/login.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="content">
+    <div id="card">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">Login</h5>
+                <h6 class="card-subtitle mb-2 text-muted" >
+                    Username: <input type="text" class="form-control" aria-label="Username" id="username">
+                </h6>
+
+                <p class="card-text" >
+                    Password:     <input type="text" class="form-control" aria-label="Password" id="password">
+                </p>
+            </div>
+            <button class="login-btn" onclick="login()">
+                LOGIN
+            </button>
+            <button class="login-btn mt-2" onclick="signup()">
+                SIGN-UP
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    function login(){
+        var email = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if(email == 'r' && password == '1234') {
+
+            window.location.assign("summary.html")
+        } else {
+            alert("Invalid member")
+        }
+    }
+    function signup(){
+        window.location.assign("sign-up.html")
+    }
+</script>
+</body>
+
+</html>
+

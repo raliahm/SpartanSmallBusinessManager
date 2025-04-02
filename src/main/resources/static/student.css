@@ -1,0 +1,75 @@
+
+#content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align items at the top */
+    margin-top: 10px;
+    padding: 10px; /* Padding inside the container */
+}
+#container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top:10px;
+    border:darkolivegreen;
+    position: relative;
+}
+.card{
+    width:30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin:auto;
+
+
+}
+#list-students {
+    display: flex;
+    flex-direction: column; /* Stack tables vertically */
+    gap: 20px; /* Adds space between the tables */
+    width: 100%;
+}
+
+.table {
+    width: 100%; /* Ensure tables take full width of their container */
+    margin: 0 auto; /* Centers the table horizontally */
+    border-collapse: collapse; /* Ensures no gaps in table borders */
+}
+
+.table th, .table td {
+    padding: 15px; /* Adds space inside table cells */
+}
+
+.table {
+    border-spacing: 10px; /* Space between rows/columns */
+    border-collapse: separate; /* Keeps the border-spacing */
+}
+
+.table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.table thead th {
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white; /* Ensure contrast with the background */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 5px; /* Rounded edges for aesthetics */
+    transition: background 0.3s ease-in-out;
+}
+.navbar a:hover {
+    background-color: lightblue;
+    color: black;
+}
