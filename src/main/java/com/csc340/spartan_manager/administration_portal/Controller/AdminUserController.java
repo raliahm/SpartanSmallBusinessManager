@@ -13,6 +13,7 @@ public class AdminUserController {
     @Autowired
     private AdminUserService adminUserService;
 
+
     @GetMapping("/all")
     public Object getAllAdminUsers() {
         return new ResponseEntity<>(adminUserService.getAllAdminUsers(), HttpStatus.OK);

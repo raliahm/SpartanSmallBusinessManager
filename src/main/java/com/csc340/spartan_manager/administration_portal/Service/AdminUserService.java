@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminUserService {
@@ -38,5 +39,15 @@ public class AdminUserService {
         adminUserRepository.deleteById(adminId);
     }
 
+    public boolean authenticate(String username, String password) {
+        Optional<AdminUser> userOpt = Optional.ofNullable(getAdminUsersByAdminUsername(username));
+
+        if (userOpt.isPresent()) {
+            AdminUser user = userOpt.get();
+            return user.getPassword().equals(password); // Check the password against the stored one
+        } else {
+            return false; // User not found
+        }
+    }
 
 }
