@@ -224,6 +224,14 @@
         const collapse = new bootstrap.Collapse(collapseElement, {toggle: true});
 
     });
+    // Add event listener to each row for redirection
+    document.querySelectorAll('#table-body tr').forEach(row => {
+        row.addEventListener('click', function () {
+            // Redirect to a new page with the business name as a URL parameter (optional)
+            const businessName = row.getAttribute('data-name');
+            window.location.href = `summary.html?business=${businessName}`;
+        });
+    });
 
 </script>
 </body>
