@@ -51,6 +51,7 @@ body{
     grid-template-columns: 14rem auto 14rem;
     margin: 0 auto;
 }
+
 a{
     color: var(--clr-dark)
 }
@@ -104,6 +105,7 @@ b{
 /** aside*/
 aside{
     height: 100vh;
+    position: relative;
 }
 aside .top{
     background-color: var(--clr-white);
@@ -112,6 +114,16 @@ aside .top{
     align-items: center;
     margin-top: 1.4rem;
 }
+.sidebar .hidden{
+    display:none;
+}
+#menu_bar{
+    display:block;
+}
+#close_btn{
+    display: none;
+}
+
 aside .logo{
     display: flex;
     gap: 1rem;
@@ -128,7 +140,7 @@ aside .sidebar{
     top: 1rem;
 }
 
-aisde .h3{
+aside .h3{
     font-weight: 500;
 }
 aside .sidebar a{
@@ -464,6 +476,12 @@ Media query for phones
         width: 18rem;
         z-index: 3;
         background: var(--clr-white) ;
+        animation:menuAni 1s forwards;
+    }
+    @keyframes menuAni {
+        to{
+            left:0;
+        }
     }
     aside .logo h2{
         display:inline;
@@ -517,3 +535,4 @@ Media query for phones
 
     
 }
+
