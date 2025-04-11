@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Summary</title>
+    <link href="/static/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -65,115 +66,72 @@
                 </a>
             </div>
         </aside>
-        <!--aside section end-->
+        <!-- aside end-->
 
-        <!-- main section start -->
         <main>
-            <h1>Dashboard</h1>
-            <div class="date">
-                <input class = "input-bar" type="date">
-            </div>
-            <!-- insights start -->
-            <div class = "insights">
-                <!-- start customers-->
-                <div class="customers">
-                    <span class="material-symbols-outlined">trending_up</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Customers</h3>
-                            <h1>25000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle r="30" cy="40" cx="40"></circle>
-                            </svg>
-                            <div class="number">80%</div>
-                        </div>
-                    </div>
-                    <small>Last 24 Hours</small>
+            <h1>Analytics Dashboard</h1>
+
+            <!-- Total Income Section -->
+            <div class="business-stats">
+                <div class="stat-item">
+                    <h3>Total Income</h3>
+                    <p>$45,230</p>
                 </div>
-                <!-- end customers-->
-                <!-- start businesses-->
-                <div class="businesses">
-                    <span class="material-symbols-outlined">local_mall</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Businesses</h3>
-                            <h1>500</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle r="30" cy="40" cx="40"></circle>
-                            </svg>
-                            <div class="number">80%</div>
-                        </div>
-                    </div>
-                    <small>Last 24 Hours</small>
+
+                <!-- Website Usage Statistics -->
+                <div class="stat-item">
+                    <h3>Website Usage</h3>
+                    <ul>
+                        <li>Unique Visitors: 5,320</li>
+                        <li>Page Views: 18,420</li>
+                        <li>Avg. Time on Site: 2m 15s</li>
+                        <li>Bounce Rate: 35%</li>
+                    </ul>
                 </div>
-                <!-- end businesses-->
-                <!-- start income-->
-                <div class="income">
-                    <span class="material-symbols-outlined">stacked_line_chart</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>$25000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle r="30" cy="40" cx="40"></circle>
-                            </svg>
-                            <div class="number">80%</div>
-                        </div>
-                    </div>
-                    <small>Last 24 Hours</small>
+            </div>
+
+            <!-- Comment Section for Student Replies -->
+            <div class="comment-section">
+                <h3>Replies to Students</h3>
+
+                <div class="comment">
+                    <p><strong>John Doe:</strong> "I love the course content! It's very engaging and informative." </p>
+                    <p><strong>Reply:</strong> "Thank you, John! We're glad you're enjoying the content!"</p>
                 </div>
-                <!-- end income-->
+
+                <div class="comment">
+                    <p><strong>Jane Smith:</strong> "How can I get more personalized feedback on my project?" </p>
+                    <p><strong>Reply:</strong> "Feel free to schedule a 1-on-1 session with the instructor. We'll help you out!"</p>
+                </div>
             </div>
-            <!-- end insights-->
-            <!-- Start recent registrations -->
-            <div class="recent_registration" >
-                <h1> Recent Business Registrations</h1>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Business ID</th>
-                        <th>Business Name</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Details</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Spartan Cooks</td>
-                            <td>Food</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">........................</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Spartan Electronics</td>
-                            <td>Technology</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">........................</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Spartan Furniture</td>
-                            <td>Furniture</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">........................</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="cards-container">
+                <div class="card" >
+                    <div class="card-body">
+                        <canvas id="chart1" width="400" height="400"></canvas>
+                        <h5 class="card-title">Student</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Number of Student Users</h6>
+                        <p class="card-text">Basic Statistics of Students</p>
+                    </div>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                        <canvas id="chart2" width="400" height="400"></canvas>
+                        <h5 class="card-title">Small Business</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Number of Small Business Users</h6>
+                        <p class="card-text">Basic Statistics of Small Buisness users</p>
+                    </div>
+                </div>
+                <div class="card" >
+                    <div class="card-body">
+                        <canvas id="chart3" width="400" height="400"></canvas>
+                        <h5 class="card-title">Reviews</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Engagement Statistics</h6>
+                        <p class="card-text">Basic Statistics of Reviews</p>
+                    </div>
+                </div>
             </div>
-            <!-- end recent registrations -->
 
         </main>
-        <!-- main section end -->
-
         <!-- right section start -->
         <div class="right">
             <!-- start top -->
@@ -188,7 +146,7 @@
                         <small class="text-muted"></small>
                     </div>
                     <div class="profile-photo">
-                        <img src="/images/profile-pic.webp" alt="">
+                        <img src="/images/profile-pic.webp">
                     </div>
                 </div>
             </div>
@@ -276,11 +234,102 @@
         </div>
         <!-- right section end -->
     </div>
-    <script src="/static/script.js"></script>
+
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading navbar:', error));  // To catch any fetch errors
+
+</script>
+<script>
+    const c = document.getElementById("chart3");
+    const ctx = c.getContext("2d");
+    const data = [30, 20, 50]; // Example values
+    const colors = ["#FF6384", "#36A2EB", "#FFCE56"];
+    const total = data.reduce((sum, value) => sum + value, 0);
+    const centerX = c.width / 2;
+    const centerY = c.height / 2;
+    const radius = 100;
+    const holeRadius = 50;
+    let startAngle = 0;
+
+    data.forEach((value, index) => {
+        const sliceAngle = (value / total) * (2 * Math.PI);
+        const endAngle = startAngle + sliceAngle;
+
+        // Draw slice
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = colors[index];
+        ctx.fill();
+
+        startAngle = endAngle;
+    });
+
+    // Draw center hole
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, holeRadius, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+</script>
+<script>
+    // Get the business name from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    //const businessName = urlParams.get('business');
+
+    // Use the businessName on the dashboard (for example, display it on the page)
+    //document.getElementById('business-name-display').textContent = businessName;
+
+    function drawDonutChart(canvasId, data, colors) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext("2d");
+        const total = data.reduce((sum, value) => sum + value, 0);
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 100;
+        const holeRadius = 50;
+        let startAngle = 0;
+
+        data.forEach((value, index) => {
+            const sliceAngle = (value / total) * (2 * Math.PI);
+            const endAngle = startAngle + sliceAngle;
+
+            // Draw slice
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = colors[index];
+            ctx.fill();
+
+            startAngle = endAngle;
+        });
+
+        // Draw center hole
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, holeRadius, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.globalCompositeOperation = "source-over";
+    }
+
+    drawDonutChart("chart1", [30, 20, 50], ["#FF6384", "#36A2EB", "#FFCE56"]);
+    drawDonutChart("chart2", [40, 30, 30], ["#4BC0C0", "#9966FF", "#FF9F40"]);
+    drawDonutChart("chart3", [25, 25, 50], ["#FF6384", "#FFCE56", "#36A2EB"]);
+</script>
+
 </body>
 
-
-
-
-
 </html>
+

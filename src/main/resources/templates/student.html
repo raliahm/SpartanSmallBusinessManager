@@ -4,106 +4,314 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student View</title>
-    <link  rel="stylesheet" href="../static/student.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 </head>
 <body>
-<div id="navbar-container"></div>
-<div id="content">
-    <div class="input-group mb-3">
-        <input type="text" id="search-bar" class="form-control" placeholder="Search Student by Name" aria-label="Search Students">
-    </div>
 
-    <div id="buttons">
-        <button type="button" class="btn btn-primary" id="delete-btn">Delete Student</button>
-        <button type="button" class="btn btn-primary" id="expand-form-btn" data-bs-toggle="collapse" data-bs-target="#add-student-form">Add Student</button>
-        <button type="button" class="btn btn-primary" id="restrict-btn">Restrict Student</button>
-        <button type="button" class="btn btn-primary" id="unrestrict-btn">Unrestrict Student</button>
-
-    </div>
-    <div class="collapse" id="add-student-form">
-        <form>
-            <div class="form-group">
-                <label for="student-first-name">First Name</label>
-                <input type="text" class="form-control" id="student-first-name" placeholder="Enter first name">
+<div class="container">
+    <!--aside section start -->
+    <aside>
+        <!--top section-->
+        <div class="top">
+            <div class="logo">
+                <h2>
+                    <span class="danger">SSBM Admin</span>
+                </h2>
             </div>
-            <div class="form-group">
-                <label for="student-last-name">Last Name</label>
-                <input type="text" class="form-control" id="student-last-name" placeholder="Enter last name" required>
+            <button  id="menu_bar">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <button  id="close_btn">
+                <span class="material-symbols-outlined"> close </span>
+            </button>
+        </div>
+        <!--top section-->
+        <div class="sidebar">
+
+            <a href="index.html">
+                <span class="material-symbols-outlined"> grid_view </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="small-business.html" >
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Business View</h3>
+            </a>
+            <a href="student.html">
+                <span class="material-symbols-outlined"> person </span>
+                <h3>Student View</h3>
+            </a>
+            <a href="analytics.html">
+                <span class="material-symbols-outlined"> monitoring </span>
+                <h3>Analytics</h3>
+            </a>
+            <a href="usage-details.html">
+                <span class="material-symbols-outlined"> email </span>
+                <h3>User Approvals</h3>
+            </a>
+            <a href="subscription.html">
+                <span class="material-symbols-outlined"> receipt_long  </span>
+                <h3>Subscription Manager</h3>
+            </a>
+
+
+            <a href="login.html">
+                <span class="material-symbols-outlined"> logout  </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+    <!--aside section end-->
+    <main>
+        <h1>Student View</h1>
+        <div class="input-bar">
+            <input type="text" id="search-bar" class="form-control" placeholder="Search Student by Name" aria-label="Search Student">
+        </div>
+
+        <div id="buttons">
+            <button type="button" class="btn btn-success" id="delete-btn">Delete Student</button>
+            <button type="button" class="btn btn-success" id="restrict-btn">Restrict Student</button>
+            <button type="button" class="btn btn-success" id="unrestrict-btn">Unrestrict Student</button>
+        </div>
+
+        <div id="student-form" class="custom-form-container">
+            <form class="custom-form">
+                <h2>Add Student</h2>
+
+                <div class="form-row">
+                    <label for="student-username">Username</label>
+                    <input type="text" id="student-username" placeholder="i.e sfjsd" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-password">Password</label>
+                    <input type="text" id="student-password" placeholder="dsfdjf" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-name">Name</label>
+                    <input type="text" id="student-name" placeholder="Enter student name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-email">Email</label>
+                    <input type="text" id="student-email" placeholder="j@adf.com" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-phone">Phone</label>
+                    <input type="text" id="student-phone" placeholder="#123-123-1234" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-address">Address</label>
+                    <input type="text" id="student-address" placeholder="1234 island dr." required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-city">City</label>
+                    <input type="text" id="student-city" placeholder="i.e Apex" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-zipcode">Phone</label>
+                    <input type="text" id="student-zipcode" placeholder="1234" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-state">State</label>
+                    <input type="text" id="student-state" placeholder="i.e. washington" required>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+
+        <div class="recent_registration" id="student-table">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                <tr data-name="Spartans1">
+                    <th scope="row">1</th>
+                    <td>Spartans1</td>
+                    <td>scooks</td>
+                    <td>sc@uncg.edu</td>
+                    <td>919-868-9876</td>
+                    <td><span class="status">Active</span></td>
+                </tr>
+                <tr data-name="Spartans2">
+                    <th scope="row">2</th>
+                    <td>Spartans2</td>
+                    <td>scookie</td>
+                    <td>sc1@uncg.edu</td>
+                    <td>919-868-9876</td>
+                    <td><span class="status">Active</span></td>
+
+                </tr>
+                <tr data-name="Spartans3">
+                    <th scope="row">3</th>
+                    <<td>Spartans3</td>
+                    <td>scookie</td>
+                    <td>sc1@uncg.edu</td>
+                    <td>919-868-9876</td>
+                    <td><span class="status">Active</span></td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </main>
+    <!-- right section start -->
+    <div class="right">
+        <!-- start top -->
+        <div class="top">
+            <button id="menu-bar">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div class="profile">
+                <div class="info">
+                    <p><b>Reba</b></p>
+                    <p>Admin</p>
+                    <small class="text-muted"></small>
+                </div>
+                <div class="profile-photo">
+                    <img src="/images/profile-pic.webp">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="student-handle">Handle</label>
-                <input type="text" class="form-control" id="student-handle" placeholder="@xyz" required>
+        </div>
+        <!-- end top -->
+        <!--start recent updates -->
+        <div class="recent_updates">
+            <h2>Recent Update</h2>
+            <div class="updates">
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="/images/monkey2.jpeg" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Spartan Autos</b> Profile is approved</p>
+                    </div>
+                </div>
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="/images/monkey2.jpeg" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Spartan Autos</b> Profile is approved</p>
+                    </div>
+                </div>
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="/images/monkey2.jpeg" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Spartan Autos</b> Profile is approved</p>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-    </div>
-    <div id="list-students">
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Status</th>
-            </tr>
-            </thead>
-            <tbody id="table-body">
-            <tr data-name="Mark">
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><span class="status">Active</span></td>
-            </tr>
-            <tr data-name="Jacob">
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat
-                <td><span class="status">Active</span></td>
-            </tr>
-            <tr data-name="Larry">
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td><span class="status">Active</span></td>
-            </tr>
-            </tbody>
-        </table>
+        </div>
+        <!-- end recent updates-->
+
+        <!-- start sales analytic -->
+        <div class="sales_analytics">
+            <div class="item">
+                <div class="icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </div>
+                <div class="right_text">
+                    <h3>Online Sales</h3>
+                    <small class="text-muted">Last seen 2 hours</small>
+                </div>
+                <h5 class="danger"> -17%</h5>
+                <h3>3849</h3>
+            </div>
+
+        </div>
+        <div class="sales_analytics">
+            <div class="item">
+                <div class="icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </div>
+                <div class="right_text">
+                    <h3>Online Sales</h3>
+                    <small class="text-muted">Last seen 2 hours</small>
+                </div>
+                <h5 class="danger"> -17%</h5>
+                <h3>3849</h3>
+            </div>
+
+        </div>
+        <div class="sales_analytics">
+            <div class="item online">
+                <div class="icon">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </div>
+                <div class="right_text">
+                    <h3>Online Sales</h3>
+                    <small class="text-muted">Last seen 2 hours</small>
+                </div>
+                <h5 class="danger"> -17%</h5>
+                <h3>3849</h3>
+            </div>
+
+
+        </div>
+        <!-- end sales analytic -->
+
+
 
     </div>
-
-
+    <!-- right section end -->
 </div>
 
+</body>
 <!-- Bootstrap JS -->
-
+<script src="/static/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading navbar:', error));  // To catch any fetch errors
-    //for filtering table rows
+    // Search bar filtering
     document.getElementById('search-bar').addEventListener('input', function () {
         let filter = this.value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
+        const form = document.getElementById('student-form');
+        const table = document.getElementById('student-table');
+
         rows.forEach(row => {
             let nameCell = row.cells[1].textContent.toLowerCase();
-            if (nameCell.includes(filter)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = nameCell.includes(filter) ? '' : 'none';
         });
+
+        // If search is active, hide form and show table at top
+        if (filter !== '') {
+            form.classList.add('hidden');
+            table.style.marginTop = '0';
+        } else {
+            form.classList.remove('hidden');
+            table.style.marginTop = '2rem';
+        }
     });
 
-    //deleting a student
+    // Deleting a business
     document.getElementById('delete-btn').addEventListener('click', function () {
         let searchValue = document.getElementById('search-bar').value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
@@ -114,18 +322,18 @@
             let statusCell = row.querySelector('.status');
             let status = statusCell ? statusCell.textContent.toLowerCase() : '';
 
-            // Only delete if status is not "restricted" and name matches search query
-            if (name.includes(searchValue) && status  == "restricted") {
+            if (name.includes(searchValue) && status === "restricted") {
                 row.remove();
                 deleted = true;
             }
         });
 
-        if (deleted == false) {
-            alert("No restricted student found with that name.");
+        if (!deleted) {
+            alert("No restricted business found with that name.");
         }
     });
-    //restrict a student
+
+    // Restrict a business
     document.getElementById('restrict-btn').addEventListener('click', function () {
         let searchValue = document.getElementById('search-bar').value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
@@ -135,95 +343,92 @@
             let name = row.getAttribute('data-name').toLowerCase();
             if (name.includes(searchValue)) {
                 let statusCell = row.querySelector('.status');
-                statusCell.textContent = "Restricted";
-                statusCell.style.color = "red"; // Change status color to indicate restriction
-                restricted = true;
+                if (statusCell) {
+                    statusCell.textContent = "Restricted";
+                    statusCell.style.color = "red";
+                    restricted = true;
+                }
             }
         });
 
         if (!restricted) {
-            alert("No student found with that name.");
+            alert("No business found with that name.");
         }
     });
 
-    //unrestrict a business
+    // Unrestrict a business
     document.getElementById('unrestrict-btn').addEventListener('click', function () {
         let searchValue = document.getElementById('search-bar').value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
-        let restricted = true;
+        let found = false;
 
         rows.forEach(row => {
             let name = row.getAttribute('data-name').toLowerCase();
             if (name.includes(searchValue)) {
                 let statusCell = row.querySelector('.status');
-                statusCell.textContent = "Active";
-                statusCell.style.color = "black"; // Change status color to indicate restriction
-                restricted = false;
+                if (statusCell) {
+                    statusCell.textContent = "Active";
+                    statusCell.style.color = "black";
+                    found = true;
+                }
             }
         });
 
-        if (!!restricted) {
-            alert("No student found with that name.");
+        if (!found) {
+            alert("No business found with that name.");
         }
     });
 
-    //adding businesses to the website
-    document.getElementById('add-student-form').addEventListener('submit', function (e) {
+    // Adding a new business
+    document.querySelector('.custom-form').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get form values
-        const studentFirstName = document.getElementById('student-first-name').value;
-        const studentLastName = document.getElementById('student-last-name').value;
-        const studentHandle = document.getElementById('student-handle').value;
-
-        // Get the table body
+        const studentName = document.getElementById('student-name').value;
+        const studentPhone = document.getElementById('student-phone').value;
+        const studentEmail = document.getElementById('student-email').value;
         const tableBody = document.getElementById('table-body');
 
-        // Create a new row with the form values
         const newRow = document.createElement('tr');
+        newRow.setAttribute('data-name', businessName.toLowerCase());
 
-        newRow.setAttribute('data-name', studentFirstName   .toLowerCase()); // Store business name in data-name (lowercase for easy search)
-
-        // Create the columns (cells) for the new row
         const rowNumberCell = document.createElement('th');
         rowNumberCell.scope = 'row';
         rowNumberCell.textContent = tableBody.rows.length + 1;
 
-        const firstNameCell = document.createElement('td');
-        firstNameCell.textContent = studentFirstName;
+        const nameCell = document.createElement('td');
+        nameCell.textContent = businessName;
 
-        const lastNameCell = document.createElement('td');
-        lastNameCell.textContent = studentLastName;
+        const ownerCell = document.createElement('td');
+        ownerCell.textContent = businessOwner;
 
-        const studentHandleCell = document.createElement('td');
-        studentHandleCell.textContent = studentHandle;
+        const idCell = document.createElement('td');
+        idCell.textContent = businessId;
 
         const statusCell = document.createElement('td');
         statusCell.innerHTML = '<span class="status">Active</span>';
 
-        // Append the cells to the new row
         newRow.appendChild(rowNumberCell);
-        newRow.appendChild(firstNameCell);
-        newRow.appendChild(lastNameCell);
-        newRow.appendChild(studentHandleCell);
+        newRow.appendChild(nameCell);
+        newRow.appendChild(ownerCell);
+        newRow.appendChild(idCell);
         newRow.appendChild(statusCell);
-
-        // Append the new row to the table body
         tableBody.appendChild(newRow);
 
-        // Optionally, reset the form fields
-        document.getElementById('student-first-name').value = '';
-        document.getElementById('student-last-name').value = '';
-        document.getElementById('student-handle').value = '';
-
-        // Close the form (if you want it to collapse after submitting)
-        const collapseElement = document.getElementById('add-student-form');
-        const collapse = new bootstrap.Collapse(collapseElement, {toggle: true});
-
+        // Reset the form
+        e.target.reset();
     });
 
+    // Add event listener to each row for redirection
+    document.getElementById('table-body').addEventListener('click', function (e) {
+        let row = e.target.closest('tr');
+        if (row && row.hasAttribute('data-name')) {
+            const businessName = row.getAttribute('data-name');
+            window.location.href = `summary.html?business=${businessName}`;
+        }
+    });
 </script>
-</body>
 
 </html>
+
+
 
