@@ -67,13 +67,159 @@
         <main>
 
         </main>
+        <!-- right section start -->
         <div class="right">
+            <!-- start top -->
+            <div class="top">
+                <button id="menu-bar">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p><b>Reba</b></p>
+                        <p>Admin</p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+            <!-- end top -->
+            <!--start recent updates -->
+            <div class="recent_updates">
+                <h2>Recent Update</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end recent updates-->
+
+            <!-- start sales analytic -->
+            <div class="sales_analytics">
+                <div class="item">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+            </div>
+            <div class="sales_analytics">
+                <div class="item">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+            </div>
+            <div class="sales_analytics">
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+
+            </div>
+            <!-- end sales analytic -->
+
+
 
         </div>
+        <!-- right section end -->
     </div>
 
-<!-- Bootstrap JS -->
+    <script>
+        const users = [
+            { name: "Jane Doe", email: "jane@example.com" },
+            { name: "John Smith", email: "john@example.com" }
+        ];
 
+        function createMain(users) {
+            const main = document.querySelector("main");
+
+            const title = document.createElement("h1");
+            title.textContent = "Pending User Approvals";
+            main.appendChild(title);
+
+            users.forEach(user => {
+                const card = document.createElement("div");
+                card.className = "user-card";
+
+                const name = document.createElement("h3");
+                name.textContent = user.name;
+
+                const email = document.createElement("p");
+                email.textContent = `Email: ${user.email}`;
+
+                const actions = document.createElement("div");
+                actions.className = "actions";
+
+                const approveBtn = document.createElement("button");
+                approveBtn.className = "approve";
+                approveBtn.textContent = "Approve";
+                approveBtn.onclick = () => alert(`Approved ${user.name}`);
+
+                const rejectBtn = document.createElement("button");
+                rejectBtn.className = "reject";
+                rejectBtn.textContent = "Reject";
+                rejectBtn.onclick = () => alert(`Rejected ${user.name}`);
+
+                actions.appendChild(approveBtn);
+                actions.appendChild(rejectBtn);
+
+                card.appendChild(name);
+                card.appendChild(email);
+                card.appendChild(actions);
+
+                main.appendChild(card);
+            });
+        }
+
+        // Call the function to render content
+        createMain(users);
+    </script>
 
 </body>
 
