@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ProviderUserRepository extends JpaRepository<ProviderUser, Integer> {
+public interface ProviderUserRepository extends JpaRepository<ProviderUser, Long> {
 
 
     @Query(value = "select * from provider_usesrs p where p.providerId>= ?1", nativeQuery = true)
-    List<ProviderUser> findByProviderId(int providerId);
+    List<ProviderUser> findByProviderId(Long providerId);
 
     List<ProviderUser> getProviderUsersByProviderUsername(String username);
 

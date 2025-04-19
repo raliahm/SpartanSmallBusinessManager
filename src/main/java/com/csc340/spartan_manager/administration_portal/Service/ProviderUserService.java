@@ -15,7 +15,7 @@ public class ProviderUserService {
         return providerUserRepository.findAll();
     }
 
-    public ProviderUser getProviderUserByProviderId(int providerId) {
+    public ProviderUser getProviderUserByProviderId(Long providerId) {
         return (ProviderUser) providerUserRepository.findByProviderId(providerId);
     }
 
@@ -26,14 +26,14 @@ public class ProviderUserService {
     public void addNewProviderUser(ProviderUser providerUser) {
         providerUserRepository.save(providerUser);
     }
-    public void updateProvider(int providerId, ProviderUser providerUser) {
+    public void updateProvider(Long providerId, ProviderUser providerUser) {
         ProviderUser existing = getProviderUserByProviderId(providerId);
         existing.setEmail(providerUser.getEmail());
         existing.setPassword(providerUser.getPassword());
         providerUserRepository.save(existing);
     }
 
-    public void deleteProviderUserById(int providerId) {
+    public void deleteProviderUserById(Long providerId) {
         providerUserRepository.deleteById(providerId);
     }
 

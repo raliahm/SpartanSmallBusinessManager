@@ -1,6 +1,5 @@
 package com.csc340.spartan_manager.administration_portal.Entity;
 
-package com.SpartanSmallBusinessManager.API.statistics;
 
 import jakarta.persistence.*;
 

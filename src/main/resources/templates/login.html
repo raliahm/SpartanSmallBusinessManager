@@ -11,16 +11,20 @@
 
 <div id="content">
     <div id="card">
+
         <div class="card" >
             <div class="card-body">
-                <h5 class="card-title">Login</h5>
-                <h6 class="card-subtitle mb-2 text-muted" >
-                    Username: <input type="text" class="form-control" aria-label="Username" id="username">
-                </h6>
 
-                <p class="card-text" >
-                    Password:     <input type="text" class="form-control" aria-label="Password" id="password">
-                </p>
+                    <h5 class="card-title">Login</h5>
+                    <h6 class="card-subtitle mb-2 text-muted" >
+                        Username: <input type="text" class="form-control" aria-label="Username" id="username">
+                    </h6>
+
+                    <p class="card-text" >
+                        Password:     <input type="text" class="form-control" aria-label="Password" id="password">
+                    </p>
+
+
             </div>
             <button class="login-btn" onclick="login()">
                 LOGIN
@@ -29,6 +33,7 @@
                 SIGN-UP
             </button>
         </div>
+
     </div>
 </div>
 
@@ -40,12 +45,47 @@
      function login() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        if(username == 'r' && password == '1234') {
+        var url='http://localhost:8081/user/login?username=' + username + '&password=' + password;
+        alert(url);
+         fetch(url)
+             .then(response => response.json())  // Use json() to parse the response as JSON
+             .then(data => {
+                 if (data) {
+                     console.log('Login successful:', data);
+                     window.location.href = "/dashboard.html";
+                 } else {
+                     console.log("Login failed:", data);
+                     console.error('Login failed:', data);
+                     alert("Invalid credentials");
+                 }
+             })
+             .catch(error => {
+                 console.error('Error:', error);
+                 alert("Error during login");
+             });
 
-            window.location.assign("index.html")
-        } else {
-            alert("Invalid member")
-        }
+         // const formData = new FormData(this);
+         //
+         // const response = fetch("http://localhost:8081/user/login", {
+         //     method: "POST",
+         //     body: formData,
+         //     credentials: "include" // Important to include cookies
+         // });
+         //
+         // if (response.ok) {
+         //     alert("Login successful!");
+         //     // Redirect to a protected page
+         //     window.location.href = "/dashboard.html";
+         // } else {
+         //     alert("Login failed.");
+         // }
+
+        // if(username == 'r' && password == '1234') {
+        //
+        //     window.location.assign("index.html")
+        // } else {
+        //     alert("Invalid member")
+        // }
          // Sending GET request with URL parameters (doesn't need body)
          // fetch('http://localhost:8080/user/login?username=' + username + '&password=' + password)
          //     .then(response => response.json())  // Use json() to parse the response as JSON

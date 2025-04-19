@@ -31,9 +31,11 @@ public class AdminUserController {
 
 
     @PostMapping("/new")
-    public Object addNewAdminUser(@RequestBody AdminUser adminUser) {
-        adminUserService.addNewAdminUser(adminUser);
-        return new ResponseEntity<>(adminUserService.getAllAdminUsers(), HttpStatus.CREATED);
+    public Object registerAdmin(@RequestBody AdminUser adminUser) {
+        if (adminUserService.addNewAdminUser(adminUser)) {
+            return new ResponseEntity<>(adminUserService.getAllAdminUsers(), HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/update/{adminId}")
@@ -43,7 +45,7 @@ public class AdminUserController {
     }
 
     @DeleteMapping("/delete/{adminId}")
-    public Object deleteAdminUser(@PathVariable int adminId) {
+    public Object deleteAdminUser(@PathVariable Long adminId) {
         adminUserService.deleteAdminUserById(adminId);
         return new ResponseEntity<>(adminUserService.getAllAdminUsers(), HttpStatus.OK);
     }

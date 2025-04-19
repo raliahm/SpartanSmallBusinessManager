@@ -14,14 +14,22 @@ public class LoginController {
     @Autowired
     private AdminUserService adminUserService;
 
-    @GetMapping("/login")
-    public Object login(String username, String password) {
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody AdminUser loginUser) {
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
+
         boolean isAuthenticated = adminUserService.authenticate(username, password);
         if (isAuthenticated) {
             return ResponseEntity.ok("{\"status\":\"success\"}");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"status\":\"failed\"}");
         }
+    }
 
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody AdminUser adminUser) {
+        adminUserService.addNewAdminUser(adminUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"status\":\"user created\"}");
     }
 }

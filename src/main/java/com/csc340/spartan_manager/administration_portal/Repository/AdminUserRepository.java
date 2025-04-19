@@ -6,14 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface AdminUserRepository extends JpaRepository<AdminUser,Integer> {
-    // This method will retrieve users by adminId
-    List<AdminUser> getAdminUsersById(Long adminId);
+public interface AdminUserRepository extends JpaRepository<AdminUser,Long> {
 
-    @Query(value = "select * from admin_users a where a.adminId>= ?1", nativeQuery = true)
-    List<AdminUser> findById(Long adminId);
-
-    List<AdminUser> getAdminUsersByAdminUsername(String adminUsername);
+    Optional<AdminUser> findByAdminUsername(String username);
 }

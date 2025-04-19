@@ -16,7 +16,7 @@ public class CustomerUserService {
         return customerUserRepository.findAll();
     }
 
-    public CustomerUser getCustUserById(int id) {
+    public CustomerUser getCustUserById(Long id) {
         return (CustomerUser) customerUserRepository.findByCustId(id);
     }
 
@@ -24,7 +24,7 @@ public class CustomerUserService {
         customerUserRepository.save(custUser);
     }
 
-    public void updateCustUser(int id, CustomerUser custUser) {
+    public void updateCustUser(Long id, CustomerUser custUser) {
         CustomerUser existing = getCustUserById(id);
         existing.setEmail(custUser.getEmail());
         existing.setPassword(custUser.getPassword());
@@ -32,7 +32,7 @@ public class CustomerUserService {
         customerUserRepository.save(existing);
     }
 
-    public void deleteCustUser(int id) {
+    public void deleteCustUser(Long id) {
         customerUserRepository.deleteById(id);
     }
 

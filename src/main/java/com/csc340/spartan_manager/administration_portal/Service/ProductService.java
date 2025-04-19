@@ -1,7 +1,9 @@
 package com.csc340.spartan_manager.administration_portal.Service;
 
 import com.csc340.spartan_manager.administration_portal.Entity.Product;
+import com.csc340.spartan_manager.administration_portal.Repository.BusinessRepository;
 import com.csc340.spartan_manager.administration_portal.Repository.ProductRepository;
+import com.csc340.spartan_manager.administration_portal.Repository.ProviderUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private ProviderRepository providerRepository;
+    private ProviderUserRepository providerRepository;
 
     @Autowired
     private BusinessRepository businessRepository;

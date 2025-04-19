@@ -19,7 +19,7 @@ public class CustomerUserController {
     }
 
     @GetMapping("/{custId}")
-    public Object getCustomerUser(@PathVariable int custId) {
+    public Object getCustomerUser(@PathVariable Long custId) {
         return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.OK);
 
     }
@@ -36,13 +36,13 @@ public class CustomerUserController {
     }
 
     @PutMapping("/update/{custId}")
-    public Object updateAdminUser(@PathVariable int custId, @RequestBody CustomerUser custUser) {
+    public Object updateAdminUser(@PathVariable Long custId, @RequestBody CustomerUser custUser) {
         customerUserService.updateCustUser(custId, custUser);
         return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{custId}")
-    public Object deleteAdminUser(@PathVariable int custId) {
+    public Object deleteAdminUser(@PathVariable Long custId) {
         customerUserService.deleteCustUser(custId);
         return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.OK);
     }

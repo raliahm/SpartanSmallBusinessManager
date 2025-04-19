@@ -17,15 +17,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authz ->
                         authz
-                                .requestMatchers("/user/login" , "/error").permitAll()  // Allow everyone to access /login
-                                .anyRequest().authenticated()          // All other requests require authentication
+                                .requestMatchers("/user/login", "/user/register", "/error").permitAll()  // Allow everyone to access /login
+                                .anyRequest().authenticated()  // All other requests require authentication
                 )
-                .formLogin(form ->
-                        form
-                                .loginPage("/user/login")  // Custom login page URL
-                                .loginProcessingUrl("/user/login")  // URL to submit the login form
-                                .defaultSuccessUrl("/summary", true)  // Redirect to /home after successful login
-                                .permitAll()
+                .csrf(csrf -> csrf.disable())  // Disables CSRF for testing purposes
+                .formLogin(form -> form
+                        .loginProcessingUrl("/user/login") // <-- This is the endpoint JS should POST to
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .permitAll()
                 )
                 .logout(logout ->
                         logout
@@ -36,6 +36,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

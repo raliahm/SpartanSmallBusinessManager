@@ -1,7 +1,7 @@
 package com.csc340.spartan_manager.administration_portal.Entity;
 
 import jakarta.persistence.*;
-import com.csc340.spartan_manager.administration_portal.Entity.Product;
+
 
 @Entity
 @Table(name = "reviews")
@@ -55,11 +55,11 @@ public class Review {
         this.product = product;
     }
 
-    public Provider getProvider() {
+    public ProviderUser getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(ProviderUser provider) {
         this.provider = provider;
     }
 }

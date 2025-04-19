@@ -24,7 +24,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "provider_id", nullable = false)
-    private Provider provider;
+    private ProviderUser provider;
 
     @ManyToOne
     @JoinColumn(name = "business_id", nullable = false)
@@ -33,7 +33,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, String productDescription, double productPrice, int productQuantity, String productCategory, Provider provider, Business business) {
+    public Product(String productName, String productDescription, double productPrice, int productQuantity, String productCategory, ProviderUser provider, Business business) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -91,11 +91,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Provider getProvider() {
+    public ProviderUser getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(ProviderUser provider) {
         this.provider = provider;
     }
 

@@ -13,41 +13,68 @@ public class AdminUserService {
     @Autowired
     private AdminUserRepository adminUserRepository;
 
-    public List<AdminUser> getAllAdminUsers() {
+
+    /**
+     * returns all the admin users
+     * @return
+     */
+    public Object getAllAdminUsers() {
         return adminUserRepository.findAll();
     }
 
-    public AdminUser getAdminUserById(Long adminId) {
-        return (AdminUser) adminUserRepository.findById(adminId);
+    /**
+     * return one Admin User given the ID
+     * @param adminId
+     * @return admin user object
+     */
+    public Object getAdminUserById(Long adminId) {
+        return adminUserRepository.findById(adminId);
     }
 
-    public AdminUser getAdminUsersByAdminUsername(String username) {
-        return (AdminUser) adminUserRepository.getAdminUsersByAdminUsername(username);
+
+    /**
+     * Search an admin by their username and get the admin user object back
+     * @param search
+     * @return
+     */
+    public Object getAdminUsersByAdminUsername(String search) {
+        return adminUserRepository.findByAdminUsername(search);
     }
 
-    public void addNewAdminUser(AdminUser adminUser) {
+    /**
+     * Updates the exisitng admins
+     * @param adminId
+     * @param adminUser
+     */
+    public void updateAdmin(Long adminId, AdminUser adminUser)  {
+        AdminUser existingAdmin = adminUserRepository.findById(adminId).get();
+        existingAdmin.setAdminBirthday(adminUser.getAdminBirthday());
+        existingAdmin.setEmail(adminUser.getEmail());
+        existingAdmin.setFullName(adminUser.getFullName());
+        existingAdmin.setPhoneNumber(adminUser.getPhoneNumber());
+        existingAdmin.setUsername(adminUser.getUsername());
+        existingAdmin.setPassword(adminUser.getPassword());
+        adminUserRepository.save(existingAdmin);
+
+    }
+
+    public boolean addNewAdminUser(AdminUser adminUser) {
+        // You can use email, username, or both depending on your uniqueness constraint
+        Optional<AdminUser> existingUser = adminUserRepository.findByAdminUsername(adminUser.getUsername());
+        if (existingUser.isPresent()) {
+            return false;
+        }
+
         adminUserRepository.save(adminUser);
-    }
-    public void updateAdmin(Long adminId, AdminUser adminUser) {
-        AdminUser existing = getAdminUserById(adminId);
-        existing.setEmail(adminUser.getEmail());
-        existing.setPassword(adminUser.getPassword());
-        adminUserRepository.save(existing);
+        return true;
     }
 
-    public void deleteAdminUserById(int adminId) {
+    public void deleteAdminUserById(Long adminId) {
         adminUserRepository.deleteById(adminId);
     }
 
     public boolean authenticate(String username, String password) {
-        Optional<AdminUser> userOpt = Optional.ofNullable(getAdminUsersByAdminUsername(username));
-
-        if (userOpt.isPresent()) {
-            AdminUser user = userOpt.get();
-            return user.getPassword().equals(password); // Check the password against the stored one
-        } else {
-            return false; // User not found
-        }
+        AdminUser user = adminUserRepository.findByAdminUsername(username).get();
+        return user.getPassword().equals(password);
     }
-
 }

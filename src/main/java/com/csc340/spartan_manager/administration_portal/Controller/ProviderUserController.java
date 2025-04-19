@@ -19,7 +19,7 @@ public class ProviderUserController {
     }
 
     @GetMapping("/{providerId}")
-    public Object getProviderUser(@PathVariable int providerId) {
+    public Object getProviderUser(@PathVariable Long providerId) {
         return new ResponseEntity<>(providerUserService.getProviderUserByProviderId(providerId), HttpStatus.OK);
     }
 
@@ -36,13 +36,13 @@ public class ProviderUserController {
     }
 
     @PutMapping("/update/{providerId}")
-    public Object updateProviderUser(@PathVariable int providerId, @RequestBody ProviderUser providerUser) {
+    public Object updateProviderUser(@PathVariable Long providerId, @RequestBody ProviderUser providerUser) {
         providerUserService.updateProvider(providerId, providerUser);
         return new ResponseEntity<>(providerUserService.getProviderUserByProviderId(providerId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{providerId}")
-    public Object deleteProviderUser(@PathVariable int providerId) {
+    public Object deleteProviderUser(@PathVariable Long providerId) {
         providerUserService.deleteProviderUserById(providerId);
         return new ResponseEntity<>(providerUserService.getAllProviderUsers(), HttpStatus.OK);
     }
