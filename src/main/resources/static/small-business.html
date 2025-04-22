@@ -141,7 +141,7 @@
         </thead>
         <tbody>
         {{#each businesses}}
-        <tr class="{{#if (eq status 'restricted')}}restricted-row{{else}}unrestricted-row{{/if}}">
+        <tr data-business-id="{{businessId}}" class="{{#if (eq status 'restricted')}}restricted-row{{else}}unrestricted-row{{/if}}">
 
             <td>{{businessId}}</td>
             <td>{{businessName}}</td>
@@ -212,8 +212,10 @@
                 if (!response.ok) {
                     throw new Error('Failed to restrict business');
                 }
+
+                // Update the status dynamically on success
+                updateBusinessRow(businessId, 'restricted');
                 alert('Business restricted successfully');
-                location.reload();
             })
             .catch(error => {
                 console.error(error);
@@ -228,20 +230,42 @@
             return;
         }
 
-        fetch(`businesses/unrestrict/${businessId}$`, {
+        fetch(`businesses/unrestrict/${businessId}`, {
             method: 'PUT'
         })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to unrestrict business');
                 }
+
+                // Update the status dynamically on success
+                updateBusinessRow(businessId, 'unrestricted');
                 alert('Business unrestricted successfully');
-                location.reload();
             })
             .catch(error => {
                 console.error(error);
                 alert("Something went wrong.");
             });
+    }
+
+    function updateBusinessRow(businessId, status) {
+        // Find the table row by businessId
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+
+        if (row) {
+            // Update the status text in the table
+            const statusColumn = row.querySelector('td:nth-child(4)'); // Assuming status is in the 4th column
+            statusColumn.textContent = status;
+
+            // Apply the color change
+            if (status === 'restricted') {
+                row.classList.add('restricted-row');
+                row.classList.remove('unrestricted-row');
+            } else {
+                row.classList.add('unrestricted-row');
+                row.classList.remove('restricted-row');
+            }
+        }
     }
 
 </script>

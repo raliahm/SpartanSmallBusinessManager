@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BusinessService {
@@ -51,13 +52,26 @@ public class BusinessService {
     }
 
     public boolean restrictBusiness(int id){
-        businessRepository.findById(id).ifPresent(business -> business.setRestricted(true));
-        return businessRepository.findById(id).get().isRestricted();
+        Optional<Business> existing = businessRepository.findById(id);
+        if (existing.isPresent()) {
+            Business business = existing.get();
+            business.setRestricted(true);  // Set the status to "restricted"
+            businessRepository.save(business);  // Save the updated business
+            return true;
+        } else {
+            return false;  // Return false if the business doesn't exist
+        }
     }
     public boolean unrestrictBusiness(int id){
-        businessRepository.findById(id).ifPresent(business -> business.setRestricted(false));
-        return businessRepository.findById(id).get().isRestricted();
-
+        Optional<Business> existing = businessRepository.findById(id);
+        if (existing.isPresent()) {
+            Business business = existing.get();
+            business.setRestricted(false);  // Set it to unrestricted
+            businessRepository.save(business);  // Save the updated business
+            return true;
+        } else {
+            return false;  // Return false if the business doesn't exist
+        }
     }
 
     public boolean isRestricted(int id) {
