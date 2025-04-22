@@ -11,15 +11,15 @@ public class Business {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int businessId;
+    private int business_id;
 
     @Column(nullable = false)
-    private String businessName;
+    private String business_name;
 
     @Column(nullable = false)
-    private String businessDescription;
 
-    @Column(nullable = false)
+    private String business_description;
+
     private String status;
 
     @Column
@@ -29,49 +29,53 @@ public class Business {
     @JoinColumn(name = "provider_id", nullable = false)
     private ProviderUser provider;
 
-    @Column
-    private Timestamp createdDate;
 
-    @Column
-    private Timestamp updatedDate;
 
-    @Column
-    private Timestamp deletedDate;
-
-    @Column(columnDefinition = "false")
     private boolean restricted;
+
+    private String business_address;
+
 
     public Business() {
     }
 
     public Business(String businessName, String businessDescription, ProviderUser provider) {
-        this.businessName = businessName;
-        this.businessDescription = businessDescription;
+        this.business_name = businessName;
+        this.business_description = businessDescription;
         this.provider = provider;
     }
 
+    public Business(String businessName, String businessDescription, String status, String category, ProviderUser provider, boolean restricted, String business_address) {
+        this.business_name = businessName;
+        this.business_description = businessDescription;
+        this.status = status;
+        this.category = category;
+        this.provider = provider;
+        this.restricted = restricted;
+
+    }
     public int getBusinessId() {
-        return businessId;
+        return business_id;
     }
 
     public void setBusinessId(int businessId) {
-        this.businessId = businessId;
+        this.business_id = businessId;
     }
 
     public String getBusinessName() {
-        return businessName;
+        return business_name;
     }
 
     public void setBusinessName(String businessName) {
-        this.businessName = businessName;
+        this.business_name = businessName;
     }
 
     public String getBusinessDescription() {
-        return businessDescription;
+        return business_description;
     }
 
     public void setBusinessDescription(String businessDescription) {
-        this.businessDescription = businessDescription;
+        this.business_description = businessDescription;
     }
 
     public ProviderUser getProvider() {
@@ -92,32 +96,25 @@ public class Business {
     public String getCategory() {
         return category;
     }
-    public Timestamp getCreatedAt() {
-        return createdDate;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
 
-        this.createdDate = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedDate;
-    }
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedDate = updatedAt;
-    }
-    public Timestamp getDeletedAt() {
-        return deletedDate;
-    }
-    public void setDeletedAt(Timestamp deletedAt) {
-        this.deletedDate = deletedAt;
-    }
     public boolean isRestricted() {
         return restricted;
     }
     public void setRestricted(boolean restricted) {
         this.restricted = restricted;
     }
+
+    public String getBusinessAddress() {
+        return business_address;
+    }
+    public void setBusinessAddress(String businessAddress) {
+        this.business_address = businessAddress;
+    }
+
+
 
 }

@@ -27,8 +27,8 @@ public class BusinessService {
         return businessRepository.findById(businessId).orElse(null);
     }
 
-    public void addNewBusiness(Business business) {
-        businessRepository.save(business);
+    public Business addNewBusiness(Business business) {
+        return businessRepository.save(business);
     }
 
     public void updateBusiness(int businessId, Business business) {

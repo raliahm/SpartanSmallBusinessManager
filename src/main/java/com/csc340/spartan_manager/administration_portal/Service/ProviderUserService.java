@@ -4,7 +4,9 @@ import com.csc340.spartan_manager.administration_portal.Repository.ProviderUserR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProviderUserService {
@@ -16,7 +18,10 @@ public class ProviderUserService {
     }
 
     public ProviderUser getProviderUserByProviderId(Long providerId) {
-        return (ProviderUser) providerUserRepository.findByProviderId(providerId);
+        if (providerId == null) {
+            return null; // or throw a custom exception if null is unacceptable
+        }
+       return providerUserRepository.findById(providerId).get();
     }
 
     public ProviderUser getProviderUsersByProviderUsername(String providerUsername) {

@@ -477,6 +477,7 @@ main table tbody td {
     border-bottom: 1px solid var(--clr-white);
 }
 
+
 main .recent_registration a{
     text-align: center;
     display: block;
@@ -605,6 +606,19 @@ Media query for laptops
     }
 }
 
+.restricted-row {
+    color: #b30000;         /* dark red text */
+    font-style: italic;
+}
+
+.unrestricted-row {
+    color: #006600;         /* dark green text */
+    font-weight: normal;
+}
+
+.selected {
+    background-color: #e0f7fa !important; /* highlight the selected row */
+}
 /**
 Media query for phones
  */

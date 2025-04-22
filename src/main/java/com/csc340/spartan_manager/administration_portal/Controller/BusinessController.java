@@ -2,9 +2,12 @@ package com.csc340.spartan_manager.administration_portal.Controller;
 
 
 
+import com.csc340.spartan_manager.administration_portal.DTO.BusinessDTO;
 import com.csc340.spartan_manager.administration_portal.Entity.Business;
+import com.csc340.spartan_manager.administration_portal.Entity.ProviderUser;
 import com.csc340.spartan_manager.administration_portal.Repository.ProviderUserRepository;
 import com.csc340.spartan_manager.administration_portal.Service.BusinessService;
+import com.csc340.spartan_manager.administration_portal.Service.ProviderUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,9 @@ public class BusinessController {
 
     @Autowired
     private BusinessService service;
+
+    @Autowired
+    private ProviderUserService providerUserService;
 
     @Autowired
     private ProviderUserRepository providerRepository;
@@ -39,14 +45,32 @@ public class BusinessController {
      * Create a new Business entry.
      * http://localhost:8080/businesses/new
      *
-     * @param business the new Business object.
+     * @param dto the new Business object.
      * @return confirmation message.
      */
+
     @PostMapping("/new")
-    public Object addNewBusiness(@RequestBody Business business) {
-        service.addNewBusiness(business);
+    public Object addNewBusiness(@RequestBody BusinessDTO dto) {
+        // Get the provider
+        ProviderUser provider = providerUserService.getProviderUserByProviderId(dto.getProvider_id());
+        if (provider == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid provider ID");
+        }
+
+        // Build your Business object
+        Business business = new Business();
+        business.setBusinessName(dto.getBusiness_name());
+        business.setBusinessAddress(dto.getBusiness_address());
+        business.setCategory(dto.getCategory());
+        business.setProvider(provider);
+        business.setBusinessDescription(dto.getBusiness_description());
+        business.setRestricted(false);
+        business.setStatus("Pending");
+        Business b = service.addNewBusiness(business);
+
         return new ResponseEntity<>("New Business Successfully Created!", HttpStatus.CREATED);
     }
+
 
     /**
      * Update an existing Business object.

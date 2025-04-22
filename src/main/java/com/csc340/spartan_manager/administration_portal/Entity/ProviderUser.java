@@ -34,7 +34,7 @@ public class ProviderUser implements User {
     private Timestamp createdDate;
     private String providerName;
 
-    @Column(columnDefinition = "false")
+
     private boolean restricted;
 
 

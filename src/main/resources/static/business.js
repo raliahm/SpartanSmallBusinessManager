@@ -126,3 +126,4 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Fetch error:', error);
         });
 });
+
