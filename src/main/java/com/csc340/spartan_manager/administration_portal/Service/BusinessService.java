@@ -44,4 +44,23 @@ public class BusinessService {
     public void deleteBusinessById(int businessId) {
         businessRepository.deleteById(businessId);
     }
+
+
+    public long getBusinessCount() {
+       return businessRepository.count();
+    }
+
+    public boolean restrictBusiness(int id){
+        businessRepository.findById(id).ifPresent(business -> business.setRestricted(true));
+        return businessRepository.findById(id).get().isRestricted();
+    }
+    public boolean unrestrictBusiness(int id){
+        businessRepository.findById(id).ifPresent(business -> business.setRestricted(false));
+        return businessRepository.findById(id).get().isRestricted();
+
+    }
+
+    public boolean isRestricted(int id) {
+        return businessRepository.findById(id).get().isRestricted();
+    }
 }

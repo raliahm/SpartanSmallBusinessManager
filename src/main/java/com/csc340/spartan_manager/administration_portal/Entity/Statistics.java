@@ -3,6 +3,8 @@ package com.csc340.spartan_manager.administration_portal.Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "statistics")
 public class Statistics {
@@ -19,6 +21,9 @@ public class Statistics {
 
     @Column(nullable = false)
     private String usageDetails;
+
+    @Column(nullable = false)
+    private Timestamp createdDate;
 
     public Statistics() {
     }
@@ -51,5 +56,15 @@ public class Statistics {
 
     public void setTotalReviews(int totalReviews) {
         this.totalReviews = totalReviews;
+    }
+
+
+    public Timestamp getCreatedAt() {
+        return createdDate;
+    }
+
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdDate = createdAt;
     }
 }

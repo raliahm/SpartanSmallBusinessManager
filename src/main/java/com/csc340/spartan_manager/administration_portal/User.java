@@ -1,10 +1,11 @@
 package com.csc340.spartan_manager.administration_portal;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public interface User {
-    Date getCreatedAt();
-    void setCreatedAt(Date createdAt);
+    Timestamp getCreatedAt();
+    void setCreatedAt(Timestamp createdAt);
     String getUserType();
     void setUsername(String username);
     String getUsername();

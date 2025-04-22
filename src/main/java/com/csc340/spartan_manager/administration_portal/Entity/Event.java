@@ -2,6 +2,8 @@ package com.csc340.spartan_manager.administration_portal.Entity;
 
 
 import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
@@ -25,14 +27,17 @@ public class Event {
     @JoinColumn(name = "provider_id", nullable = false)
     private ProviderUser provider;
 
+    private Timestamp createdDate;
+
     public Event() {}
 
-    public Event(String eventName, String eventDescription, String eventLocation, LocalDate eventDate, ProviderUser provider) {
+    public Event(String eventName, String eventDescription, String eventLocation, LocalDate eventDate, ProviderUser provider, Timestamp createdDate) {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.eventLocation = eventLocation;
         this.eventDate = eventDate;
         this.provider = provider;
+        this.createdDate = createdDate;
     }
 
     public int getEventId() {
@@ -81,5 +86,13 @@ public class Event {
 
     public void setProvider(ProviderUser provider) {
         this.provider = provider;
+    }
+    public Timestamp getCreatedAt() {
+        return createdDate;
+    }
+
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdDate = createdAt;
     }
 }

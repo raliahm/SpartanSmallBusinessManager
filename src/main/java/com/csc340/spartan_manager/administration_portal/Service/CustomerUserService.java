@@ -39,4 +39,8 @@ public class CustomerUserService {
     public Object getCustByUsername(String custUsername) {
        return customerUserRepository.findByCustUsername(custUsername);
     }
+
+    public long getCustCount() {
+        return customerUserRepository.count();
+    }
 }

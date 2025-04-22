@@ -37,4 +37,7 @@ public class ProviderUserService {
         providerUserRepository.deleteById(providerId);
     }
 
+    public long getProviderUserCount() {
+        return providerUserRepository.count();
+    }
 }

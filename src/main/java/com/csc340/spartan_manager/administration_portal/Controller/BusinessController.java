@@ -74,4 +74,24 @@ public class BusinessController {
         service.deleteBusinessById(businessId);
         return new ResponseEntity<>(service.getAllBusinesses(), HttpStatus.OK);
     }
+
+
+    @GetMapping("/getBusinessCount")
+    public Object getBusinessCount() {
+        return new ResponseEntity<>(service.getBusinessCount(), HttpStatus.OK);
+    }
+
+    @PutMapping("/unrestrict/{businessID}")
+    public Object unRestrict(@PathVariable int businessID) {
+        return new ResponseEntity<>(service.unrestrictBusiness(businessID), HttpStatus.OK);
+    }
+    @PutMapping("/restrict/{businessID}")
+    public Object setRestriction(@PathVariable int businessID) {
+        return new ResponseEntity<>(service.restrictBusiness(businessID), HttpStatus.OK);
+    }
+
+    @GetMapping("/isRestricted/{businessID}")
+    public Object isRestrict(@PathVariable int businessID) {
+        return new ResponseEntity<>(service.isRestricted(businessID), HttpStatus.OK);
+    }
 }

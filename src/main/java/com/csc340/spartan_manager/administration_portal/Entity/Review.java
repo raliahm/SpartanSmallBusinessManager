@@ -2,6 +2,8 @@ package com.csc340.spartan_manager.administration_portal.Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "reviews")
@@ -21,6 +23,18 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "provider_id", nullable = false)
     private ProviderUser provider;
+
+    @Column(nullable = false)
+    private Timestamp createdDate;
+
+
+    public Timestamp getCreatedAt() {
+        return createdDate;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdDate = createdAt;
+    }
 
     public Review() {
     }

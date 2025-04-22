@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Entity
@@ -30,9 +31,11 @@ public class ProviderUser implements User {
     private String providerUserState;
     private String providerUserCountry;
     private String providerUserZip;
-    private Date createdDate;
+    private Timestamp createdDate;
     private String providerName;
 
+    @Column(columnDefinition = "false")
+    private boolean restricted;
 
 
     @Enumerated(EnumType.STRING)
@@ -42,7 +45,7 @@ public class ProviderUser implements User {
     public ProviderUser() {
     }
 
-    public ProviderUser(String providerUserName, String providerUserPassword, String providerUserEmail, String providerUserPhone, String providerUserAddress, String providerUserCity, String providerUserState, String providerUserCountry, String providerUserZip, Date createdDate, String providerName) {
+    public ProviderUser(String providerUserName, String providerUserPassword, String providerUserEmail, String providerUserPhone, String providerUserAddress, String providerUserCity, String providerUserState, String providerUserCountry, String providerUserZip, Timestamp createdDate, String providerName, boolean restricted) {
 
         this.providerUsername = providerUserName;
         this.providerUserPassword = providerUserPassword;
@@ -55,6 +58,7 @@ public class ProviderUser implements User {
         this.providerUserZip = providerUserZip;
         this.createdDate = createdDate;
         this.providerName = providerName;
+        this.restricted = restricted;
     }
 
     public ProviderUser(String providerUserName, String providerUserPassword, String providerUserEmail, String providerUserPhone, String providerUserAddress, String providerName) {
@@ -67,12 +71,12 @@ public class ProviderUser implements User {
     }
 
     @Override
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdDate;
     }
 
     @Override
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdDate = createdAt;
     }
 
@@ -185,5 +189,24 @@ public class ProviderUser implements User {
 
     public void setProviderUserZip(String providerUserZip) {
         this.providerUserZip = providerUserZip;
+    }
+
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+    public String getProviderName() {
+        return providerName;
+    }
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+    public boolean isRestricted() {
+        return restricted;
+    }
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
     }
 }

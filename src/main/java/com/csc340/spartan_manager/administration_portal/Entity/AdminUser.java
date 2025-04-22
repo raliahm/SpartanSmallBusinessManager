@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "admin_users")
@@ -26,7 +27,8 @@ public class AdminUser implements User {
 
     @Column(unique = true, nullable = false)  // Ensure unique username
     private String adminUsername;
-    private Date createdDate;
+    @Column(unique = true, nullable = false)
+    private Timestamp createdDate;
 
     private final UserRole role=UserRole.ADMIN;
 
@@ -34,7 +36,7 @@ public class AdminUser implements User {
 
     }
 
-    public AdminUser(String adminName, String adminPassword, String adminEmail, String adminPhone, Date adminBirthday, String adminUsername, Date createdDate) {
+    public AdminUser(String adminName, String adminPassword, String adminEmail, String adminPhone, Date adminBirthday, String adminUsername, Timestamp createdDate) {
 
         this.adminName = adminName;
         this.adminPassword = adminPassword;
@@ -46,12 +48,12 @@ public class AdminUser implements User {
     }
 
     @Override
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdDate;
     }
 
     @Override
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdDate = createdAt;
     }
 

@@ -46,4 +46,9 @@ public class ProviderUserController {
         providerUserService.deleteProviderUserById(providerId);
         return new ResponseEntity<>(providerUserService.getAllProviderUsers(), HttpStatus.OK);
     }
+
+    @GetMapping("/getProviderUserCount")
+    public Object getProviderUserCount() {
+        return new ResponseEntity<>(providerUserService.getProviderUserCount(), HttpStatus.OK);
+    }
 }

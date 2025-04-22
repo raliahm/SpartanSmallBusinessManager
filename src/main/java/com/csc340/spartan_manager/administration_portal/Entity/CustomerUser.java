@@ -6,6 +6,7 @@ import com.csc340.spartan_manager.administration_portal.UserRole;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "cust_users")
@@ -24,23 +25,23 @@ public class CustomerUser implements User {
     @Column(unique=true, nullable=false)
     private String custUsername;
     private String custPassword;
-    private Date custCreated;
+    private Timestamp createdDate;
 
     private final UserRole role = UserRole.CUSTOMER;
 
     public CustomerUser() {
 
     }
-    public CustomerUser(String custName, String custAddress, String custUsername, String custPassword, String custEmail, Date custCreated) {
+    public CustomerUser(String custName, String custAddress, String custUsername, String custPassword, String custEmail, Timestamp custCreated) {
         this.custName = custName;
         this.custAddress = custAddress;
         this.custUsername = custUsername;
         this.custPassword = custPassword;
         this.custEmail = custEmail;
-        this.custCreated = custCreated;
+        this.createdDate = custCreated;
     }
 
-    public CustomerUser(String custName, String custEmail, String custPhone, String custAddress, String custCity, String custState, String custCountry, String custZip, String custUsername, String custPassword, Date custCreated) {
+    public CustomerUser(String custName, String custEmail, String custPhone, String custAddress, String custCity, String custState, String custCountry, String custZip, String custUsername, String custPassword, Timestamp custCreated) {
 
         this.custName = custName;
         this.custEmail = custEmail;
@@ -52,17 +53,17 @@ public class CustomerUser implements User {
         this.custZip = custZip;
         this.custUsername = custUsername;
         this.custPassword = custPassword;
-        this.custCreated = custCreated;
+        this.createdDate = custCreated;
     }
 
     @Override
-    public Date getCreatedAt() {
-        return custCreated;
+    public Timestamp getCreatedAt() {
+        return createdDate;
     }
 
     @Override
-    public void setCreatedAt(Date createdAt) {
-        this.custCreated = createdAt;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdDate = createdAt;
     }
 
     @Override

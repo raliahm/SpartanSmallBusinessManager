@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * EventController.java.
  * Includes all REST API endpoint mappings for the Event object.
@@ -28,6 +30,11 @@ public class EventController {
     @GetMapping("/all")
     public Object getAllEvents() {
         return new ResponseEntity<>(service.getAllEvents(), HttpStatus.OK);
+    }
+
+    @GetMapping("/recent")
+    public List<Event> getRecentEvents() {
+        return service.getRecentEvents(); // Assume this service fetches events from the database
     }
 
     /**

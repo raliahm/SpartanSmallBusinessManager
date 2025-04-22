@@ -41,4 +41,8 @@ public class EventService {
     public void deleteEventById(int eventId) {
         eventRepository.deleteById(eventId);
     }
+
+    public List<Event> getRecentEvents() {
+        return eventRepository.findTop5ByOrderByEventDateDesc(); // Query the database for recent events
+    }
 }

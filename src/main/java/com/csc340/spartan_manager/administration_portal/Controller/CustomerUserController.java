@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/custs")
+@RequestMapping("/customer")
 public class CustomerUserController {
     @Autowired
     private CustomerUserService customerUserService;
@@ -45,5 +45,10 @@ public class CustomerUserController {
     public Object deleteAdminUser(@PathVariable Long custId) {
         customerUserService.deleteCustUser(custId);
         return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCustomerCount")
+    public Object getCustomerCount() {
+        return new ResponseEntity<>(customerUserService.getCustCount(), HttpStatus.OK);
     }
 }

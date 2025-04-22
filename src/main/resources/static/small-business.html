@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Business View</title>
-    <link rel="stylesheet" href="../static/style.css" >
+    <link rel="stylesheet" href="style.css" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -34,33 +34,30 @@
             <!--top section-->
             <div class="sidebar">
 
-                <a href="index.html">
+                <a href="/">
                     <span class="material-symbols-outlined"> grid_view </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="small-business.html" >
+                <a href="/smallbusiness" >
                     <span class="material-symbols-outlined"> supervisor_account </span>
                     <h3>Business View</h3>
                 </a>
-                <a href="student.html">
+                <a href="/student">
                     <span class="material-symbols-outlined"> person </span>
                     <h3>Student View</h3>
                 </a>
-                <a href="analytics.html">
+                <a href="/analytics">
                     <span class="material-symbols-outlined"> monitoring </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="usage-details.html">
+                <a href="/usagedetails">
                     <span class="material-symbols-outlined"> email </span>
                     <h3>User Approvals</h3>
                 </a>
-                <a href="subscription.html">
-                    <span class="material-symbols-outlined"> receipt_long  </span>
-                    <h3>Subscription Manager</h3>
-                </a>
 
 
-                <a href="login.html">
+
+                <a href="/login">
                     <span class="material-symbols-outlined"> logout  </span>
                     <h3>Logout</h3>
                 </a>
@@ -99,7 +96,7 @@
                         </div>
 
                         <div class="form-row">
-                            <label for="business-password">Business Username</label>
+                            <label for="business-password">Business Password</label>
                             <input type="text" id="business-password" placeholder="xyz" required>
                         </div>
 
@@ -175,99 +172,61 @@
         <!-- right section start -->
         <div class="right">
             <!-- start top -->
-            <div class="top">
-                <button id="menu-bar">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
-                <div class="profile">
-                    <div class="info">
-                        <p><b>Reba</b></p>
-                        <p>Admin</p>
-                        <small class="text-muted"></small>
-                    </div>
-                    <div class="profile-photo">
-                        <img src="/images/profile-pic.webp">
-                    </div>
-                </div>
-            </div>
+
             <!-- end top -->
             <!--start recent updates -->
             <div class="recent_updates">
                 <h2>Recent Update</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="/images/monkey2.jpeg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Spartan Autos</b> Profile is approved</p>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="/images/monkey2.jpeg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Spartan Autos</b> Profile is approved</p>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="/images/monkey2.jpeg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Spartan Autos</b> Profile is approved</p>
-                        </div>
-                    </div>
-                </div>
+                <div id="updatesContainer"></div>
+
             </div>
             <!-- end recent updates-->
 
-            <!-- start sales analytic -->
-            <div class="sales_analytics">
-                <div class="item">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                    </div>
-                    <div class="right_text">
-                        <h3>Online Sales</h3>
-                        <small class="text-muted">Last seen 2 hours</small>
-                    </div>
-                    <h5 class="danger"> -17%</h5>
-                    <h3>3849</h3>
-                </div>
+<!--            &lt;!&ndash; start sales analytic &ndash;&gt;-->
+<!--            <div class="sales_analytics">-->
+<!--                <div class="item">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-symbols-outlined">shopping_cart</span>-->
+<!--                    </div>-->
+<!--                    <div class="right_text">-->
+<!--                        <h3>Online Sales</h3>-->
+<!--                        <small class="text-muted">Last seen 2 hours</small>-->
+<!--                    </div>-->
+<!--                    <h5 class="danger"> -17%</h5>-->
+<!--                    <h3>3849</h3>-->
+<!--                </div>-->
 
-            </div>
-            <div class="sales_analytics">
-                <div class="item">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                    </div>
-                    <div class="right_text">
-                        <h3>Online Sales</h3>
-                        <small class="text-muted">Last seen 2 hours</small>
-                    </div>
-                    <h5 class="danger"> -17%</h5>
-                    <h3>3849</h3>
-                </div>
+<!--            </div>-->
+<!--            <div class="sales_analytics">-->
+<!--                <div class="item">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-symbols-outlined">shopping_cart</span>-->
+<!--                    </div>-->
+<!--                    <div class="right_text">-->
+<!--                        <h3>Online Sales</h3>-->
+<!--                        <small class="text-muted">Last seen 2 hours</small>-->
+<!--                    </div>-->
+<!--                    <h5 class="danger"> -17%</h5>-->
+<!--                    <h3>3849</h3>-->
+<!--                </div>-->
 
-            </div>
-            <div class="sales_analytics">
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                    </div>
-                    <div class="right_text">
-                        <h3>Online Sales</h3>
-                        <small class="text-muted">Last seen 2 hours</small>
-                    </div>
-                    <h5 class="danger"> -17%</h5>
-                    <h3>3849</h3>
-                </div>
+<!--            </div>-->
+<!--            <div class="sales_analytics">-->
+<!--                <div class="item online">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-symbols-outlined">shopping_cart</span>-->
+<!--                    </div>-->
+<!--                    <div class="right_text">-->
+<!--                        <h3>Online Sales</h3>-->
+<!--                        <small class="text-muted">Last seen 2 hours</small>-->
+<!--                    </div>-->
+<!--                    <h5 class="danger"> -17%</h5>-->
+<!--                    <h3>3849</h3>-->
+<!--                </div>-->
 
 
-            </div>
-            <!-- end sales analytic -->
+<!--            </div>-->
+<!--            &lt;!&ndash; end sales analytic &ndash;&gt;-->
 
 
 
@@ -277,7 +236,7 @@
 
 </body>
 <!-- Bootstrap JS -->
-<script src="/static/script.js"></script>
+<script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     // Search bar filtering
@@ -324,7 +283,7 @@
         }
     });
 
-    // Restrict a business
+    //Restriction -> connected to the backend
     document.getElementById('restrict-btn').addEventListener('click', function () {
         let searchValue = document.getElementById('search-bar').value.toLowerCase();
         let rows = document.querySelectorAll('#table-body tr');
@@ -333,19 +292,37 @@
         rows.forEach(row => {
             let name = row.getAttribute('data-name').toLowerCase();
             if (name.includes(searchValue)) {
-                let statusCell = row.querySelector('.status');
-                if (statusCell) {
-                    statusCell.textContent = "Restricted";
-                    statusCell.style.color = "red";
-                    restricted = true;
-                }
+                let businessID = row.getAttribute('data-id');
+                fetch(`/restrict/${businessID}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Failed to restrict business");
+                        }
+                        return response.json();
+                    })
+                    .then(() => {
+                        let statusCell = row.querySelector('.status');
+                        if (statusCell) {
+                            statusCell.textContent = "Restricted";
+                            statusCell.style.color = "red";
+                            restricted = true;
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("Error restricting business.");
+                    });
             }
         });
 
-        if (!restricted) {
-            alert("No business found with that name.");
-        }
+        // Slight delay to ensure fetch completion
+        setTimeout(() => {
+            if (!restricted) {
+                alert("No business found with that name.");
+            }
+        }, 300);
     });
+
 
     // Unrestrict a business
     document.getElementById('unrestrict-btn').addEventListener('click', function () {
@@ -418,7 +395,7 @@
         }
     });
 </script>
-
+<script src="script.js"></script>
 </html>
 
 
