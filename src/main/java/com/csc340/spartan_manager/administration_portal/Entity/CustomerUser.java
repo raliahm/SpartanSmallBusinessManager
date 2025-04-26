@@ -5,12 +5,11 @@ import com.csc340.spartan_manager.administration_portal.User;
 import com.csc340.spartan_manager.administration_portal.UserRole;
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "cust_users")
-public class CustomerUser implements User {
+@Table(name = "customers")
+public class CustomerUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long custId;
@@ -26,6 +25,7 @@ public class CustomerUser implements User {
     private String custUsername;
     private String custPassword;
     private Timestamp createdDate;
+    private boolean restricted = false;
 
     private final UserRole role = UserRole.CUSTOMER;
 
@@ -56,103 +56,61 @@ public class CustomerUser implements User {
         this.createdDate = custCreated;
     }
 
-    @Override
     public Timestamp getCreatedAt() {
         return createdDate;
     }
 
-    @Override
     public void setCreatedAt(Timestamp createdAt) {
         this.createdDate = createdAt;
     }
 
-    @Override
     public String getUserType() {
         return role.name();
     }
 
-    @Override
-    public void setUsername(String username) {
-        this.custUsername = username;
-    }
 
-    @Override
-    public String getUsername() {
-        return custUsername;
-    }
 
-    @Override
     public void setUserType(String userType) {
 
     }
 
-    @Override
     public String getPassword() {
         return custPassword;
     }
 
-    @Override
     public void setPassword(String password) {
         this.custPassword = password;
     }
 
-    @Override
-    public String getEmail() {
-        return custEmail;
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
     }
 
-    @Override
-    public void setEmail(String email) {
-        this.custEmail = email;
-    }
 
-    @Override
-    public String getPhoneNumber() {
-        return custPhone;
-    }
-
-    @Override
-    public void setPhoneNumber(String phoneNumber) {
+    public void setCustPhone(String phoneNumber) {
         this.custPhone = phoneNumber;
     }
 
-    @Override
-    public String getFullName() {
-        return custName;
-    }
 
-    @Override
-    public void setFullName(String fullName) {
+    public void setCustName(String fullName) {
         this.custName = fullName;
     }
 
-    public String getCustAddress() {
-        return custAddress;
-    }
 
     public void setCustAddress(String custAddress) {
         this.custAddress = custAddress;
     }
 
-    public String getCustCity() {
-        return custCity;
-    }
 
     public void setCustCity(String custCity) {
         this.custCity = custCity;
     }
 
-    public String getCustState() {
-        return custState;
-    }
 
     public void setCustState(String custState) {
         this.custState = custState;
     }
 
-    public String getCustCountry() {
-        return custCountry;
-    }
 
     public void setCustCountry(String custCountry) {
         this.custCountry = custCountry;
@@ -173,4 +131,62 @@ public class CustomerUser implements User {
     public void setCustId(Long custId) {
         this.custId = custId;
     }
+
+    public boolean isRestricted() {
+        return restricted;
+    }
+    public void setRestricted(boolean restricted) {
+        this.restricted = restricted;
+    }
+
+    public String getCustUsername() {
+        return custUsername;
+    }
+
+    public void setCustUsername(String custUsername) {
+        this.custUsername = custUsername;
+    }
+
+
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public String getCustEmail() {
+        return custEmail;
+    }
+
+    public String getCustPhone() {
+        return custPhone;
+    }
+
+    public String getCustAddress() {
+        return custAddress;
+    }
+
+    public String getCustCity() {
+        return custCity;
+    }
+
+    public String getCustState() {
+        return custState;
+    }
+
+    public String getCustCountry() {
+        return custCountry;
+    }
+
+    public String getCustPassword() {
+        return custPassword;
+    }
+
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
 }

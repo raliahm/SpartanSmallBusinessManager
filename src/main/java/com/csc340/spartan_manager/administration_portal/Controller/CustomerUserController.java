@@ -1,17 +1,24 @@
 package com.csc340.spartan_manager.administration_portal.Controller;
 
+import com.csc340.spartan_manager.administration_portal.DTO.CustomerDTO;
 import com.csc340.spartan_manager.administration_portal.Entity.CustomerUser;
+import com.csc340.spartan_manager.administration_portal.Repository.CustomerUserRepository;
 import com.csc340.spartan_manager.administration_portal.Service.CustomerUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerUserController {
     @Autowired
     private CustomerUserService customerUserService;
+
+    @Autowired
+    private CustomerUserRepository customerUserRepository;
 
     @GetMapping("/all")
     public Object getAllCustomerUsers() {
@@ -30,9 +37,67 @@ public class CustomerUserController {
     }
 
     @PostMapping("/new")
-    public Object addNewCustUser(@RequestBody CustomerUser customerUser) {
-        customerUserService.addNewCustUser(customerUser);
-        return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.CREATED);
+    public Object addNewCustUser(@RequestBody CustomerDTO dto) {
+        System.out.println("Received DTO: " + dto);
+        CustomerUser newCustomer = new CustomerUser();
+
+// Print custUsername
+        System.out.println("Received Username: " + dto.getCustUsername());
+        newCustomer.setCustUsername(dto.getCustUsername());
+        System.out.println("Set Username: " + newCustomer.getCustUsername());
+
+// Print custPassword
+        System.out.println("Received Password: " + dto.getCustPassword());
+        newCustomer.setPassword(dto.getCustPassword());
+        System.out.println("Set Password: " + newCustomer.getPassword());
+
+// Print custName
+        System.out.println("Received Name: " + dto.getCustName());
+        newCustomer.setCustName(dto.getCustName());
+        System.out.println("Set Name: " + newCustomer.getCustName());
+
+// Print custEmail
+        System.out.println("Received Email: " + dto.getCustEmail());
+        newCustomer.setCustEmail(dto.getCustEmail());
+        System.out.println("Set Email: " + newCustomer.getCustEmail());
+
+// Print custPhone
+        System.out.println("Received Phone: " + dto.getCustPhone());
+        newCustomer.setCustPhone(dto.getCustPhone());
+        System.out.println("Set Phone: " + newCustomer.getCustPhone());
+
+// Print custAddress
+        System.out.println("Received Address: " + dto.getCustAddress());
+        newCustomer.setCustAddress(dto.getCustAddress());
+        System.out.println("Set Address: " + newCustomer.getCustAddress());
+
+// Print custCity
+        System.out.println("Received City: " + dto.getCustCity());
+        newCustomer.setCustCity(dto.getCustCity());
+        System.out.println("Set City: " + newCustomer.getCustCity());
+
+// Print custZip
+        System.out.println("Received Zip: " + dto.getCustZip());
+        newCustomer.setCustZip(dto.getCustZip());
+        System.out.println("Set Zip: " + newCustomer.getCustZip());
+
+// Print custState
+        System.out.println("Received State: " + dto.getCustState());
+        newCustomer.setCustState(dto.getCustState());
+        System.out.println("Set State: " + newCustomer.getCustState());
+
+// Print custCountry
+        System.out.println("Received Country: " + dto.getCustCountry());
+        newCustomer.setCustCountry(dto.getCustCountry());
+        System.out.println("Set Country: " + newCustomer.getCustCountry());
+
+// Print Created At timestamp
+        newCustomer.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        System.out.println("Set CreatedAt: " + newCustomer.getCreatedAt());
+
+        customerUserRepository.save(newCustomer); // Make sure this repository is injected
+
+        return ResponseEntity.ok("Customer added successfully");
     }
 
     @PutMapping("/update/{custId}")
@@ -47,8 +112,23 @@ public class CustomerUserController {
         return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.OK);
     }
 
+
     @GetMapping("/getCustomerCount")
     public Object getCustomerCount() {
         return new ResponseEntity<>(customerUserService.getCustCount(), HttpStatus.OK);
+    }
+
+    @PutMapping("/unrestrict/{custId}")
+    public Object unRestrict(@PathVariable long custId) {
+        return new ResponseEntity<>(customerUserService.unrestrictCustomer(custId), HttpStatus.OK);
+    }
+    @PutMapping("/restrict/{custId}")
+    public Object setRestriction(@PathVariable long custId) {
+        return new ResponseEntity<>(customerUserService.restrictCustomer(custId), HttpStatus.OK);
+    }
+
+    @GetMapping("/isRestricted/{custId}")
+    public Object isRestrict(@PathVariable long custId) {
+        return new ResponseEntity<>(customerUserService.isRestricted(custId), HttpStatus.OK);
     }
 }

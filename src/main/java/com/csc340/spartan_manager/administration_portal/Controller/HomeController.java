@@ -13,6 +13,7 @@ public class HomeController {
 
     @GetMapping("/smallbusiness")
     public String smallBusiness() {
+
         return "small-business.html";
     }
 

@@ -23,13 +23,7 @@
                     <span class="danger">SSBM Admin</span>
                 </h2>
             </div>
-            <button  id="menu_bar">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
 
-            <button  id="close_btn">
-                <span class="material-symbols-outlined"> close </span>
-            </button>
         </div>
         <!--top section-->
         <div class="sidebar">
@@ -75,8 +69,8 @@
             <button type="button" class="btn btn-success" id="unrestrict-btn">Unrestrict Student</button>
         </div>
 
-        <div id="student-form" class="custom-form-container">
-            <form class="custom-form">
+        <div  class="custom-form-container">
+            <form id="student-form" class="custom-form">
                 <h2>Add Student</h2>
 
                 <div class="form-row">
@@ -115,13 +109,17 @@
                 </div>
 
                 <div class="form-row">
-                    <label for="student-zipcode">Phone</label>
+                    <label for="student-zipcode">Zipcode</label>
                     <input type="text" id="student-zipcode" placeholder="1234" required>
                 </div>
 
                 <div class="form-row">
                     <label for="student-state">State</label>
                     <input type="text" id="student-state" placeholder="i.e. washington" required>
+                </div>
+                <div class="form-row">
+                    <label for="student-country">Country</label>
+                    <input type="text" id="student-country" placeholder="i.e. USA" required>
                 </div>
 
 
@@ -130,49 +128,7 @@
         </div>
 
 
-        <div class="recent_registration" id="student-table">
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Status</th>
-
-                </tr>
-                </thead>
-                <tbody id="table-body">
-                <tr data-name="Spartans1">
-                    <th scope="row">1</th>
-                    <td>Spartans1</td>
-                    <td>scooks</td>
-                    <td>sc@uncg.edu</td>
-                    <td>919-868-9876</td>
-                    <td><span class="status">Active</span></td>
-                </tr>
-                <tr data-name="Spartans2">
-                    <th scope="row">2</th>
-                    <td>Spartans2</td>
-                    <td>scookie</td>
-                    <td>sc1@uncg.edu</td>
-                    <td>919-868-9876</td>
-                    <td><span class="status">Active</span></td>
-
-                </tr>
-                <tr data-name="Spartans3">
-                    <th scope="row">3</th>
-                    <<td>Spartans3</td>
-                    <td>scookie</td>
-                    <td>sc1@uncg.edu</td>
-                    <td>919-868-9876</td>
-                    <td><span class="status">Active</span></td>
-
-                </tr>
-                </tbody>
-            </table>
-
+        <div class="recent_registration" id="studentTable">
         </div>
 
 
@@ -180,98 +136,18 @@
     <!-- right section start -->
     <div class="right">
         <!-- start top -->
-        <div class="top">
-            <button id="menu-bar">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-            <div class="profile">
-                <div class="info">
-                    <p><b>Reba</b></p>
-                    <p>Admin</p>
-                    <small class="text-muted"></small>
-                </div>
-                <div class="profile-photo">
-                    <img src="/images/profile-pic.webp">
-                </div>
-            </div>
-        </div>
+
         <!-- end top -->
         <!--start recent updates -->
         <div class="recent_updates">
             <h2>Recent Update</h2>
-            <div class="updates">
-                <div class="update">
-                    <div class="profile-photo">
-                        <img src="/images/monkey2.jpeg" alt="">
-                    </div>
-                    <div class="message">
-                        <p><b>Spartan Autos</b> Profile is approved</p>
-                    </div>
-                </div>
-                <div class="update">
-                    <div class="profile-photo">
-                        <img src="/images/monkey2.jpeg" alt="">
-                    </div>
-                    <div class="message">
-                        <p><b>Spartan Autos</b> Profile is approved</p>
-                    </div>
-                </div>
-                <div class="update">
-                    <div class="profile-photo">
-                        <img src="/images/monkey2.jpeg" alt="">
-                    </div>
-                    <div class="message">
-                        <p><b>Spartan Autos</b> Profile is approved</p>
-                    </div>
-                </div>
-            </div>
+            <div id="updatesContainer"></div>
+
         </div>
         <!-- end recent updates-->
 
         <!-- start sales analytic -->
-        <div class="sales_analytics">
-            <div class="item">
-                <div class="icon">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                </div>
-                <div class="right_text">
-                    <h3>Online Sales</h3>
-                    <small class="text-muted">Last seen 2 hours</small>
-                </div>
-                <h5 class="danger"> -17%</h5>
-                <h3>3849</h3>
-            </div>
 
-        </div>
-        <div class="sales_analytics">
-            <div class="item">
-                <div class="icon">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                </div>
-                <div class="right_text">
-                    <h3>Online Sales</h3>
-                    <small class="text-muted">Last seen 2 hours</small>
-                </div>
-                <h5 class="danger"> -17%</h5>
-                <h3>3849</h3>
-            </div>
-
-        </div>
-        <div class="sales_analytics">
-            <div class="item online">
-                <div class="icon">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                </div>
-                <div class="right_text">
-                    <h3>Online Sales</h3>
-                    <small class="text-muted">Last seen 2 hours</small>
-                </div>
-                <h5 class="danger"> -17%</h5>
-                <h3>3849</h3>
-            </div>
-
-
-        </div>
         <!-- end sales analytic -->
 
 
@@ -282,147 +158,166 @@
 
 </body>
 <!-- Bootstrap JS -->
-<script src="script.js"></script>
+<script src="student.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-    // Search bar filtering
-    document.getElementById('search-bar').addEventListener('input', function () {
-        let filter = this.value.toLowerCase();
-        let rows = document.querySelectorAll('#table-body tr');
-        const form = document.getElementById('student-form');
-        const table = document.getElementById('student-table');
 
-        rows.forEach(row => {
-            let nameCell = row.cells[1].textContent.toLowerCase();
-            row.style.display = nameCell.includes(filter) ? '' : 'none';
-        });
 
-        // If search is active, hide form and show table at top
-        if (filter !== '') {
-            form.classList.add('hidden');
-            table.style.marginTop = '0';
-        } else {
-            form.classList.remove('hidden');
-            table.style.marginTop = '2rem';
-        }
-    });
-
-    // Deleting a business
-    document.getElementById('delete-btn').addEventListener('click', function () {
-        let searchValue = document.getElementById('search-bar').value.toLowerCase();
-        let rows = document.querySelectorAll('#table-body tr');
-        let deleted = false;
-
-        rows.forEach(row => {
-            let name = row.getAttribute('data-name').toLowerCase();
-            let statusCell = row.querySelector('.status');
-            let status = statusCell ? statusCell.textContent.toLowerCase() : '';
-
-            if (name.includes(searchValue) && status === "restricted") {
-                row.remove();
-                deleted = true;
-            }
-        });
-
-        if (!deleted) {
-            alert("No restricted business found with that name.");
-        }
-    });
-
-    // Restrict a business
-    document.getElementById('restrict-btn').addEventListener('click', function () {
-        let searchValue = document.getElementById('search-bar').value.toLowerCase();
-        let rows = document.querySelectorAll('#table-body tr');
-        let restricted = false;
-
-        rows.forEach(row => {
-            let name = row.getAttribute('data-name').toLowerCase();
-            if (name.includes(searchValue)) {
-                let statusCell = row.querySelector('.status');
-                if (statusCell) {
-                    statusCell.textContent = "Restricted";
-                    statusCell.style.color = "red";
-                    restricted = true;
-                }
-            }
-        });
-
-        if (!restricted) {
-            alert("No business found with that name.");
-        }
-    });
-
-    // Unrestrict a business
-    document.getElementById('unrestrict-btn').addEventListener('click', function () {
-        let searchValue = document.getElementById('search-bar').value.toLowerCase();
-        let rows = document.querySelectorAll('#table-body tr');
-        let found = false;
-
-        rows.forEach(row => {
-            let name = row.getAttribute('data-name').toLowerCase();
-            if (name.includes(searchValue)) {
-                let statusCell = row.querySelector('.status');
-                if (statusCell) {
-                    statusCell.textContent = "Active";
-                    statusCell.style.color = "black";
-                    found = true;
-                }
-            }
-        });
-
-        if (!found) {
-            alert("No business found with that name.");
-        }
-    });
-
-    // Adding a new business
-    document.querySelector('.custom-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const studentName = document.getElementById('student-name').value;
-        const studentPhone = document.getElementById('student-phone').value;
-        const studentEmail = document.getElementById('student-email').value;
-        const tableBody = document.getElementById('table-body');
-
-        const newRow = document.createElement('tr');
-        newRow.setAttribute('data-name', businessName.toLowerCase());
-
-        const rowNumberCell = document.createElement('th');
-        rowNumberCell.scope = 'row';
-        rowNumberCell.textContent = tableBody.rows.length + 1;
-
-        const nameCell = document.createElement('td');
-        nameCell.textContent = businessName;
-
-        const ownerCell = document.createElement('td');
-        ownerCell.textContent = businessOwner;
-
-        const idCell = document.createElement('td');
-        idCell.textContent = businessId;
-
-        const statusCell = document.createElement('td');
-        statusCell.innerHTML = '<span class="status">Active</span>';
-
-        newRow.appendChild(rowNumberCell);
-        newRow.appendChild(nameCell);
-        newRow.appendChild(ownerCell);
-        newRow.appendChild(idCell);
-        newRow.appendChild(statusCell);
-        tableBody.appendChild(newRow);
-
-        // Reset the form
-        e.target.reset();
-    });
-
-    // Add event listener to each row for redirection
-    document.getElementById('table-body').addEventListener('click', function (e) {
-        let row = e.target.closest('tr');
-        if (row && row.hasAttribute('data-name')) {
-            const businessName = row.getAttribute('data-name');
-            window.location.href = `summary.html?business=${businessName}`;
-        }
-    });
+<script id="student-template" type="text/x-handlebars-template">
+    <table >
+        <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Student Username</th>
+            <th>Student Email</th>
+            <th>Student Phone</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each customers}}
+        <tr data-student-id="{{custId}}" class="{{#if restricted}}restricted-row{{else}}unrestricted-row{{/if}}">
+            <td>{{custId}}</td>
+            <td>{{custName}}</td>
+            <td>{{custUsername}}</td>
+            <td>{{custEmail}}</td>
+            <td>{{custPhone}}</td>
+            <td>
+                {{#if restricted}}
+                <span class="status restricted-status">Restricted</span>
+                {{else}}
+                <span class="status unrestricted-status">Unrestricted</span>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
 </script>
+
+<script id="event-template" type="text/x-handlebars-template">
+    <div class="updates">
+        {{#each events}}
+        <div class="update">
+            <div class="message">
+                <p><b>{{eventName}}</b> </p>
+                <p>{{eventDescription}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script>
+    function getSelectedCustomerId() {
+        const selectedRow = document.querySelector('.selected');
+        if (selectedRow) {
+            return selectedRow.querySelector('td:first-child').textContent; // Assuming businessId is in the first column
+        } else {
+            return null;
+        }
+    }
+
+    function deleteCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to delete.");
+            return;
+        }
+
+        fetch(`customer/delete/${custId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to delete customer');
+                    });
+                }
+                alert('Customer deleted successfully');
+                location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+    }
+
+    function restrictCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to restrict.");
+            return;
+        }
+
+
+
+        fetch(`customer/restrict/${custId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to restrict customer');
+                    });
+                }
+
+                // Update the status dynamically on success
+                alert('Customer restricted successfully');
+                window.location.reload();
+
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+    }
+
+    function unrestrictCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to unrestrict.");
+            return;
+        }
+
+        fetch(`customer/unrestrict/${custId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to unrestrict business');
+                    });
+                }
+
+                // Update the status dynamically on success
+                alert('Customer unrestricted successfully');
+                window.location.reload();
+
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+    }
+
+    // Function to update the row based on restricted status
+    function updateCustomerRowStatus(custId, restricted) {
+        const row = document.querySelector(`tr[data-student-id="${custId}"]`);
+
+        if (row) {
+            if (restricted) {
+                row.classList.add('restricted-row');
+                row.classList.remove('active-row');
+            } else {
+                row.classList.add('active-row');
+                row.classList.remove('restricted-row');
+            }
+        }
+    }
+</script>
+
+
 
 </html>
 
