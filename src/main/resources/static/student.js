@@ -41,7 +41,7 @@ document.getElementById("search-bar").addEventListener("keyup", function() {
 
     // Filter businesses by name
     const filteredCustomers = window.customers.filter(customer =>
-        customers.custName.toLowerCase().includes(searchTerm)
+        customer.custName.toLowerCase().includes(searchTerm)
     );
 
     // Re-render the table with filtered businesses
