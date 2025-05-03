@@ -17,7 +17,7 @@ public class ProviderUser implements User {
     @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long providerId;
+    private int providerId;
 
     @Column(unique = true, nullable = false)  // Ensure unique username
     private String providerUsername;
@@ -40,6 +40,7 @@ public class ProviderUser implements User {
 
     @Enumerated(EnumType.STRING)
     private final UserRole role = UserRole.PROVIDER;
+    private String state;
 
 
     public ProviderUser() {
@@ -59,6 +60,8 @@ public class ProviderUser implements User {
         this.createdDate = createdDate;
         this.providerName = providerName;
         this.restricted = restricted;
+        this.state = "Pending";
+
     }
 
     public ProviderUser(String providerUserName, String providerUserPassword, String providerUserEmail, String providerUserPhone, String providerUserAddress, String providerName) {
@@ -68,6 +71,8 @@ public class ProviderUser implements User {
         this.providerUserPhone = providerUserPhone;
         this.providerUserAddress = providerUserAddress;
         this.providerName = providerName;
+        this.state = "Pending";
+
     }
 
     @Override
@@ -141,11 +146,11 @@ public class ProviderUser implements User {
         this.providerName = fullName;
     }
 
-    public void setProviderID(Long id) {
+    public void setProviderID(int id) {
         this.providerId = id;
     }
 
-    public Long getProviderID() {
+    public int getProviderID() {
         return providerId;
     }
 
@@ -208,5 +213,13 @@ public class ProviderUser implements User {
     }
     public void setRestricted(boolean restricted) {
         this.restricted = restricted;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

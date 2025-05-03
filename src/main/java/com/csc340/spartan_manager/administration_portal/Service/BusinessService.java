@@ -7,6 +7,7 @@ import com.csc340.spartan_manager.administration_portal.Repository.BusinessRepos
 import com.csc340.spartan_manager.administration_portal.Repository.ProviderUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,9 @@ public class BusinessService {
         if (existing != null) {
             existing.setBusinessName(business.getBusinessName());
             existing.setBusinessDescription(business.getBusinessDescription());
-            existing.setProvider(business.getProvider());
+            existing.setStatus(business.getStatus());
+            existing.setBusinessAddress(business.getBusinessAddress());
+            existing.setCategory(business.getCategory());
             businessRepository.save(existing);
         }
     }
@@ -76,5 +79,19 @@ public class BusinessService {
 
     public boolean isRestricted(int id) {
         return businessRepository.findById(id).get().isRestricted();
+    }
+
+    public boolean approve(@PathVariable int businessID) {
+        Business business = getBusinessById(businessID);
+        business.setStatus("Approved");
+        businessRepository.save(business);
+        return !business.getStatus().equals("Rejected") && !business.getStatus().equals("Pending");
+    }
+
+    public boolean reject(@PathVariable int businessID) {
+        Business business = getBusinessById(businessID);
+        business.setStatus("Rejected");
+        businessRepository.save(business);
+        return !business.getStatus().equals("Approved") && !business.getStatus().equals("Pending");
     }
 }

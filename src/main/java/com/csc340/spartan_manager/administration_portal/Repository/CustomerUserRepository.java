@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CustomerUserRepository extends JpaRepository<CustomerUser, Long> {
+public interface CustomerUserRepository extends JpaRepository<CustomerUser, Integer> {
      CustomerUser findByCustUsername(String custUsername);
 
-    @Query(value= "select * from cust_users c where c.custId >= ?1", nativeQuery = true)
-     List<CustomerUser> findByCustId(long custId);
 }

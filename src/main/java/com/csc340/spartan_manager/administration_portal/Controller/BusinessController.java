@@ -42,6 +42,18 @@ public class BusinessController {
     }
 
     /**
+     * Get a list of all Businesses in the database.
+     * http://localhost:8080/businesses/all
+     *
+     * @return a list of Business objects.
+     */
+    @GetMapping("/{businessId}")
+    public Object getBusinessesById(@PathVariable int businessId) {
+        return new ResponseEntity<>(service.getBusinessById(businessId), HttpStatus.OK);
+    }
+
+
+    /**
      * Create a new Business entry.
      * http://localhost:8080/businesses/new
      *
@@ -117,5 +129,20 @@ public class BusinessController {
     @GetMapping("/isRestricted/{businessID}")
     public Object isRestrict(@PathVariable int businessID) {
         return new ResponseEntity<>(service.isRestricted(businessID), HttpStatus.OK);
+    }
+
+    @PutMapping("/{businessID}/approve")
+    public Object approveBusiness(@PathVariable int businessID) {
+        if(service.approve(businessID)) {
+            return new ResponseEntity<>(service.getBusinessById(businessID), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(service.approve(businessID), HttpStatus.NOT_ACCEPTABLE);
+    }
+    @PutMapping("/{businessID}/reject")
+    public Object rejectBusiness(@PathVariable int businessID) {
+        if(service.reject(businessID)) {
+            return new ResponseEntity<>(service.reject(businessID), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(service.reject(businessID), HttpStatus.NOT_ACCEPTABLE);
     }
 }

@@ -8,11 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.ArrayList;
 
-public interface ProviderUserRepository extends JpaRepository<ProviderUser, Long> {
+public interface ProviderUserRepository extends JpaRepository<ProviderUser, Integer> {
 
 
-    @Query(value = "select * from provider_users p where p.provider_id>= ?1", nativeQuery = true)
-   ArrayList<ProviderUser> findByProviderId(Long provider_id);
 
     List<ProviderUser> getProviderUsersByProviderUsername(String username);
 

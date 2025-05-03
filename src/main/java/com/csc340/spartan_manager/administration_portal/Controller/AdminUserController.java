@@ -49,4 +49,7 @@ public class AdminUserController {
         adminUserService.deleteAdminUserById(adminId);
         return new ResponseEntity<>(adminUserService.getAllAdminUsers(), HttpStatus.OK);
     }
+
+
+
 }

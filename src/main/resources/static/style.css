@@ -525,15 +525,24 @@ main .recent_registration a{
     transition: all .3s ease ;
 }
 
+.update_business .custom-form{
+    background-color: var(--clr-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all .3s ease ;
+}
+
 .right .recent_updates .updates:hover{
     box-shadow: none;
 }
 .right .recent_updates .updates .update{
     display:grid;
-    grid-template-columns: 2.6rem auto;
+    grid-template-columns: 5rem auto;
     gap: 1rem;
     margin-bottom: 1rem;
 }
+
 
 /** sales analytics */
 .right .sales_analytics{
@@ -838,4 +847,8 @@ main {
     background-color: #e74c3c;
     color: white;
 }
+.check-icon {
+    color: green;
+}
+
 

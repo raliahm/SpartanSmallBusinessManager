@@ -17,10 +17,8 @@ public class ProviderUserService {
         return providerUserRepository.findAll();
     }
 
-    public ProviderUser getProviderUserByProviderId(Long providerId) {
-        if (providerId == null) {
-            return null; // or throw a custom exception if null is unacceptable
-        }
+    public ProviderUser getProviderUserByProviderId(int providerId) {
+
        return providerUserRepository.findById(providerId).get();
     }
 
@@ -31,18 +29,36 @@ public class ProviderUserService {
     public void addNewProviderUser(ProviderUser providerUser) {
         providerUserRepository.save(providerUser);
     }
-    public void updateProvider(Long providerId, ProviderUser providerUser) {
+    public void updateProvider(int providerId, ProviderUser providerUser) {
         ProviderUser existing = getProviderUserByProviderId(providerId);
         existing.setEmail(providerUser.getEmail());
         existing.setPassword(providerUser.getPassword());
         providerUserRepository.save(existing);
     }
 
-    public void deleteProviderUserById(Long providerId) {
+    public void deleteProviderUserById(int providerId) {
         providerUserRepository.deleteById(providerId);
     }
 
     public long getProviderUserCount() {
         return providerUserRepository.count();
+    }
+    public boolean approve(int businessId){
+        ProviderUser providerUser = getProviderUserByProviderId(businessId);
+        if (providerUser != null) {
+            providerUser.setState("Approved");
+            providerUserRepository.save(providerUser);
+            return true;
+        }
+        return false;
+    }
+    public boolean reject(int businessId){
+        ProviderUser providerUser = getProviderUserByProviderId(businessId);
+        if (providerUser != null) {
+            providerUser.setState("Rejected");
+            providerUserRepository.save(providerUser);
+            return true;
+        }
+        return false;
     }
 }

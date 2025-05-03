@@ -2,6 +2,7 @@ package com.csc340.spartan_manager.administration_portal.Entity;
 
 
 import jakarta.persistence.*;
+import java.util.List;
 
 import java.sql.Timestamp;
 
@@ -35,6 +36,8 @@ public class Business {
 
     private String business_address;
 
+//    @OneToMany(mappedBy = "business")
+//    private List<UsageDetails> usageDetails;
 
     public Business() {
     }

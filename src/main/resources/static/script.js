@@ -1,8 +1,24 @@
-
 // Load all the businesses when the page is ready
 document.addEventListener('DOMContentLoaded', function () {
+
+    fetchBusinesses();
+    // Attach event listeners to buttons
+
+    document.getElementById("delete-btn").addEventListener("click", deleteBusiness);
+     document.getElementById("restrict-btn").addEventListener("click", function () {
+        restrictBusiness();
+    });
+
+    document.getElementById("unrestrict-btn").addEventListener("click", function () {
+
+        unrestrictBusiness();
+    });
+
+});
+
+function fetchBusinesses(){
     // Fetch businesses data from API
-    fetch('http://localhost:8081/businesses/all')
+    fetch('/businesses/all')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -17,23 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Fetch error:', error);
         });
-
-    // Attach event listeners to buttons
-    document.getElementById("delete-btn").addEventListener("click", deleteBusiness);
-    document.getElementById("restrict-btn").addEventListener("click", restrictBusiness);
-    document.getElementById("unrestrict-btn").addEventListener("click", unrestrictBusiness);
-});
-
-
-// Function to render businesses into the table
-function renderBusinesses(businesses) {
-    Handlebars.registerHelper('eq', function(a, b) {
-        return a === b;
-    });
-    const source = document.getElementById('business-template').innerHTML;
-    const template = Handlebars.compile(source);
-    const html = template({ businesses: businesses });
-    document.getElementById('businessTable').innerHTML = html;
 }
 
 // Function to handle search bar input
@@ -80,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const source = document.getElementById('event-template').innerHTML;
             const template = Handlebars.compile(source);
             const html = template({ events: data });
-            document.getElementById('updatesContainer').innerHTML = html;
+            document.getElementById('eventsContainer').innerHTML = html;
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -124,7 +123,8 @@ document.getElementById("business-form").addEventListener("submit", async functi
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
+            addRecentUpdate(`Added new business: ${business_name}`);
+            fetchBusinesses();
         });
 
 
@@ -144,13 +144,10 @@ document.getElementById('businessTable').addEventListener('click', function(even
         // Add selection to clicked row
         row.classList.add('selected');
 
-        // Optional: Show selected in a div
-        const businessId = row.cells[0].textContent;
-        const businessName = row.cells[1].textContent;
-        document.getElementById('selectedBusinessInfo').textContent = `Selected: [${businessId}] ${businessName}`;
+        const businessId = row.dataset.businessId;
+        loadAndShowBusinessUpdateForm(businessId);
     }
+
+
 });
 
-
-
-renderBusinesses();

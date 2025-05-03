@@ -5,13 +5,13 @@ public class BusinessDTO {
     private String business_address;
     private String business_description;
     private String category;
-    private long provider_id;
+    private int provider_id;
 
     // Getters and setters
     public BusinessDTO() {
 
     }
-    public BusinessDTO(String business_name, String business_address, String business_description, String category, long provider_id) {
+    public BusinessDTO(String business_name, String business_address, String business_description, String category, int provider_id) {
         this.business_name = business_name;
         this.business_address = business_address;
         this.business_description = business_description;
@@ -42,10 +42,10 @@ public class BusinessDTO {
     public void setCategory(String category) {
         this.category = category;
     }
-    public long getProvider_id() {
+    public int getProvider_id() {
         return provider_id;
     }
-    public void setProvider_id(long provider_id) {
+    public void setProvider_id(int provider_id) {
         this.provider_id = provider_id;
     }
 }

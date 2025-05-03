@@ -18,18 +18,16 @@ public class CustomerUserService {
         return customerUserRepository.findAll();
     }
 
-    public CustomerUser getCustUserById(Long id) {
-        return (CustomerUser) customerUserRepository.findByCustId(id);
+    public CustomerUser getCustUserById(int id) {
+        return customerUserRepository.findById(id).orElse(null);
     }
 
     public void addNewCustUser(CustomerUser custUser) {
 
-
-
         customerUserRepository.save(custUser);
     }
 
-    public void updateCustUser(Long id, CustomerUser custUser) {
+    public void updateCustUser(int id, CustomerUser custUser) {
         CustomerUser existing = getCustUserById(id);
         existing.setCustEmail(custUser.getCustEmail());
         existing.setPassword(custUser.getPassword());
@@ -37,7 +35,7 @@ public class CustomerUserService {
         customerUserRepository.save(existing);
     }
 
-    public void deleteCustUser(Long id) {
+    public void deleteCustUser(int id) {
         customerUserRepository.deleteById(id);
     }
 
@@ -49,7 +47,7 @@ public class CustomerUserService {
         return customerUserRepository.count();
     }
 
-    public boolean restrictCustomer( long id){
+    public boolean restrictCustomer( int id){
         Optional<CustomerUser> existing = customerUserRepository.findById(id);
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
@@ -60,7 +58,7 @@ public class CustomerUserService {
             return false;  // Return false if the business doesn't exist
         }
     }
-    public boolean unrestrictCustomer( long id){
+    public boolean unrestrictCustomer( int id){
         Optional<CustomerUser> existing = customerUserRepository.findById(id);
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
@@ -72,7 +70,29 @@ public class CustomerUserService {
         }
     }
 
-    public boolean isRestricted( long id) {
+    public boolean isRestricted( int id) {
         return customerUserRepository.findById(id).get().isRestricted();
+    }
+
+    public boolean approve( int id) {
+        Optional<CustomerUser> existing = customerUserRepository.findById(id);
+        if (existing.isPresent()) {
+            CustomerUser cust = existing.get();
+            cust.setCustState("Approved");
+            customerUserRepository.save(cust);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean reject( int id) {
+        Optional<CustomerUser> existing = customerUserRepository.findById(id);
+        if (existing.isPresent()) {
+            CustomerUser cust = existing.get();
+            cust.setState("Rejected");
+            customerUserRepository.save(cust);
+            return true;
+        }
+        return false;
     }
 }

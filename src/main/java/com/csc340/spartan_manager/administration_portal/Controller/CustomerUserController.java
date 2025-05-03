@@ -26,7 +26,7 @@ public class CustomerUserController {
     }
 
     @GetMapping("/{custId}")
-    public Object getCustomerUser(@PathVariable Long custId) {
+    public Object getCustomerUser(@PathVariable int custId) {
         return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.OK);
 
     }
@@ -101,13 +101,13 @@ public class CustomerUserController {
     }
 
     @PutMapping("/update/{custId}")
-    public Object updateAdminUser(@PathVariable Long custId, @RequestBody CustomerUser custUser) {
+    public Object updateAdminUser(@PathVariable int custId, @RequestBody CustomerUser custUser) {
         customerUserService.updateCustUser(custId, custUser);
         return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{custId}")
-    public Object deleteAdminUser(@PathVariable Long custId) {
+    public Object deleteAdminUser(@PathVariable int custId) {
         customerUserService.deleteCustUser(custId);
         return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.OK);
     }
@@ -119,16 +119,30 @@ public class CustomerUserController {
     }
 
     @PutMapping("/unrestrict/{custId}")
-    public Object unRestrict(@PathVariable long custId) {
+    public Object unRestrict(@PathVariable int custId) {
         return new ResponseEntity<>(customerUserService.unrestrictCustomer(custId), HttpStatus.OK);
     }
     @PutMapping("/restrict/{custId}")
-    public Object setRestriction(@PathVariable long custId) {
+    public Object setRestriction(@PathVariable int custId) {
         return new ResponseEntity<>(customerUserService.restrictCustomer(custId), HttpStatus.OK);
     }
 
     @GetMapping("/isRestricted/{custId}")
-    public Object isRestrict(@PathVariable long custId) {
+    public Object isRestrict(@PathVariable int custId) {
         return new ResponseEntity<>(customerUserService.isRestricted(custId), HttpStatus.OK);
+    }
+    @PutMapping("/{custId}/approve")
+    public Object approveCustomer(@PathVariable int custId) {
+        if(customerUserService.approve(custId)) {
+            return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(customerUserService.approve(custId), HttpStatus.NOT_ACCEPTABLE);
+    }
+    @PutMapping("/{custId}/reject")
+    public Object rejectCustomer(@PathVariable int custId) {
+        if(customerUserService.reject(custId)) {
+            return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(customerUserService.reject(custId), HttpStatus.NOT_ACCEPTABLE);
     }
 }
