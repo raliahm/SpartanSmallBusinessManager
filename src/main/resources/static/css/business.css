@@ -1,0 +1,93 @@
+/* === Business Profile Layout Styling === */
+
+.profile-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #e0e0e0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+}
+
+/* Typography */
+h2, h3 {
+    font-weight: 700;
+}
+
+#displayName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4169E1;
+}
+
+#displayDescription {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Card Styling */
+#businessProfile {
+    border-radius: 16px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+#businessForm {
+    border-radius: 16px;
+}
+
+/* Buttons */
+.btn-outline-primary {
+    border-color: #4169E1;
+    color: #4169E1;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4169E1;
+    color: #fff;
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Form Fields */
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    #displayName {
+        font-size: 1.25rem;
+    }
+}
