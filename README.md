@@ -32,12 +32,12 @@
     4. View usage statistics - view app membership.
 
 
-#Scenarios
+# Scenarios
 
-###Provider
-> Provider P1 creates a provider account and login with credentials. After a successful login, P1 is welcomed by the provider page that displays the input data from signup. P1 can update their data and delete their account.
-> P1 registers a business by pulling the form using the navigation sidebar. After successful business registration, P1 can also edit data from that business or delete the business.
-> P1 adds products for customers to shop. P1 can also update or delete products.
-> P1 creates an event for their business. After creation of an event, P1 can update or cancel that event.
-> P1 can reply to customers' review. P1 can decide to edit that review or completely delete it.
-> P1 can see the amount of sales they completed and the amount of reviews done by customers in the statistics page.
+## Provider
+1. Provider P1 creates a provider account and login with credentials. After a successful login, P1 is welcomed by the provider page that displays the input data from signup. P1 can update their data and delete their account.
+2. P1 registers a business by pulling the form using the navigation sidebar. After successful business registration, P1 can also edit data from that business or delete the business.
+3. P1 adds products for customers to shop. P1 can also update or delete products.
+4. P1 creates an event for their business. After creation of an event, P1 can update or cancel that event.
+5. P1 can reply to customers' review. P1 can decide to edit that review or completely delete it.
+6. P1 can see the amount of sales they completed and the amount of reviews done by customers in the statistics page.
