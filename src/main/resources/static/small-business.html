@@ -40,10 +40,6 @@
                     <span class="material-symbols-outlined"> person </span>
                     <h3>Student View</h3>
                 </a>
-                <a href="/analytics">
-                    <span class="material-symbols-outlined"> monitoring </span>
-                    <h3>Analytics</h3>
-                </a>
                 <a href="/usage-details">
                     <span class="material-symbols-outlined"> email </span>
                     <h3>User Approvals</h3>
@@ -363,6 +359,8 @@
         const html = template({ businesses: businesses });
         document.getElementById('businessTable').innerHTML = html;
     }
+
+
     function addRecentUpdate() {
         fetch('/updates/table/businesses')  // Replace with your actual backend endpoint
             .then(response => {
@@ -373,14 +371,14 @@
             })
             .then(data => {
                 const updatesContainer = document.getElementById('salesContainer');
-
+                updatesContainer.innerHTML = '';
                 const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
 
                 // Assuming data is an array of updates
                 recentUpdates.forEach(update => {
                     const updateElement = document.createElement('div');
                     updateElement.className = 'update-entry';
-                    updateElement.textContent = `${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
                     updatesContainer.prepend(updateElement);
                 });
             })

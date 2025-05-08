@@ -26,7 +26,7 @@ public class CustomerUser {
     private String custPassword;
     private Timestamp createdDate;
     private boolean restricted = false;
-    private String status;
+    private String status = "Pending";
     private final UserRole role = UserRole.CUSTOMER;
 
     public CustomerUser() {

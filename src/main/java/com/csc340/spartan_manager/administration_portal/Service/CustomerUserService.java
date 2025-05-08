@@ -41,6 +41,7 @@ public class CustomerUserService {
 
     public void updateCustUser(int id, CustomerUser custUser) {
         CustomerUser existing = getCustUserById(id);
+
         if (!existing.getCustEmail().equals(custUser.getCustEmail())) {
             updateLogger.logUpdate(id, "UPDATE", "customers", "custEmail",
                     existing.getCustEmail(), custUser.getCustEmail(), "Customer email updated");
@@ -53,8 +54,57 @@ public class CustomerUserService {
             existing.setPassword(custUser.getPassword());
         }
 
+        if (!existing.getCustUsername().equals(custUser.getCustUsername())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custUsername",
+                    existing.getCustUsername(), custUser.getCustUsername(), "Customer username updated");
+            existing.setCustUsername(custUser.getCustUsername());
+        }
+
+        if (!existing.getCustName().equals(custUser.getCustName())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custName",
+                    existing.getCustName(), custUser.getCustName(), "Customer name updated");
+            existing.setCustName(custUser.getCustName());
+        }
+
+        if (!existing.getCustPhone().equals(custUser.getCustPhone())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custPhone",
+                    existing.getCustPhone(), custUser.getCustPhone(), "Customer phone updated");
+            existing.setCustPhone(custUser.getCustPhone());
+        }
+
+        if (!existing.getCustAddress().equals(custUser.getCustAddress())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custAddress",
+                    existing.getCustAddress(), custUser.getCustAddress(), "Customer address updated");
+            existing.setCustAddress(custUser.getCustAddress());
+        }
+
+        if (!existing.getCustCity().equals(custUser.getCustCity())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custCity",
+                    existing.getCustCity(), custUser.getCustCity(), "Customer city updated");
+            existing.setCustCity(custUser.getCustCity());
+        }
+
+        if (!existing.getCustZip().equals(custUser.getCustZip())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custZip",
+                    existing.getCustZip(), custUser.getCustZip(), "Customer zip updated");
+            existing.setCustZip(custUser.getCustZip());
+        }
+
+        if (!existing.getCustState().equals(custUser.getCustState())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custState",
+                    existing.getCustState(), custUser.getCustState(), "Customer state updated");
+            existing.setCustState(custUser.getCustState());
+        }
+
+        if (!existing.getCustCountry().equals(custUser.getCustCountry())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custCountry",
+                    existing.getCustCountry(), custUser.getCustCountry(), "Customer country updated");
+            existing.setCustCountry(custUser.getCustCountry());
+        }
+
         customerUserRepository.save(existing);
     }
+
 
     public void deleteCustUser(int id) {
         CustomerUser user = getCustUserById(id);

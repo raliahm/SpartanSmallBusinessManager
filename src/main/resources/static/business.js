@@ -1,83 +1,31 @@
 var total = 0;
 var allBus = {};
 
+let bc = 0, cc = 0, pc = 0;
+document.addEventListener('DOMContentLoaded', function (){
 
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:8081/businesses/getBusinessCount')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // This returns a promise with parsed JSON
-        })
-        .then(data => {
-            // Assuming the response is just a number like: 10
-            // OR an object like { count: 10 }, adapt accordingly
+    Promise.all([
+        fetch('http://localhost:8081/businesses/getBusinessCount').then(res => res.json()),
+        fetch('http://localhost:8081/customer/getCustomerCount').then(res => res.json()),
+        fetch('http://localhost:8081/providers/getProviderUserCount').then(res => res.json())
+    ]).then(([businessCount, customerCount, providerCount]) => {
+        bc = businessCount;
+        cc = customerCount;
+        pc = providerCount;
 
-            // If your response is a raw number like 10:
-            console.log(data);
-            document.getElementById('businessCount').textContent = data;
-            total = total + data;
-            document.getElementById('totalUserCount').textContent = total;
+        total = bc + cc + pc;
 
-            // If it's { count: 10 }:
-            // document.getElementById('businessCount').textContent = data.count;
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            document.getElementById('businessCount').textContent = 'N/A';
-        });
+        document.getElementById('businessCount').textContent = bc;
+        document.getElementById('customerCount').textContent = cc;
+        document.getElementById('providerCount').textContent = pc;
+        document.getElementById('totalUserCount').textContent = total;
+
+        setRatios(); // now all values are loaded
+    }).catch(error => {
+        console.error('Error loading counts:', error);
+    });
+
 });
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:8081/customer/getCustomerCount')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // This returns a promise with parsed JSON
-        })
-        .then(data => {
-            // Assuming the response is just a number like: 10
-            // OR an object like { count: 10 }, adapt accordingly
-
-            console.log(data);
-            document.getElementById('customerCount').textContent = data;
-            total = total + data;
-            document.getElementById('totalUserCount').textContent = total;
-            // If it's { count: 10 }:
-            // document.getElementById('businessCount').textContent = data.count;
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            document.getElementById('customerCount').textContent = 'N/A';
-        });
-});
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:8081/providers/getProviderUserCount')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // This returns a promise with parsed JSON
-        })
-        .then(data => {
-            // Assuming the response is just a number like: 10
-            // OR an object like { count: 10 }, adapt accordingly
-
-            // If your response is a raw number like 10:
-            console.log(data);
-            document.getElementById('providerCount').textContent = data;
-            total = total + data;
-            document.getElementById('totalUserCount').textContent = total;
-            // If it's { count: 10 }:
-            // document.getElementById('businessCount').textContent = data.count;
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            document.getElementById('customerCount').textContent = 'N/A';
-        });
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     fetch('http://localhost:8081/businesses/all')
         .then(response => {
@@ -126,4 +74,59 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Fetch error:', error);
         });
 });
+
+let tR = 0, tF = 0, tT = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    Promise.all([
+        fetch('http://localhost:8081/reviews/count/all').then(res => res.json()),
+        fetch('http://localhost:8081/reviews/count/false').then(res => res.json()),
+        fetch('http://localhost:8081/reviews/count/true').then(res => res.json())
+    ])
+        .then(([totalReviewCount, falseCount, trueCount]) => {
+            tR = totalReviewCount;
+            tF = falseCount;
+            tT = trueCount;
+            document.getElementById('totalReviewCount').textContent = totalReviewCount;
+            document.getElementById('totalFalse').textContent = falseCount;
+            document.getElementById('totalTrue').textContent = trueCount;
+
+            console.log('Review counts:', { totalReviewCount, falseCount, trueCount });
+
+            setRatios();
+        })
+        .catch(error => {
+            console.error('Fetch error (review counts):', error);
+            document.getElementById('totalReviewCount').textContent = 'N/A';
+            document.getElementById('totalFalse').textContent = 'N/A';
+            document.getElementById('totalTrue').textContent = 'N/A';
+        });
+});
+
+
+function setRatios(){
+
+       let ratio = bc/total;
+        ratio = Math.round(ratio  * 100);
+       document.getElementById('businessDayToDayRatio').textContent = `${ratio}%`;
+       ratio = cc/total ;
+       ratio = Math.round(ratio  * 100);
+
+       document.getElementById('customerDayToDayRatio').textContent = `${ratio}%` ;
+
+        ratio = total/total;
+       document.getElementById('totalU').textContent = `${ratio}%`;
+
+    ratio = pc/total;
+    ratio = Math.round(ratio * 100);
+       document.getElementById('providerDayToDayRatio').textContent = `${ratio}%`;
+
+    ratio = Math.round((tR / total) * 100);
+    document.getElementById('totalR').textContent = `${ratio}%`;
+
+    ratio = Math.round((tF / total) * 100);
+    document.getElementById('unflagged').textContent = `${ratio}%`;
+
+    ratio = Math.round((tT / total) * 100);
+    document.getElementById('flagged').textContent = `${ratio}%`;
+}
 

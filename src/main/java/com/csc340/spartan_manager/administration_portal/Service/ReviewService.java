@@ -87,12 +87,22 @@ public class ReviewService {
     public List<ReviewDTO> getFlaggedReviews() {
         return reviewRepository.findByFlaggedTrue().stream().map(review -> new ReviewDTO(
                 review.getReviewId(),
-                review.getCustomer().getCustName(),
-                review.getProvider().getFullName(),
-                review.getProduct().getProductName(),
                 review.getReviewContent(),
+                review.getProvider().getFullName(),
+                review.getCustomer().getCustName(),
+                review.getProduct().getProductName(),
                 review.getCreatedAt()
         )).collect(Collectors.toList());
     }
 
+    public int totalReviews() {
+        return reviewRepository.countReviews();
+    }
+
+    public int countByFlaggedFalse() {
+        return reviewRepository.countByFlaggedFalse();
+    }
+    public int countByFlaggedTrue() {
+        return reviewRepository.countByFlaggedTrue();
+    }
 }

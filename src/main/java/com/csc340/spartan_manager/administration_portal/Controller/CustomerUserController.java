@@ -95,19 +95,19 @@ public class CustomerUserController {
         newCustomer.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         System.out.println("Set CreatedAt: " + newCustomer.getCreatedAt());
 
-        customerUserRepository.save(newCustomer); // Make sure this repository is injected
+        customerUserService.addNewCustUser(newCustomer);
 
-        return ResponseEntity.ok("Customer added successfully");
+        return new ResponseEntity<>(newCustomer, HttpStatus.OK);
     }
 
     @PutMapping("/update/{custId}")
-    public Object updateAdminUser(@PathVariable int custId, @RequestBody CustomerUser custUser) {
+    public Object updateCustUser(@PathVariable int custId, @RequestBody CustomerUser custUser) {
         customerUserService.updateCustUser(custId, custUser);
-        return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerUserService.getCustUserById(custId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{custId}")
-    public Object deleteAdminUser(@PathVariable int custId) {
+    public Object deleteCustUser(@PathVariable int custId) {
         customerUserService.deleteCustUser(custId);
         return new ResponseEntity<>(customerUserService.getAllCustUsers(), HttpStatus.OK);
     }

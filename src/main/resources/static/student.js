@@ -130,6 +130,7 @@ document.getElementById("student-form").addEventListener("submit", async functio
         custZip: cust_zip,
         custState: cust_state,
         custCountry: cust_country
+
     };
     console.log(JSON.stringify(customer));
 
@@ -146,10 +147,12 @@ document.getElementById("student-form").addEventListener("submit", async functio
                 throw new Error('Network response was not ok');
             }
 
-        });
-
-
-
+        }).then(data => {
+        console.log("Customer added:", JSON.stringify(data));
+        fetchCustomers();
+        document.getElementById("student-form").reset();
+// call only after POST is fully done
+    });
 
 
 });
@@ -167,12 +170,11 @@ document.getElementById('studentTable').addEventListener('click', function(event
         // Add selection to clicked row
         row.classList.add('selected');
 
-        // Optional: Show selected in a div
-        const custId = row.cells[0].textContent;
-        const custName = row.cells[1].textContent;
-        document.getElementById('selectedCustomerInfo').textContent = `Selected: [${custId}] ${custName}`;
+        const custId = row.dataset.studentId;
+        console.log(custId);
+        loadAndShowCustomerUpdateForm(custId);
+
     }
 });
 
 
-renderCustomer();

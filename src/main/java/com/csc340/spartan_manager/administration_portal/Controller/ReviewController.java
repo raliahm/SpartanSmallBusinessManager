@@ -82,4 +82,16 @@ public class ReviewController {
         return new ResponseEntity<>(service.getFlaggedReviews(), HttpStatus.OK);
     }
 
+    @GetMapping("/count/all")
+    public ResponseEntity<Integer> countAllReviews() {
+        return new ResponseEntity<>(service.totalReviews(), HttpStatus.OK);
+    }
+    @GetMapping("/count/false")
+    public ResponseEntity<Integer> countFlaggedFalseReviews() {
+        return new ResponseEntity<>(service.countByFlaggedFalse(), HttpStatus.OK);
+    }
+    @GetMapping("/count/true")
+    public ResponseEntity<Integer> countFlaggedTrueReviews() {
+        return new ResponseEntity<>(service.countByFlaggedTrue(), HttpStatus.OK);
+    }
 }

@@ -2,12 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchFlaggedReviews();
 
     document.getElementById('delete-btn').addEventListener('click', deleteSelectedReview);
+
+
+    document.getElementById('search-bar').addEventListener('input', handleSearch);
 });
 
 function fetchFlaggedReviews() {
     fetch('/reviews/flagged')
         .then(res => res.json())
-        .then(data => renderReviews(data))
+        .then(data => {
+            console.log(data);
+            renderReviews(data); })
         .catch(err => {
             console.error("Failed to fetch flagged reviews", err);
             alert("Could not load reviews.");
@@ -101,6 +106,7 @@ function addRecentUpdate() {
         })
         .then(data => {
             const updatesContainer = document.getElementById('salesContainer');
+            updatesContainer.innerHTML = '';
 
             const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
 
@@ -108,7 +114,7 @@ function addRecentUpdate() {
             recentUpdates.forEach(update => {
                 const updateElement = document.createElement('div');
                 updateElement.className = 'update-entry';
-                updateElement.textContent = `${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
                 updatesContainer.prepend(updateElement);
             });
         })

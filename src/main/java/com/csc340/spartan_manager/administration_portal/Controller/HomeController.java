@@ -22,10 +22,7 @@ public class HomeController {
         return "student.html";
     }
 
-    @GetMapping("/analytics")
-    public String analytics() {
-        return "analytics.html";
-    }
+    
 
     @GetMapping("/usage-details")
     public String usageDetails() {

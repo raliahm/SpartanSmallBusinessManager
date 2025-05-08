@@ -44,15 +44,11 @@
                 <span class="material-symbols-outlined"> person </span>
                 <h3>Student View</h3>
             </a>
-            <a href="/analytics">
-                <span class="material-symbols-outlined"> monitoring </span>
-                <h3>Analytics</h3>
-            </a>
             <a href="/usage-details">
                 <span class="material-symbols-outlined"> email </span>
                 <h3>User Approvals</h3>
             </a>
-            <a href="/review" class="active"><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+            <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
 
             <a href="/bad-words">
                 <span class="material-symbols-outlined"> share_reviews </span>
@@ -91,7 +87,6 @@
                         <div class="number" id="customerDayToDayRatio">80%</div>
                     </div>
                 </div>
-                <small>Last 24 Hours</small>
             </div>
             <!-- end customers-->
             <!-- start businesses-->
@@ -106,10 +101,9 @@
                         <svg>
                             <circle r="30" cy="40" cx="40"></circle>
                         </svg>
-                        <div class="number" id="businessDayToDayRatio">80%</div>
+                        <div class="number" id="businessDayToDayRatio"></div>
                     </div>
                 </div>
-                <small>Last 24 Hours</small>
             </div>
             <!-- end businesses-->
             <!-- start provider-->
@@ -124,10 +118,9 @@
                         <svg>
                             <circle r="30" cy="40" cx="40"></circle>
                         </svg>
-                        <div class="number">80%</div>
+                        <div class="number" id="providerDayToDayRatio">80%</div>
                     </div>
                 </div>
-                <small>Last 24 Hours</small>
             </div>
             <!-- end provider-->
             <!-- start income-->
@@ -142,12 +135,53 @@
                         <svg>
                             <circle r="30" cy="40" cx="40"></circle>
                         </svg>
-                        <div class="number">80%</div>
+                        <div class="number" id="totalU" ></div>
                     </div>
                 </div>
-                <small>Last 24 Hours</small>
             </div>
 
+
+
+            <div class="reviews">
+                <span class="material-symbols-outlined">rate_review</span>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Total Reviews</h3>
+                        <h1 id="totalReviewCount"></h1>
+                    </div>
+                    <div class="progress">
+                        <svg><circle r="30" cy="40" cx="40"></circle></svg>
+                        <div class="number" id="totalR">90%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews">
+                <span class="material-symbols-outlined">rate_review</span>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Unflagged Reviews</h3>
+                        <h1 id="totalFalse"></h1>
+                    </div>
+                    <div class="progress">
+                        <svg><circle r="30" cy="40" cx="40"></circle></svg>
+                        <div class="number" id="unflagged">90%</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="reviews">
+                <span class="material-symbols-outlined">rate_review</span>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Flagged Reviews</h3>
+                        <h1 id="totalTrue"></h1>
+                    </div>
+                    <div class="progress">
+                        <svg><circle r="30" cy="40" cx="40"></circle></svg>
+                        <div class="number" id="flagged">90%</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- end insights-->
         <!-- Start recent registrations -->

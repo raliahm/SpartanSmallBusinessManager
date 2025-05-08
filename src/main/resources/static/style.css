@@ -340,7 +340,7 @@ main .insights{
 }
 
 main .insights>div{
-    background-color: var(--clr-white);
+    background-color: var(--clr-info-light);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
@@ -359,15 +359,7 @@ main .insights>div span{
     color: var(--clr-white);
     font-size: 2rem;
 }
-main .insights>div.customers {
-    background: antiquewhite;
-}
-main .insights>div.businesses {
-    background: antiquewhite;
-}
-main .insights>div.income {
-    background: antiquewhite;
-}
+
 
 main .insights>div .middle{
     display: flex;
