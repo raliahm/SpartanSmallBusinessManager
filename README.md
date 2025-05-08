@@ -18,15 +18,26 @@
 1. Customer (student customer):
     1. Create/modify customer profile - register as a student.
     2. View available services - browse available businesses.
-    3. Subscribe to available services - subcribe to a email list.
+    3. Subscribe to available services - add product to shopping cart.
     4. Write reviews for subscribed services - review a businesses.
 2. Provider (student entrepreneur):
     1. Create/modify/remove provider profile - register as a small business.
     2. Create services - create items they are selling, update event timings.
-    3. View customer statistics - how many items are sold and how many students are registered for email list.
+    3. View customer statistics - how many items are sold and how many students reviewed their products.
     4. Reply to reviews - reply to reviews from student customers.
 3. SysAdmin (adminstrator):
     1. Manage user access - approve businesses.
     2. Moderate services - remove/publish businesses.
     3. Moderate reviews - remove/hide reviews.
     4. View usage statistics - view app membership.
+
+
+#Scenarios
+
+###Provider
+> Provider P1 creates a provider account and login with credentials. After a successful login, P1 is welcomed by the provider page that displays the input data from signup. P1 can update their data and delete their account.
+> P1 registers a business by pulling the form using the navigation sidebar. After successful business registration, P1 can also edit data from that business or delete the business.
+> P1 adds products for customers to shop. P1 can also update or delete products.
+> P1 creates an event for their business. After creation of an event, P1 can update or cancel that event.
+> P1 can reply to customers' review. P1 can decide to edit that review or completely delete it.
+> P1 can see the amount of sales they completed and the amount of reviews done by customers in the statistics page.
