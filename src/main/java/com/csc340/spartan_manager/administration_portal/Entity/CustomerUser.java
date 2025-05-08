@@ -26,7 +26,7 @@ public class CustomerUser {
     private String custPassword;
     private Timestamp createdDate;
     private boolean restricted = false;
-    private String state;
+    private String status;
     private final UserRole role = UserRole.CUSTOMER;
 
     public CustomerUser() {
@@ -39,7 +39,7 @@ public class CustomerUser {
         this.custPassword = custPassword;
         this.custEmail = custEmail;
         this.createdDate = custCreated;
-        this.state = "Pending";
+        this.status = "Pending";
     }
 
     public CustomerUser(String custName, String custEmail, String custPhone, String custAddress, String custCity, String custState, String custCountry, String custZip, String custUsername, String custPassword, Timestamp custCreated) {
@@ -55,7 +55,7 @@ public class CustomerUser {
         this.custUsername = custUsername;
         this.custPassword = custPassword;
         this.createdDate = custCreated;
-        this.state = "Pending";
+        this.status = "Pending";
     }
 
     public Timestamp getCreatedAt() {
@@ -191,11 +191,11 @@ public class CustomerUser {
         return role;
     }
 
-    public String getState() {
-        return state;
+    public String getStatus() {
+        return status;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStatus(String state) {
+        this.status = state;
     }
 }

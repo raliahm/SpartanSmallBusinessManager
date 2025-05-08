@@ -13,6 +13,9 @@ import java.util.Optional;
 public class CustomerUserService {
     @Autowired
     private CustomerUserRepository customerUserRepository;
+    @Autowired
+    private EntityUpdateEntryService updateLogger;
+
 
     public List<CustomerUser> getAllCustUsers() {
         return customerUserRepository.findAll();
@@ -25,18 +28,46 @@ public class CustomerUserService {
     public void addNewCustUser(CustomerUser custUser) {
 
         customerUserRepository.save(custUser);
+        updateLogger.logUpdate(
+                custUser.getCustId(),
+                "INSERT",
+                "customers",
+                null,
+                null,
+                custUser.getCustUsername(),
+                "New customer added"
+        );
     }
 
     public void updateCustUser(int id, CustomerUser custUser) {
         CustomerUser existing = getCustUserById(id);
-        existing.setCustEmail(custUser.getCustEmail());
-        existing.setPassword(custUser.getPassword());
+        if (!existing.getCustEmail().equals(custUser.getCustEmail())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custEmail",
+                    existing.getCustEmail(), custUser.getCustEmail(), "Customer email updated");
+            existing.setCustEmail(custUser.getCustEmail());
+        }
+
+        if (!existing.getPassword().equals(custUser.getPassword())) {
+            updateLogger.logUpdate(id, "UPDATE", "customers", "password",
+                    existing.getPassword(), custUser.getPassword(), "Customer password updated");
+            existing.setPassword(custUser.getPassword());
+        }
 
         customerUserRepository.save(existing);
     }
 
     public void deleteCustUser(int id) {
+        CustomerUser user = getCustUserById(id);
         customerUserRepository.deleteById(id);
+        updateLogger.logUpdate(
+                id,
+                "DELETE",
+                "customers",
+                null,
+                user.getCustUsername(),
+                null,
+                "Customer deleted"
+        );
     }
 
     public Object getCustByUsername(String custUsername) {
@@ -52,6 +83,7 @@ public class CustomerUserService {
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
             cust.setRestricted(true);  // Set the status to "restricted"
+            updateLogger.logUpdate(id, "UPDATE", "customers", "restricted", "false", "true", "Customer restricted");
             customerUserRepository.save(cust);  // Save the updated business
             return true;
         } else {
@@ -63,6 +95,7 @@ public class CustomerUserService {
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
             cust.setRestricted(false);  // Set it to unrestricted
+            updateLogger.logUpdate(id, "UPDATE", "customers", "restricted", "true", "false", "Customer unrestricted");
             customerUserRepository.save(cust);  // Save the updated business
             return true;
         } else {
@@ -78,8 +111,12 @@ public class CustomerUserService {
         Optional<CustomerUser> existing = customerUserRepository.findById(id);
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
-            cust.setCustState("Approved");
+            String oldState = cust.getStatus();
+            cust.setStatus("Approved");
+
             customerUserRepository.save(cust);
+            updateLogger.logUpdate(id, "UPDATE", "customers", "custState", oldState, "Approved", "Customer approved");
+
             return true;
         }
         return false;
@@ -89,8 +126,12 @@ public class CustomerUserService {
         Optional<CustomerUser> existing = customerUserRepository.findById(id);
         if (existing.isPresent()) {
             CustomerUser cust = existing.get();
-            cust.setState("Rejected");
+            String oldState = cust.getStatus();
+
+            cust.setStatus("Rejected");
             customerUserRepository.save(cust);
+            updateLogger.logUpdate(id, "UPDATE", "customers", "status", oldState, "Rejected", "Customer rejected");
+
             return true;
         }
         return false;

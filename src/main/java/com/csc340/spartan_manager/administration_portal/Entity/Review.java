@@ -24,10 +24,16 @@ public class Review {
     @JoinColumn(name = "provider_id", nullable = false)
     private ProviderUser provider;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerUser customer;
+
+
     @Column(nullable = false)
     private Timestamp createdDate;
 
-
+    @Column(nullable = false)
+    private boolean flagged = false;
     public Timestamp getCreatedAt() {
         return createdDate;
     }
@@ -39,10 +45,19 @@ public class Review {
     public Review() {
     }
 
-    public Review(String reviewContent, Product product, ProviderUser provider) {
+    public Review(String reviewContent, Product product, ProviderUser provider, CustomerUser customer) {
         this.reviewContent = reviewContent;
         this.product = product;
         this.provider = provider;
+        this.customer = customer;
+    }
+
+    public CustomerUser getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerUser customer) {
+        this.customer = customer;
     }
 
     public int getReviewId() {
@@ -75,5 +90,13 @@ public class Review {
 
     public void setProvider(ProviderUser provider) {
         this.provider = provider;
+    }
+
+    public boolean isFlagged() {
+        return flagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        this.flagged = flagged;
     }
 }

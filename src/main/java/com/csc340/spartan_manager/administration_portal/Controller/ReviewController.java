@@ -1,11 +1,14 @@
 package com.csc340.spartan_manager.administration_portal.Controller;
 
+import com.csc340.spartan_manager.administration_portal.DTO.ReviewDTO;
 import com.csc340.spartan_manager.administration_portal.Entity.Review;
 import com.csc340.spartan_manager.administration_portal.Service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * ReviewController.java.
@@ -42,6 +45,11 @@ public class ReviewController {
         return new ResponseEntity<>("New Review Successfully Created!", HttpStatus.CREATED);
     }
 
+    @GetMapping("/get/{id}")
+    public Object getReviewById(@PathVariable int id) {
+        service.getReviewById(id);
+        return new ResponseEntity<>(service.getReviewById(id), HttpStatus.OK);
+    }
     /**
      * Update an existing Review object.
      * http://localhost:8080/reviews/update/2
@@ -68,4 +76,10 @@ public class ReviewController {
         service.deleteReviewById(reviewId);
         return new ResponseEntity<>(service.getAllReviews(), HttpStatus.OK);
     }
+
+    @GetMapping("/flagged")
+    public ResponseEntity<List<ReviewDTO>> getFlaggedReviews() {
+        return new ResponseEntity<>(service.getFlaggedReviews(), HttpStatus.OK);
+    }
+
 }

@@ -56,6 +56,8 @@ public class AdminUserService {
         existingAdmin.setPassword(adminUser.getPassword());
         adminUserRepository.save(existingAdmin);
 
+
+
     }
 
     public boolean addNewAdminUser(AdminUser adminUser) {
@@ -66,6 +68,7 @@ public class AdminUserService {
         }
 
         adminUserRepository.save(adminUser);
+
         return true;
     }
 

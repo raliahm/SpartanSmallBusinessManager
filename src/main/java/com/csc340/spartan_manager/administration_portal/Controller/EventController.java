@@ -21,6 +21,7 @@ public class EventController {
     @Autowired
     private EventService service;
 
+
     /**
      * Get a list of all Events in the database.
      * http://localhost:8080/events/all

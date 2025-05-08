@@ -1,4 +1,3 @@
-
 // Load all the businesses when the page is ready
 document.addEventListener('DOMContentLoaded', function () {
     // Fetch businesses data from API
@@ -24,6 +23,23 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("unrestrict-btn").addEventListener("click", unrestrictCustomer);
 });
 
+function fetchCustomers(){
+    fetch('customer/all')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parse the JSON response body
+        })
+        .then(data => {
+            // Store businesses data to filter later
+            window.customers = data;
+            renderCustomer(data); // Render all businesses initially
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
 function renderCustomer(customers) {
     Handlebars.registerHelper('eq', function(a, b) {
         return a === b;
@@ -33,7 +49,6 @@ function renderCustomer(customers) {
     const html = template({ customers: customers });
     document.getElementById('studentTable').innerHTML = html;
 }
-
 
 // Function to handle search bar input
 document.getElementById("search-bar").addEventListener("keyup", function() {
@@ -70,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // `data` is now the JavaScript object/array parsed from the JSON response
             console.log(data);
 
-            // If you want to use it with Handlebars:
             const source = document.getElementById('event-template').innerHTML;
             const template = Handlebars.compile(source);
             const html = template({ events: data });
@@ -159,8 +173,6 @@ document.getElementById('studentTable').addEventListener('click', function(event
         document.getElementById('selectedCustomerInfo').textContent = `Selected: [${custId}] ${custName}`;
     }
 });
-
-
 
 
 renderCustomer();

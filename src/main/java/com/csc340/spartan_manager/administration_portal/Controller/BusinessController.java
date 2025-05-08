@@ -95,6 +95,10 @@ public class BusinessController {
     @PutMapping("/update/{businessId}")
     public Object updateBusiness(@PathVariable int businessId, @RequestBody Business business) {
         service.updateBusiness(businessId, business);
+
+        //creating a session id and session log for each user, if they have been updated, deleted, or added
+
+
         return new ResponseEntity<>(service.getBusinessById(businessId), HttpStatus.CREATED);
     }
 
@@ -145,4 +149,6 @@ public class BusinessController {
         }
         return new ResponseEntity<>(service.reject(businessID), HttpStatus.NOT_ACCEPTABLE);
     }
+
+
 }

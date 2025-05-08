@@ -62,29 +62,7 @@ document.getElementById("search-bar").addEventListener("keyup", function() {
 
 
 
-//loading the events
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('events/recent')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Parses the JSON response body
-        })
-        .then(data => {
-            // `data` is now the JavaScript object/array parsed from the JSON response
-            console.log(data);
 
-            // If you want to use it with Handlebars:
-            const source = document.getElementById('event-template').innerHTML;
-            const template = Handlebars.compile(source);
-            const html = template({ events: data });
-            document.getElementById('eventsContainer').innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-});
 
 document.getElementById("business-form").addEventListener("submit", async function(event) {
     event.preventDefault(); // Prevent page reload

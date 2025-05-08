@@ -14,6 +14,10 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EntityUpdateEntryService updateLogger;
+
+
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
@@ -24,21 +28,39 @@ public class EventService {
 
     public void addNewEvent(Event event) {
         eventRepository.save(event);
+        updateLogger.logUpdate(event.getEventId(), "INSERT", "events", "", "", "", "Created new event");
+
     }
 
-    public void updateEvent(int eventId, Event event) {
+    public void updateEvent(int eventId, Event newEvent) {
         Event existing = getEventById(eventId);
         if (existing != null) {
-            existing.setEventName(event.getEventName());
-            existing.setEventDescription(event.getEventDescription());
-            existing.setEventLocation(event.getEventLocation());
-            existing.setEventDate(event.getEventDate());
-            existing.setProvider(event.getProvider());
+            if (!existing.getEventName().equals(newEvent.getEventName())) {
+                updateLogger.logUpdate(eventId, "UPDATE", "events", "name",
+                        existing.getEventName(), newEvent.getEventName(),  "Event name updated");
+                existing.setEventName(newEvent.getEventName());
+            }
+
+            if (!existing.getEventDescription().equals(newEvent.getEventDescription())) {
+                updateLogger.logUpdate(eventId, "UPDATE", "events", "description",
+                        existing.getEventDescription(), newEvent.getEventDescription(), "Event description updated");
+                existing.setEventDescription(newEvent.getEventDescription());
+            }
+
+            if (!existing.getEventLocation().equals(newEvent.getEventLocation())) {
+                updateLogger.logUpdate(eventId, "UPDATE", "events", "location",
+                        existing.getEventLocation(), newEvent.getEventLocation(), "Event location updated");
+                existing.setEventLocation(newEvent.getEventLocation());
+            }
+
+
             eventRepository.save(existing);
         }
     }
 
+
     public void deleteEventById(int eventId) {
+        updateLogger.logUpdate(eventId, "DELETE", "Event", "", "", "", "Deleted event");
         eventRepository.deleteById(eventId);
     }
 

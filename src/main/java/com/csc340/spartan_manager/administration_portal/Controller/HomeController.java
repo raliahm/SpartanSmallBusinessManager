@@ -11,7 +11,7 @@ public class HomeController {
         return "index.html"; // This should be in your templates folder
     }
 
-    @GetMapping("/smallbusiness")
+    @GetMapping("/small-business")
     public String smallBusiness() {
 
         return "small-business.html";
@@ -27,11 +27,20 @@ public class HomeController {
         return "analytics.html";
     }
 
-    @GetMapping("/usagedetails")
+    @GetMapping("/usage-details")
     public String usageDetails() {
         return "usage-details.html";
     }
 
+    @GetMapping("/review")
+    public String review() {
+        return "review.html";
+    }
+
+    @GetMapping("/bad-words")
+    public String badWords() {
+        return "bad-words.html";
+    }
 
 
 

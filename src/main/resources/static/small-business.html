@@ -32,7 +32,7 @@
                     <span class="material-symbols-outlined"> grid_view </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="/smallbusiness" >
+                <a href="/small-business" class="active" >
                     <span class="material-symbols-outlined"> supervisor_account </span>
                     <h3>Business View</h3>
                 </a>
@@ -44,11 +44,15 @@
                     <span class="material-symbols-outlined"> monitoring </span>
                     <h3>Analytics</h3>
                 </a>
-                <a href="/usagedetails">
+                <a href="/usage-details">
                     <span class="material-symbols-outlined"> email </span>
                     <h3>User Approvals</h3>
                 </a>
-
+                <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+                <a href="/bad-words">
+                    <span class="material-symbols-outlined"> share_reviews </span>
+                    <h3>Bad Word View</h3>
+                </a>
 
 
                 <a href="/login">
@@ -174,7 +178,7 @@
         {{/each}}
     </div>
 </script>
-
+<script src="events.js"></script>
 <script>
     function getSelectedBusinessId() {
         const selectedRow = document.querySelector('.selected');
@@ -200,7 +204,7 @@
                     throw new Error('Failed to delete business');
                 }
                 alert('Business deleted successfully');
-                addRecentUpdate(`Deleted business: ${businessId}`);
+                addRecentUpdate();
                 fetchBusinesses();
             })
             .catch(error => {
@@ -229,7 +233,7 @@
                 // Update the status dynamically on success
                 updateBusinesses(businessId, 'restricted');
                 alert('Business restricted successfully');
-                addRecentUpdate(`Restricted business: ${businessId} , ${row.dataset.businessName}` );
+                addRecentUpdate();
                 fetchBusinesses();
             })
             .catch(error => {
@@ -256,7 +260,7 @@
 
                 // Update the status dynamically on success
                 updateBusinesses(businessId, 'unrestricted');
-                addRecentUpdate(`Unrestricted business: ${businessId}`);
+                addRecentUpdate();
                 fetchBusinesses();
 
                 alert('Business unrestricted successfully');
@@ -276,6 +280,7 @@
             statusColumn.textContent = status === 'restricted' ? "Restricted" : "Unrestricted";
             row.classList.toggle('restricted-row', status === 'restricted');
             row.classList.toggle('unrestricted-row', status !== 'restricted');
+
         }
     }
 
@@ -325,7 +330,7 @@
             .then(updated => {
                 alert("Business updated successfully.");
                 updateBusinesses(updated);
-                addRecentUpdate(`Updated business: ${updatedBusiness.businessName}`);
+                addRecentUpdate();
             })
             .catch(err => {
                 console.error("Update failed:", err);
@@ -358,12 +363,30 @@
         const html = template({ businesses: businesses });
         document.getElementById('businessTable').innerHTML = html;
     }
-    function addRecentUpdate(message) {
-        const updatesContainer = document.getElementById('salesContainer');
-        const updateElement = document.createElement('div');
-        updateElement.className = 'update-entry';
-        updateElement.textContent = message;
-        updatesContainer.prepend(updateElement); // Show newest on top
+    function addRecentUpdate() {
+        fetch('/updates/table/businesses')  // Replace with your actual backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch update');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const updatesContainer = document.getElementById('salesContainer');
+
+                const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
+
+                // Assuming data is an array of updates
+                recentUpdates.forEach(update => {
+                    const updateElement = document.createElement('div');
+                    updateElement.className = 'update-entry';
+                    updateElement.textContent = `${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updatesContainer.prepend(updateElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching update:', error);
+            });
     }
 
     renderBusinesses();
