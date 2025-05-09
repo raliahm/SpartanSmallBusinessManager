@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box
+}
+body{
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar{
+    background-color: #111154;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#menu-toggle{
+    display: none;
+}
+
+.menu-icon{
+    font-size: 1.8rem;
+    display: none;
+    cursor: pointer;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover{
+    color: gold;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #222;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        display: none;
+    }
+
+    #menu-toggle:checked + .menu-icon + .nav-links {
+        display: flex;
+    }
+}
+.dropdown{
+    position: relative;
+}
+.drop-btn{
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+}
+.dropdown-content{
+    display:none;
+    position: absolute;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    right:0;
+}
+.dropdown-content a{
+    color: #111154;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+}
+.dropdown-content a:hover{
+    background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    flex: 1 1 300px;
+}
+
+.card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.text-center{
+    text-align: center;
+}
+.card .text-center{
+    text-align: center;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card label {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.card input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.card button {
+    margin-top: 1rem;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+}

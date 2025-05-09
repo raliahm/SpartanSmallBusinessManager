@@ -1,0 +1,208 @@
+.navbar{
+    background-color: #111154;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#menu-toggle{
+    display: none;
+}
+
+.menu-icon{
+    font-size: 1.8rem;
+    display: none;
+    cursor: pointer;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover{
+    color: gold;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #222;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        display: none;
+    }
+
+    #menu-toggle:checked + .menu-icon + .nav-links {
+        display: flex;
+    }
+}
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.search-form input[type="text"]{
+    padding: 0.6rem 1rem;
+    border: 2px solid #111154;
+    border-radius: 25px;
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(0, 173, 181, 0.2);
+    /*outline: none;*/
+    background: linear-gradient(145deg, #fff, #f0f0f0);
+    width: 250px;
+    transition: width 0.4s ease;
+}
+.search-form input::placeholder{
+    font-weight: bold;
+    color: #555;
+}
+.search-form input[type="text"]:focus{
+    /*width: 220px;*/
+    outline: none;
+    border-color: #111154;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.4);
+    transition: all 0.3s ease;
+}
+
+.search-form button{
+    padding: 0.45rem 1rem;
+    border: none;
+    background-color: goldenrod;
+    color:white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-form button:hover{
+    background-color: #019aa2;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px){
+    .search-form{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .search-form input[type="text"],
+    .search-form button{
+        width: 100%;
+    }
+}
+.card {
+    background-color: #fdfdfd;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Product List Styling */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.product-list .card {
+    flex: 1 1 300px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.product-list .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Add-to-Cart Form */
+form input[type="number"] {
+    width: 60px;
+    margin-left: 0.5rem;
+}
+
+form button {
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Review Section */
+h3 {
+    margin-top: 2rem;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+ul {
+    padding-left: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+ul li {
+    background-color: #f9f9f9;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+/* Review Form */
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
