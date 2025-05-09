@@ -66,4 +66,24 @@ public class ProviderUserController {
         }
         return new ResponseEntity<>(providerUserService.reject(providerId), HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @PutMapping("/unrestrict/{providerId}")
+    public Object unRestrictProvider(@PathVariable int providerId) {
+        if(providerUserService.unrestrictProvider(providerId)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+    @PutMapping("/restrict/{providerId}")
+    public Object restrictProvider(@PathVariable int providerId) {
+        if(providerUserService.restrictProvider(providerId)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @GetMapping("/isRestricted/{providerId}")
+    public Object isRestrict(@PathVariable int providerId) {
+        return new ResponseEntity<>(providerUserService.isRestricted(providerId), HttpStatus.OK);
+    }
 }

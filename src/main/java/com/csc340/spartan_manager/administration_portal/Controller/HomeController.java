@@ -40,7 +40,10 @@ public class HomeController {
     }
 
 
-
+    @GetMapping("/provider")
+    public String provider() {
+        return "provider.html";
+    }
 
 
 }

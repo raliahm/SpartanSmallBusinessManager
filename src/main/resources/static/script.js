@@ -101,7 +101,7 @@ document.getElementById("business-form").addEventListener("submit", async functi
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            addRecentUpdate(`Added new business: ${business_name}`);
+            addRecentUpdate();
             fetchBusinesses();
         });
 
