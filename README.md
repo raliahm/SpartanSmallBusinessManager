@@ -42,5 +42,8 @@
     2. Moderate services - remove/publish businesses.
     3. Moderate reviews - remove/hide reviews.
     4. View usage statistics - view app membership.
+  
+Signing into the application :
+Admin Login : username:reba, password: 1234
 
 
