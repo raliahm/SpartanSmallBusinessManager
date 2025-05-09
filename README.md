@@ -42,3 +42,10 @@
 5. P1 can reply to customers' review. P1 can decide to edit that review or completely delete it.
 6. P1 can see the amount of sales they completed and the amount of reviews done by customers in the statistics page.
 
+##Customer
+1. Customer C1 creates a customer profile and logs in with custom username and password. After signing up, C1 is welcomed by the customer profile that displays input from signup. C1 can update their profile.
+2. C1 can search available businesses on search bar.
+3. C1 can view business page along with description and products.
+4. C1 adds product to cart. C1 can also remove product from cart.
+5. C1 can write review of business. C1 is able to access this after signing up.
+
