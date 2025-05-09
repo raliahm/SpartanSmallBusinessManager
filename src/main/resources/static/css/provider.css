@@ -1,0 +1,24 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f9;
+}
+
+
+.login-card {
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 16px;
+}
+
+.text-primary {
+    color: #4169E1 !important;
+}
+
+.btn-primary {
+    background-color: #4169E1;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2e52c5;
+}

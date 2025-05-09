@@ -1,0 +1,14 @@
+canvas {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
