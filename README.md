@@ -7,6 +7,18 @@
 > Yahir Paz Ardon
 > Reba Aliah Mathews
 
+## Table of Contents
+
+1. [Main Branch – Design & SRS Documents](https://github.com/raliahm/SpartanSmallBusinessManager/tree/main)
+2. [Customer Static Web Pages](https://github.com/raliahm/SpartanSmallBusinessManager/tree/tsega_takele)
+3. [Provider Static Web Pages](https://github.com/raliahm/SpartanSmallBusinessManager/tree/yahir_paz)
+4. [System Admin Static Web Pages](https://github.com/raliahm/SpartanSmallBusinessManager/tree/admin-profile)
+5. [Customer CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/Customer_crud_api)
+6. [Provider CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/Provider_CRUP_API)
+7. [System Admin CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/reba-mathews)
+8. [Final Project Submission (MVC App)](https://github.com/raliahm/SpartanSmallBusinessManager/tree/final_mvc_app)
+
+
 ## Description 
 > The app will provide a platform for the small business entrepreneurs at UNCG to promote their business. Other students can join the website as a
 > customer and see the multiple businesses. It is similar to a tik tok shop but for UNCG entrepreneurs. It gives them a platform to promote sales.
