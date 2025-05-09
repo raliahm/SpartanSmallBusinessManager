@@ -1,0 +1,401 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Business View</title>
+    <link rel="stylesheet" href="style.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <!--aside section start -->
+        <aside>
+            <!--top section-->
+            <div class="top">
+                <div class="logo">
+                    <h2>
+                        <span class="danger">SSBM Admin</span>
+                    </h2>
+                </div>
+            </div>
+            <!--top section-->
+            <div class="sidebar">
+
+                <a href="/">
+                    <span class="material-symbols-outlined"> grid_view </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/provider" >
+                    <span class="material-symbols-outlined"> supervisor_account </span>
+                    <h3>Provider View</h3>
+                </a>
+                <a href="/small-business" class="active" >
+                    <span class="material-symbols-outlined"> supervisor_account </span>
+                    <h3>Business View</h3>
+                </a>
+                <a href="/student">
+                    <span class="material-symbols-outlined"> person </span>
+                    <h3>Student View</h3>
+                </a>
+                <a href="/usage-details">
+                    <span class="material-symbols-outlined"> email </span>
+                    <h3>User Approvals</h3>
+                </a>
+                <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+                <a href="/bad-words">
+                    <span class="material-symbols-outlined"> share_reviews </span>
+                    <h3>Bad Word View</h3>
+                </a>
+
+
+                <a href="/login">
+                    <span class="material-symbols-outlined"> logout  </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+
+        <!--aside section end-->
+        <main>
+            <h1>Business View</h1>
+            <div class="input-bar">
+                <input type="text" id="search-bar" class="form-control" placeholder="Search Business by Name" aria-label="Search Business" >
+            </div>
+
+            <div id="buttons">
+                <button type="button" class="btn btn-success" id="delete-btn">Delete Business</button>
+                <button type="button" class="btn btn-success" id="restrict-btn">Restrict Business</button>
+                <button type="button" class="btn btn-success" id="unrestrict-btn">Unrestrict Business</button>
+            </div>
+
+
+            <div class="custom-form-container">
+                <form class="custom-form" id="business-form">
+                    <h2>Add Business</h2>
+
+                    <div class="form-row">
+                        <label for="business-name">Business Name</label>
+                        <input type="text" id="business-name" placeholder="Enter business name" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="business-providerID">Provider ID</label>
+                        <input type="number" id="business-providerID" placeholder="i.e 201" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="business-category">Business Category</label>
+                        <input type="text" id="business-category" placeholder="i.e cafe" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="business-description">Business Description</label>
+                        <input type="text" id="business-description" placeholder="i.e cafe" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="business-address">Business Address</label>
+                        <input type="text" id="business-address" placeholder="i.e 1712 Example Walker, NC, 27502" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+
+
+
+            <div class="recent_registration" id="businessTable"></div>
+
+
+        </main>
+        <!-- right section start -->
+        <div class="right">
+            <!-- start top -->
+
+            <!-- end top -->
+            <!--start recent updates -->
+            <div class="recent_updates">
+                <h2>Recent Update</h2>
+                <div class = "updates" id="salesContainer"></div>
+
+            </div>
+            <div class="recent_updates">
+                <h2>Recent Events</h2>
+                <div id="eventsContainer"></div>
+            </div>
+            <!-- update a business with new info if needed-->
+            <div class="update_business">
+
+            </div>
+
+        </div>
+        <!-- right section end -->
+    </div>
+
+</body>
+
+<script src="script.js" ></script>
+<script id="business-template" type="text/x-handlebars-template">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Business ID</th>
+            <th>Business Name</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Banned</th>
+            <th>Details</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {{#each businesses}}
+        <tr data-business-id="{{businessId}}" class="{{#if restricted}}restricted-row{{else}}unrestricted-row{{/if}}">
+            <td>{{businessId}}</td>
+            <td>{{businessName}}</td>
+            <td>{{category}}</td>
+            <td>{{status}}</td>
+            <td class="status-restricted">{{restricted}}</td>
+            <td>{{businessDescription}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</script>
+<script id="event-template" type="text/x-handlebars-template">
+    <div class="updates">
+        {{#each events}}
+        <div class="update">
+            <div class="message">
+                <p><b>{{eventName}}</b> </p>
+                <p>{{eventDescription}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script src="events.js"></script>
+<script>
+    function getSelectedBusinessId() {
+        const selectedRow = document.querySelector('.selected');
+        if (selectedRow) {
+            return selectedRow.querySelector('td:first-child').textContent; // Assuming businessId is in the first column
+        } else {
+            return null;
+        }
+    }
+
+    function deleteBusiness() {
+        const businessId = getSelectedBusinessId();
+        if (!businessId) {
+            alert("Please select a business to delete.");
+            return;
+        }
+
+        fetch(`businesses/delete/${businessId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete business');
+                }
+                alert('Business deleted successfully');
+                addRecentUpdate();
+                fetchBusinesses();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+    }
+
+    function restrictBusiness() {
+        const businessId = getSelectedBusinessId();
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+        if (!businessId) {
+            alert("Please select a business to restrict.");
+            return;
+        }
+
+
+        fetch(`businesses/restrict/${businessId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to restrict business');
+                }
+
+                // Update the status dynamically on success
+                updateBusinesses(businessId, 'restricted');
+                alert('Business restricted successfully');
+                addRecentUpdate();
+                fetchBusinesses();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+    }
+
+    function unrestrictBusiness() {
+        const businessId = getSelectedBusinessId();
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+        if (!businessId) {
+            alert("Please select a business to unrestrict.");
+            return;
+        }
+
+        fetch(`businesses/unrestrict/${businessId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to unrestrict business');
+                }
+
+                // Update the status dynamically on success
+                updateBusinesses(businessId, 'unrestricted');
+                addRecentUpdate();
+                fetchBusinesses();
+
+                alert('Business unrestricted successfully');
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+
+    }
+
+    function updateBusinesses(businessId, status) {
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+        if (row) {
+            const statusColumn = row.querySelector(".status-restricted");
+
+            statusColumn.textContent = status === 'restricted' ? "Restricted" : "Unrestricted";
+            row.classList.toggle('restricted-row', status === 'restricted');
+            row.classList.toggle('unrestricted-row', status !== 'restricted');
+
+        }
+    }
+
+
+
+    function showUpdateForm(business) {
+        const container = document.querySelector('.update_business');
+        container.innerHTML = `
+        <h2>Edit Business #${business.businessId}</h2>
+        <form class="custom-form" id="updateBusinessForm">
+            <input name="business_name" value="${business.businessName}" required />
+            <input name="business_address" value="${business.businessAddress}" required />
+            <input name="business_description" value="${business.businessDescription}" required />
+            <input name="category" value="${business.category}" required />
+            <button type="submit">Update</button>
+        </form>
+    `;
+
+        document.getElementById('updateBusinessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBusinessUpdate(business, business.businessId);
+            updateBusinesses(business.businessId);
+            fetchBusinesses();
+        });
+    }
+
+    function submitBusinessUpdate(business, businessId) {
+        const form = document.getElementById('updateBusinessForm');
+        const formData = new FormData(form);
+        const updatedBusiness = {
+            businessId: businessId,  // assuming server uses this to find it
+            businessName: formData.get('business_name'),
+            businessAddress: formData.get('business_address'),
+            businessDescription: formData.get('business_description'),
+            category: formData.get('category'),
+            status: "Pending",
+            providerId: business.providerId, // maintain existing providerId
+            restricted: business.restricted  // optional: maintain existing flag
+        };
+
+        fetch(`/businesses/update/${businessId}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updatedBusiness)
+        })
+            .then(res => res.json())
+            .then(updated => {
+                alert("Business updated successfully.");
+                updateBusinesses(updated);
+                addRecentUpdate();
+            })
+            .catch(err => {
+                console.error("Update failed:", err);
+                alert("Update failed.");
+            });
+    }
+
+
+    function loadAndShowBusinessUpdateForm(businessId) {
+        fetch(`/businesses/${businessId}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                showUpdateForm(data)
+            })
+            .catch(err => {
+                console.error("Error loading business:", err);
+                alert("Could not load business data.");
+            });
+    }
+
+
+    // Function to render businesses into the table
+    function renderBusinesses(businesses) {
+        Handlebars.registerHelper('eq', function(a, b) {
+            return a === b;
+        });
+        const source = document.getElementById('business-template').innerHTML;
+        const template = Handlebars.compile(source);
+        const html = template({ businesses: businesses });
+        document.getElementById('businessTable').innerHTML = html;
+    }
+
+
+    function addRecentUpdate() {
+        fetch('/updates/table/businesses')  // Replace with your actual backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch update');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const updatesContainer = document.getElementById('salesContainer');
+                updatesContainer.innerHTML = '';
+                const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
+
+                // Assuming data is an array of updates
+                recentUpdates.forEach(update => {
+                    const updateElement = document.createElement('div');
+                    updateElement.className = 'update-entry';
+                    updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updatesContainer.prepend(updateElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching update:', error);
+            });
+    }
+
+    renderBusinesses();
+</script>
+
+
+</html>
+
+
+
