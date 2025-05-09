@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bad Words Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <!--aside section start -->
+    <aside>
+        <div class="top">
+            <div class="logo">
+                <h2>
+                    <span class="danger">Bad Words Management</span>
+                </h2>
+            </div>
+            <button  id="close_btn">
+                <span class="material-symbols-outlined"> close </span>
+            </button>
+        </div>
+        <div class="sidebar">
+
+            <a href="/">
+                <span class="material-symbols-outlined"> grid_view </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="/provider" >
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Provider View</h3>
+            </a>
+            <a href="/small-business" >
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Business View</h3>
+            </a>
+            <a href="/student">
+                <span class="material-symbols-outlined"> person </span>
+                <h3>Student View</h3>
+            </a>
+            <a href="/usage-details">
+                <span class="material-symbols-outlined"> email </span>
+                <h3>User Approvals</h3>
+            </a>
+            <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+            <a href="/bad-words" class="active">
+                <span class="material-symbols-outlined"> share_reviews </span>
+                <h3>Bad Word View</h3>
+            </a>
+
+
+            <a href="/login">
+                <span class="material-symbols-outlined"> logout  </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+    <!--aside section end-->
+
+    <!-- main section start -->
+    <main>
+        <h1>Manage Bad Words</h1>
+
+        <!-- Search & Add New Word -->
+        <div class="search-add">
+            <input type="text" id="searchInput" placeholder="Search bad words..." />
+            <input type="text" id="newWordInput" placeholder="Add new bad word" />
+            <button onclick="addBadWord()">Add</button>
+        </div>
+        <!-- Update Word -->
+        <div class="update-section">
+            <h3>Update Bad Word</h3>
+            <input type="number" id="updateIdInput" placeholder="ID to update" />
+            <input type="text" id="updateWordInput" placeholder="New word" />
+            <button onclick="updateBadWord()">Update</button>
+        </div>
+
+        <h2>Bad Words List</h2>
+        <div id="badWordsContainer" class="recent_registration"></div>
+
+
+    </main>
+    <!-- main section end -->
+
+    <!-- right section start -->
+    <div class="right">
+        <div class="recent_updates">
+            <h2>Recent Update</h2>
+            <div class = "updates" id="salesContainer"></div>
+
+        </div>
+        <div class="recent_updates">
+            <h2>Recent Events</h2>
+            <div id="eventsContainer"></div>
+        </div>
+
+    </div>
+    <!-- right section end -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script id="event-template" type="text/x-handlebars-template">
+    <div class="updates">
+        {{#each events}}
+        <div class="update">
+            <div class="message">
+                <p><b>{{eventName}}</b> </p>
+                <p>{{eventDescription}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script id="bad-words-template" type="text/x-handlebars-template">
+    <table class="recent_registration">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Word</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each badWords}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{word}}</td>
+            <td>
+                <button onclick="deleteBadWord({{id}})">Delete</button>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</script>
+<script src="events.js"></script>
+<script>
+    // Fetch all bad words on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchBadWords();
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#badWordsContainer table tbody tr');
+            rows.forEach(row => {
+                const word = row.cells[1].textContent.toLowerCase();
+                row.style.display = word.includes(searchValue) ? '' : 'none';
+            });
+        });
+    });
+
+    // Function to fetch all bad words
+    function fetchBadWords() {
+        fetch('/bad-words/all')
+            .then(res => res.json())
+            .then(data => {
+                const source = document.getElementById('bad-words-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template({ badWords: data });
+                document.getElementById('badWordsContainer').innerHTML = html;
+            });
+    }
+
+    // Function to add a new bad word
+    function addBadWord() {
+        const word = document.getElementById('newWordInput').value.trim();
+        if (!word) return alert('Enter a word to add');
+
+        fetch('/bad-words/new', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ word })
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to add word');
+                return res.json();
+            })
+            .then(() => {
+                document.getElementById('newWordInput').value = '';
+                addRecentUpdate();
+
+                fetchBadWords();
+            })
+            .catch(err => alert(err));
+
+
+    }
+
+    // Function to delete a bad word
+    function deleteBadWord(id) {
+        if (!confirm('Are you sure you want to delete this word?')) return;
+        const word = fetch(`/bad-words/get/${id}`);
+
+        fetch(`/bad-words/delete/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to delete word');
+                alert(`Bad word deleted: ${id}`);
+                addRecentUpdate();
+
+                fetchBadWords();
+            })
+            .catch(err => alert(err));
+
+    }
+
+
+    function addRecentUpdate() {
+        fetch('/updates/table/bad-words')  // Replace with your actual backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch update');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const updatesContainer = document.getElementById('salesContainer');
+                updatesContainer.innerHTML = '';
+
+                const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
+
+                // Assuming data is an array of updates
+                recentUpdates.forEach(update => {
+                    const updateElement = document.createElement('div');
+                    updateElement.className = 'update-entry';
+                    updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updatesContainer.prepend(updateElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching update:', error);
+            });
+    }
+
+
+    // Function to update a bad word
+    function updateBadWord() {
+        const id = document.getElementById('updateIdInput').value;
+        const word = document.getElementById('updateWordInput').value.trim();
+
+        if (!id || !word) return alert('Provide both ID and new word');
+
+        fetch(`/bad-words/update/${id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ id, word })
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to update word');
+                alert(`Bad word updated: ${word}`);
+                addRecentUpdate();
+                fetchBadWords();
+            })
+            .catch(err => alert(err));
+    }
+
+
+</script>
+
+</body>
+</html>

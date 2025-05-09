@@ -1,0 +1,520 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Provider View</title>
+    <link rel="stylesheet" href="style.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <!--aside section start -->
+    <aside>
+        <!--top section-->
+        <div class="top">
+            <div class="logo">
+                <h2>
+                    <span class="danger">SSBM Admin</span>
+                </h2>
+            </div>
+        </div>
+        <!--top section-->
+        <div class="sidebar">
+
+            <a href="/">
+                <span class="material-symbols-outlined"> grid_view </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="/provider" class="active">
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Provider View</h3>
+            </a>
+            <a href="/small-business"  >
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Business View</h3>
+            </a>
+            <a href="/student">
+                <span class="material-symbols-outlined"> person </span>
+                <h3>Student View</h3>
+            </a>
+            <a href="/usage-details">
+                <span class="material-symbols-outlined"> email </span>
+                <h3>User Approvals</h3>
+            </a>
+            <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+            <a href="/bad-words">
+                <span class="material-symbols-outlined"> share_reviews </span>
+                <h3>Bad Word View</h3>
+            </a>
+
+
+            <a href="/login">
+                <span class="material-symbols-outlined"> logout  </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+
+    <!--aside section end-->
+    <main>
+        <h1>Provider View</h1>
+        <div class="input-bar">
+            <input type="text" id="search-bar" class="form-control" placeholder="Search Provider by Name" aria-label="Search Provider" >
+        </div>
+
+        <div id="buttons">
+            <button type="button" class="btn btn-success" id="restrict-btn">Restrict Provider</button>
+            <button type="button" class="btn btn-success" id="unrestrict-btn">Unrestrict Provider</button>
+        </div>
+
+
+        <div class="custom-form-container">
+            <form class="custom-form" id="provider-form">
+                <h2>Add Provider</h2>
+
+                <div class="form-row">
+                    <label for="provider-name">Provider Name</label>
+                    <input type="text" id="provider-name" placeholder="Enter provider name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-username">Username</label>
+                    <input type="text" id="provider-username" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-password">Password</label>
+                    <input type="password" id="provider-password" placeholder="Enter password" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-email">Email</label>
+                    <input type="email" id="provider-email" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-phone">Phone Number</label>
+                    <input type="tel" id="provider-phone" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-address">Address</label>
+                    <input type="text" id="provider-address" placeholder="Enter street address" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-city">City</label>
+                    <input type="text" id="provider-city" placeholder="Enter city" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-state">State</label>
+                    <input type="text" id="provider-state" placeholder="Enter state" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-zip">Zip Code</label>
+                    <input type="text" id="provider-zip" placeholder="Enter zip code" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="provider-country">Country</label>
+                    <input type="text" id="provider-country" placeholder="Enter country" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+
+
+
+        <div class="recent_registration" id="providerTable"></div>
+
+
+    </main>
+    <!-- right section start -->
+    <div class="right">
+        <!-- start top -->
+
+        <!-- end top -->
+        <!--start recent updates -->
+        <div class="recent_updates">
+            <h2>Recent Update</h2>
+            <div class = "updates" id="salesContainer"></div>
+
+        </div>
+        <div class="recent_updates">
+            <h2>Recent Events</h2>
+            <div id="eventsContainer"></div>
+        </div>
+        <!-- update a provider with new info if needed-->
+        <div class="update_provider">
+
+        </div>
+
+    </div>
+    <!-- right section end -->
+</div>
+
+</body>
+
+<script src="provider.js" ></script>
+<script id="provider-template" type="text/x-handlebars-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Provider ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Restricted</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {{#each providers}}
+        <tr data-provider-id="{{providerID}}" class="{{#if restricted}}restricted-row{{else}}unrestricted-row{{/if}}">
+            <td>{{providerID}}</td>
+            <td>{{providerName}}</td>
+            <td>{{username}}</td>
+            <td>{{email}}</td>
+            <td>{{providerUserAddress}}</td>
+            <td>{{state}}</td>
+            <td>
+                {{#if restricted}}
+                <span class="status restricted-status">Restricted</span>
+                {{else}}
+                <span class="status unrestricted-status">Unrestricted</span>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</script>
+
+
+<script id="event-template" type="text/x-handlebars-template">
+    <div class="updates">
+        {{#each events}}
+        <div class="update">
+            <div class="message">
+                <p><b>{{eventName}}</b> </p>
+                <p>{{eventDescription}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script src="events.js"></script>
+<script>
+    function getSelectedProviderId() {
+        const row = event.target.closest('tr');
+
+        if (row && row.parentNode.tagName === 'TBODY') {
+            const providerId = row.dataset.providerId;
+
+            console.log("Clicked row provider ID:", providerId); // ✅ Shows the value
+            loadAndShowProviderUpdateForm(providerId); // Your function
+
+            // Highlight selection
+            const previouslySelected = document.querySelector('.selected');
+            if (previouslySelected) {
+                previouslySelected.classList.remove('selected');
+            }
+            row.classList.add('selected');
+        }
+    }
+
+    function deleteProvider() {
+        const providerId = getSelectedProviderId();
+        if (!providerId) {
+            alert("Please select a provider to delete.");
+            return;
+        }
+
+        fetch(`/providers/delete/${providerId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete provider');
+                }
+                alert('Provider deleted successfully');
+                addRecentUpdate();
+                fetchProviders();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+    }
+
+    function restrictProvider() {
+        const providerId = getSelectedProviderId();
+        if (!providerId) {
+            alert("Please select a provider to restrict.");
+            return;
+        }
+
+
+        fetch(`/providers/restrict/${providerId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to restrict provider');
+                }
+
+                // Update the status dynamically on success
+                alert('Provider restricted successfully');
+                addRecentUpdate();
+                fetchProviders();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+    }
+
+
+    function updateProviders(providerId, status) {
+        const row = document.querySelector(`tr[data-provider-id="${providerId}"]`);
+        if (row) {
+            const statusColumn = row.querySelector(".restricted-status");
+
+            statusColumn.textContent = status === 'restricted' ? "Restricted" : "Unrestricted";
+            row.classList.toggle('restricted-row', status === 'restricted');
+            row.classList.toggle('unrestricted-row', status !== 'restricted');
+
+        }
+    }
+    function renderProviders(providers) {
+        Handlebars.registerHelper('eq', function(a, b) {
+            return a === b;
+        });
+        const source = document.getElementById('provider-template').innerHTML;
+        const template = Handlebars.compile(source);
+        const html = template({ providers: providers });
+        document.getElementById('providerTable').innerHTML = html;
+    }
+
+
+    function showUpdateForm(provider) {
+        const container = document.querySelector('.update_provider');
+        console.log("provider"+ provider);
+        container.innerHTML = `
+    <h2>Edit Provider #${provider.providerID}</h2>
+    <form class="custom-form" id="updateProviderForm">
+        <div class="form-row">
+            <label for="provider_name">Provider Name</label>
+            <input type="text" name="provider_name" id="provider_name" value="${provider.providerName}" required />
+        </div>
+
+        <div class="form-row">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="${provider.username}" required />
+        </div>
+
+        <div class="form-row">
+            <label for="provider_email">Email</label>
+            <input type="email" name="provider_email" id="provider_email" value="${provider.email}" required />
+        </div>
+
+        <div class="form-row">
+            <label for="provider_address">Address</label>
+            <input type="text" name="provider_address" id="provider_address" value="${provider.providerUserAddress}" required />
+        </div>
+
+        <div class="form-row">
+            <label for="provider_state">State</label>
+            <input type="text" name="provider_state" id="provider_state" value="${provider.state}" required />
+        </div>
+
+        <div class="form-row">
+            <label for="restricted">Restricted</label>
+            <select name="restricted" id="restricted">
+                <option value="true" ${provider.restricted ? 'selected' : ''}>Yes</option>
+                <option value="false" ${!provider.restricted ? 'selected' : ''}>No</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+`;
+
+
+
+
+        document.getElementById('updateProviderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitProviderUpdateForm(provider, provider.providerID);
+            updateProviders(provider.providerID);
+            fetchProviders();
+        });
+    }
+
+    function restrictBusiness() {
+        const businessId = getSelectedBusinessId();
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+        if (!businessId) {
+            alert("Please select a business to restrict.");
+            return;
+        }
+
+
+        fetch(`businesses/restrict/${businessId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to restrict business');
+                }
+
+                // Update the status dynamically on success
+                updateBusinesses(businessId, 'restricted');
+                alert('Business restricted successfully');
+                addRecentUpdate();
+                fetchBusinesses();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+    }
+
+    function unrestrictBusiness() {
+        const providerId = getSelectedProviderId();
+        const businesses = fetchBusinesses();
+
+
+        const row = document.querySelector(`tr[data-business-id="${businessId}"]`);
+        if (!businessId) {
+            alert("Please select a business to unrestrict.");
+            return;
+        }
+
+        fetch(`businesses/unrestrict/${businessId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to unrestrict business');
+                }
+
+                // Update the status dynamically on success
+                updateBusinesses(businessId, 'unrestricted');
+                addRecentUpdate();
+                fetchBusinesses();
+
+                alert('Business unrestricted successfully');
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong.");
+            });
+
+    }
+
+    function submitProviderUpdateForm(provider, providerID) {
+        const form = document.getElementById('updateProviderForm');
+        const formData = new FormData(form);
+
+        const updateProvider = {
+            providerID: provider.providerID, // Make sure 'provider' is available in this scope
+            providerName: formData.get('provider_name'),
+            providerUserAddress: formData.get('provider_address'),
+            providerUserCity: formData.get('provider_city'),
+            providerUserState: formData.get('provider_state'),
+            providerUserZip: formData.get('provider_zip'),
+            providerUserEmail: formData.get('provider_email'),
+            providerUserPhone: formData.get('provider_phone'),
+            status: "Pending",
+            restricted: provider.restricted // preserve existing restriction flag
+        };
+
+        fetch(`/providers/update/${providerID}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updateProvider)
+        })
+            .then(res => res.json())
+            .then(updated => {
+                alert("Provider updated successfully.");
+                updateProviders(updated);
+                addRecentUpdate();
+                fetchProviders();
+            })
+            .catch(err => {
+                console.error("Update failed:", err);
+                alert("Update failed.");
+            });
+    }
+
+
+    function loadAndShowProviderUpdateForm(providerId) {
+        fetch(`/providers/${providerId}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                showUpdateForm(data)
+            })
+            .catch(err => {
+                console.error("Error loading provider:", err);
+                alert("Could not load provider data.");
+            });
+    }
+
+
+
+
+
+    function addRecentUpdate() {
+        fetch('/updates/table/providers')  // Replace with your actual backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch update');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const updatesContainer = document.getElementById('salesContainer');
+                updatesContainer.innerHTML = '';
+                const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
+
+                // Assuming data is an array of updates
+                recentUpdates.forEach(update => {
+                    const updateElement = document.createElement('div');
+                    updateElement.className = 'update-entry';
+                    updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updatesContainer.prepend(updateElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching update:', error);
+            });
+    }
+
+
+
+    document.getElementById('providerTable').addEventListener('click', function(event) {
+      getSelectedProviderId();
+    });
+
+</script>
+
+
+</html>
+
+
+

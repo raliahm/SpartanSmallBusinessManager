@@ -1,0 +1,457 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student View</title>
+    <link rel="stylesheet" href="style.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="container">
+    <!--aside section start -->
+    <aside>
+        <!--top section-->
+        <div class="top">
+            <div class="logo">
+                <h2>
+                    <span class="danger">SSBM Admin</span>
+                </h2>
+            </div>
+
+        </div>
+        <!--top section-->
+        <div class="sidebar">
+
+            <a href="/">
+                <span class="material-symbols-outlined"> grid_view </span>
+                <h3>Dashboard</h3>
+            </a>
+            <a href="/provider">
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Provider View</h3>
+            </a>
+            <a href="/small-business" >
+                <span class="material-symbols-outlined"> supervisor_account </span>
+                <h3>Business View</h3>
+            </a>
+            <a href="/student" class="active">
+                <span class="material-symbols-outlined"> person </span>
+                <h3>Student View</h3>
+            </a>
+            <a href="/usage-details">
+                <span class="material-symbols-outlined"> email </span>
+                <h3>User Approvals</h3>
+            </a>
+            <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+            <a href="/bad-words">
+                <span class="material-symbols-outlined"> share_reviews </span>
+                <h3>Bad Word View</h3>
+            </a>
+
+            <a href="/login">
+                <span class="material-symbols-outlined"> logout  </span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </aside>
+    <!--aside section end-->
+    <main>
+        <h1>Student View</h1>
+        <div class="input-bar">
+            <input type="text" id="search-bar" class="form-control" placeholder="Search Student by Name" aria-label="Search Student">
+        </div>
+
+        <div id="buttons">
+            <button type="button" class="btn btn-success" id="delete-btn">Delete Student</button>
+            <button type="button" class="btn btn-success" id="restrict-btn">Restrict Student</button>
+            <button type="button" class="btn btn-success" id="unrestrict-btn">Unrestrict Student</button>
+        </div>
+
+        <div  class="custom-form-container">
+            <form id="student-form" class="custom-form">
+                <h2>Add Student</h2>
+
+                <div class="form-row">
+                    <label for="student-username">Username</label>
+                    <input type="text" id="student-username" placeholder="i.e username" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-password">Password</label>
+                    <input type="text" id="student-password" placeholder="password" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-name">Name</label>
+                    <input type="text" id="student-name" placeholder="Enter student name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-email">Email</label>
+                    <input type="text" id="student-email" placeholder="j@adf.com" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-phone">Phone</label>
+                    <input type="text" id="student-phone" placeholder="#123-123-1234" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-address">Address</label>
+                    <input type="text" id="student-address" placeholder="1234 island dr." required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-city">City</label>
+                    <input type="text" id="student-city" placeholder="i.e Apex" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-zipcode">Zipcode</label>
+                    <input type="text" id="student-zipcode" placeholder="1234" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="student-state">State</label>
+                    <input type="text" id="student-state" placeholder="i.e. washington" required>
+                </div>
+                <div class="form-row">
+                    <label for="student-country">Country</label>
+                    <input type="text" id="student-country" placeholder="i.e. USA" required>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+        <div class="recent_registration" id="studentTable">
+        </div>
+
+
+    </main>
+    <!-- right section start -->
+    <div class="right">
+        <!-- start top -->
+
+        <!-- end top -->
+        <!--start recent updates -->
+        <div class="recent_updates">
+            <h2>Recent Update</h2>
+            <div class = "updates" id="salesContainer"></div>
+
+        </div>
+        <div class="recent_updates">
+
+            <h2>Recent Events</h2>
+            <div id="updatesContainer"></div>
+
+        </div>
+        <div class="update_student"></div>
+
+        <!-- end recent updates-->
+
+        <!-- start sales analytic -->
+
+        <!-- end sales analytic -->
+
+
+
+    </div>
+    <!-- right section end -->
+</div>
+
+</body>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+<script id="student-template" type="text/x-handlebars-template">
+    <table >
+        <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Student Username</th>
+            <th>Student Email</th>
+            <th>Student Phone</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each customers}}
+        <tr data-student-id="{{custId}}" class="{{#if restricted}}restricted-row{{else}}unrestricted-row{{/if}}">
+            <td>{{custId}}</td>
+            <td>{{custName}}</td>
+            <td>{{custUsername}}</td>
+            <td>{{custEmail}}</td>
+            <td>{{custPhone}}</td>
+            <td>
+                {{#if restricted}}
+                <span class="status restricted-status">Restricted</span>
+                {{else}}
+                <span class="status unrestricted-status">Unrestricted</span>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</script>
+
+<script id="event-template" type="text/x-handlebars-template">
+    <div class="updates">
+        {{#each events}}
+        <div class="update">
+            <div class="message">
+                <p><b>{{eventName}}</b> </p>
+                <p>{{eventDescription}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
+<script src="student.js"></script>
+
+<script>
+    function getSelectedCustomerId() {
+        const selectedRow = document.querySelector('.selected');
+        if (selectedRow) {
+            return selectedRow.querySelector('td:first-child').textContent; // Assuming businessId is in the first column
+        } else {
+            return null;
+        }
+    }
+
+    function deleteCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to delete.");
+            return;
+        }
+
+        fetch(`customer/delete/${custId}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to delete customer');
+                    });
+                }
+                alert('Customer deleted successfully');
+                addRecentUpdate();
+                fetchCustomers(customers);
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+
+    }
+
+    function restrictCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to restrict.");
+            return;
+        }
+
+
+
+        fetch(`customer/restrict/${custId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to restrict customer');
+                    });
+                }
+
+                // Update the status dynamically on success
+                alert('Customer restricted successfully');
+                addRecentUpdate();
+                fetchCustomers();
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+
+    }
+
+    function unrestrictCustomer() {
+        const custId = getSelectedCustomerId();
+        if (!custId) {
+            alert("Please select a customer to unrestrict.");
+            return;
+        }
+
+        fetch(`customer/unrestrict/${custId}`, {
+            method: 'PUT'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to unrestrict business');
+                    });
+                }
+
+                // Update the status dynamically on success
+                alert('Customer unrestricted successfully');
+                addRecentUpdate();
+                fetchCustomers();
+
+
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong.");
+            });
+    }
+
+
+
+    function addRecentUpdate() {
+        fetch('/updates/table/customers')  // Replace with your actual backend endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch update');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const updatesContainer = document.getElementById('salesContainer');
+                updatesContainer.innerHTML = '';
+
+                const recentUpdates = data.slice(0, 10); // Only take the first 10 entries
+
+                // Assuming data is an array of updates
+                recentUpdates.forEach(update => {
+                    const updateElement = document.createElement('div');
+                    updateElement.className = 'update-entry';
+                    updateElement.innerHTML = `<span class="material-symbols-outlined">check_circle</span>${update.updateType} on ${update.tableName} ${update.entityId} - ${update.updateDetail}`;
+                    updatesContainer.prepend(updateElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching update:', error);
+            });
+    }
+
+    function updateStudent(custId, status) {
+        const row = document.querySelector(`tr[data-student-id="${custId}"]`);
+        if (row) {
+            const statusColumn = row.querySelector(".restricted-status");
+
+            statusColumn.textContent = status === 'restricted' ? "Restricted" : "Unrestricted";
+            row.classList.toggle('restricted-row', status === 'restricted');
+            row.classList.toggle('unrestricted-row', status !== 'restricted');
+        }
+    }
+
+    function showCustomerUpdateForm(customer) {
+        const container = document.querySelector('.update_student'); // or '.update_customer' if you rename it
+        container.innerHTML = `
+        <h2>Edit Customer #${customer.custId}</h2>
+        <form class="custom-form" id="updateCustomerForm">
+            <input name="custUsername" value="${customer.custUsername}" required />
+            <input name="custPassword" value="${customer.custPassword}" required />
+            <input name="custName" value="${customer.custName}" required />
+            <input name="custEmail" value="${customer.custEmail}" required />
+            <input name="custPhone" value="${customer.custPhone}" required />
+            <input name="custAddress" value="${customer.custAddress}" required />
+            <input name="custCity" value="${customer.custCity}" required />
+            <input name="custZip" value="${customer.custZip}" required />
+            <input name="custState" value="${customer.custState}" required />
+            <input name="custCountry" value="${customer.custCountry}" required />
+            <button type="submit">Update</button>
+        </form>
+    `;
+
+        document.getElementById('updateCustomerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitCustomerUpdate(customer,customer.custId);
+            updateStudent(customer.custId);
+            fetchCustomers();
+        });
+    }
+    function submitCustomerUpdate(customer, custId) {
+        const form = document.getElementById('updateCustomerForm');
+        const formData = new FormData(form);
+
+        const updatedCustomer = {
+            custUsername: formData.get('custUsername'),
+            custPassword: formData.get('custPassword'),
+            custName: formData.get('custName'),
+            custEmail: formData.get('custEmail'),
+            custPhone: formData.get('custPhone'),
+            custAddress: formData.get('custAddress'),
+            custCity: formData.get('custCity'),
+            custZip: formData.get('custZip'),
+            custState: formData.get('custState'),
+            custCountry: formData.get('custCountry'),
+        };
+
+
+        fetch(`customer/update/${custId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedCustomer),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'Failed to update customer');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Customer updated successfully');
+                updateStudent(data);
+                addRecentUpdate();   // Refresh updates
+                fetchCustomers();
+            })
+            .catch(error => {
+                console.error(error);
+                alert(error.message || "Something went wrong during update.");
+            });
+    }
+
+    function loadAndShowCustomerUpdateForm(custId) {
+        fetch(`/customer/${custId}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log("Student:" + JSON.stringify(data));
+                showCustomerUpdateForm(data);
+
+
+            })
+            .catch(err => {
+                console.error("Error loading customer:", err);
+                alert("Could not load customer data.");
+            });
+    }
+
+
+</script>
+
+
+
+</html>
+
+
+

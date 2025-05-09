@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <!--aside section start -->
+        <aside>
+            <!--top section-->
+            <div class="top">
+                <div class="logo">
+                    <h2>
+                        <span class="danger">SSBM Admin</span>
+                    </h2>
+                </div>
+                <button  id="menu_bar">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                <button  id="close_btn">
+                    <span class="material-symbols-outlined"> close </span>
+                </button>
+            </div>
+            <!--top section-->
+            <div class="sidebar">
+
+                <a href="index.html">
+                    <span class="material-symbols-outlined"> grid_view </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="../static/small-business.html" >
+                    <span class="material-symbols-outlined"> supervisor_account </span>
+                    <h3>Business View</h3>
+                </a>
+                <a href="../static/student.html">
+                    <span class="material-symbols-outlined"> person </span>
+                    <h3>Student View</h3>
+                </a>
+
+                <a href="../static/usage-details.html">
+                    <span class="material-symbols-outlined"> email </span>
+                    <h3>User Approvals</h3>
+                </a>
+
+
+                <a href="../static/login.html">
+                    <span class="material-symbols-outlined"> logout  </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!--aside section end-->
+
+        <!-- main section start -->
+        <main>
+            <h1>Dashboard</h1>
+            <div class="date">
+                <input class = "input-bar" type="date">
+            </div>
+            <!-- insights start -->
+            <div class = "insights">
+                <!-- start customers-->
+                <div class="customers">
+                    <span class="material-symbols-outlined">trending_up</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Customers</h3>
+                            <h1>25000</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle r="30" cy="40" cx="40"></circle>
+                            </svg>
+                            <div class="number">80%</div>
+                        </div>
+                    </div>
+                    <small>Last 24 Hours</small>
+                </div>
+                <!-- end customers-->
+                <!-- start businesses-->
+                <div class="businesses">
+                    <span class="material-symbols-outlined">local_mall</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Businesses</h3>
+                            <h1>500</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle r="30" cy="40" cx="40"></circle>
+                            </svg>
+                            <div class="number">80%</div>
+                        </div>
+                    </div>
+                    <small>Last 24 Hours</small>
+                </div>
+                <!-- end businesses-->
+                <!-- start income-->
+                <div class="income">
+                    <span class="material-symbols-outlined">stacked_line_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Income</h3>
+                            <h1>$25000</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle r="30" cy="40" cx="40"></circle>
+                            </svg>
+                            <div class="number">80%</div>
+                        </div>
+                    </div>
+                    <small>Last 24 Hours</small>
+                </div>
+                <!-- end income-->
+            </div>
+            <!-- end insights-->
+            <!-- Start recent registrations -->
+            <div class="recent_registration" >
+                <h1> Recent Business Registrations</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Business ID</th>
+                        <th>Business Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Spartan Cooks</td>
+                            <td>Food</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">........................</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Spartan Electronics</td>
+                            <td>Technology</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">........................</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Spartan Furniture</td>
+                            <td>Furniture</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">........................</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end recent registrations -->
+
+        </main>
+        <!-- main section end -->
+
+        <!-- right section start -->
+        <div class="right">
+            <!-- start top -->
+            <div class="top">
+                <button id="menu-bar">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p><b>Reba</b></p>
+                        <p>Admin</p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="/images/profile-pic.webp" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- end top -->
+            <!--start recent updates -->
+            <div class="recent_updates">
+                <h2>Recent Update</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="/images/monkey2.jpeg" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Spartan Autos</b> Profile is approved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end recent updates-->
+
+            <!-- start sales analytic -->
+            <div class="sales_analytics">
+                <div class="item">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+            </div>
+            <div class="sales_analytics">
+                <div class="item">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+            </div>
+            <div class="sales_analytics">
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right_text">
+                        <h3>Online Sales</h3>
+                        <small class="text-muted">Last seen 2 hours</small>
+                    </div>
+                    <h5 class="danger"> -17%</h5>
+                    <h3>3849</h3>
+                </div>
+
+
+            </div>
+            <!-- end sales analytic -->
+
+
+
+        </div>
+        <!-- right section end -->
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+
+
+
+
+</html>

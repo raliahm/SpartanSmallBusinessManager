@@ -17,7 +17,8 @@
 6. [Provider CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/Provider_CRUP_API)
 7. [System Admin CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/reba-mathews)
 8. [Customer MVC Application](https://github.com/raliahm/SpartanSmallBusinessManager/tree/customer_mvc_app)
-9. [Final Project Submission (MVC App)](https://github.com/raliahm/SpartanSmallBusinessManager/tree/final_mvc_app)
+9. [Provider MVC files](https://github.com/raliahm/SpartanSmallBusinessManager/tree/provider_mvc_app)
+10. [Final Project Submission (MVC App)](https://github.com/raliahm/SpartanSmallBusinessManager/tree/final_mvc_app)
 
 
 ## Description 
@@ -42,7 +43,10 @@
     1. Manage user access - approve businesses.
     2. Moderate services - remove/publish businesses.
     3. Moderate reviews - remove/hide reviews.
-    4. View usage statistics - view app membership.
-       
-
+    4. View usage statistics - view app memberships.
+  
+Signing into the application :
+Admin Login : username:reba, password: 1234
+Logging into the customer application:
+Customer Login: username: CHElover101, password: abcdefg
 

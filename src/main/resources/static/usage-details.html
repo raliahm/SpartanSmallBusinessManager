@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Usage Details</title>
+    <link href="/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <!-- aside start -->
+            <aside>
+                <!--top section-->
+                <div class="top">
+                    <div class="logo">
+                        <h2>
+                            <span class="danger">SSBM Admin</span>
+                        </h2>
+                    </div>
+
+                </div>
+                <!--top section-->
+                <div class="sidebar">
+
+                    <a href="/">
+                        <span class="material-symbols-outlined"> grid_view </span>
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="/provider" >
+                        <span class="material-symbols-outlined"> supervisor_account </span>
+                        <h3>Provider View</h3>
+                    </a>
+                    <a href="/small-business" >
+                        <span class="material-symbols-outlined"> supervisor_account </span>
+                        <h3>Business View</h3>
+                    </a>
+                    <a href="/student">
+                        <span class="material-symbols-outlined"> person </span>
+                        <h3>Student View</h3>
+                    </a>
+                    <a href="/usage-details" class="active">
+                        <span class="material-symbols-outlined"> email </span>
+                        <h3>User Approvals</h3>
+                    </a>
+
+                    <a href="/review" ><span class="material-symbols-outlined">flag</span><h3>Review Flagged</h3></a>
+                    <a href="/bad-words">
+                        <span class="material-symbols-outlined"> share_reviews </span>
+                        <h3>Bad Word View</h3>
+                    </a>
+                    <a href="/login">
+                        <span class="material-symbols-outlined"> logout  </span>
+                        <h3>Logout</h3>
+                    </a>
+                </div>
+            </aside>
+        <!-- aside end-->
+        <main>
+
+        </main>
+        <!-- right section start -->
+        <div class="right">
+            <!-- start top -->
+
+            <!-- end top -->
+            <!--start recent updates -->
+            <div class="recent_updates">
+                <h2>Recent Update</h2>
+                <div class="updates" id="recent-updates">
+                    <!-- Approved profiles will be added here -->
+                </div>
+            </div>
+            <!-- end recent updates-->
+
+            <!-- start sales analytic -->
+            <!-- end sales analytic -->
+
+
+
+        </div>
+        <!-- right section end -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const main = document.querySelector("main");
+            main.innerHTML = "";
+            const businessSection = document.createElement("section");
+            const customerSection = document.createElement("section");
+            const providerSection = document.createElement("section");
+
+            fetchBusinesses();
+            fetchCustomers();
+            fetchProviders()
+            function fetchBusinesses() {
+                fetch("/businesses/all")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Businesses:", data);
+
+                        data = data.filter(b => b.status === "Pending");
+                        renderBusinesses(data);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching businesses:", error);
+                    });
+            }
+            function fetchCustomers() {
+                fetch("/customer/all")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Customers:", data);
+
+                        data = data.filter(c => c.status === "Pending");
+                        renderCustomers(data);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching customers:", error);
+                    });
+            }
+            function fetchProviders(){
+                fetch("/providers/all")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Providers:", data);
+
+                        data = data.filter(p => p.state === "Pending");
+                        renderProviders(data);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching provider:", error);
+                    });
+            }
+            function renderBusinesses(businesses) {
+                businessSection.innerHTML = "";
+                const title = document.createElement("h1");
+                title.textContent = "Pending Business Approvals";
+                businessSection.appendChild(title);
+
+                businesses.forEach(business => {
+                    const card = document.createElement("div");
+                    card.className = "user-card";
+
+                    const name = document.createElement("h3");
+                    name.textContent = business.businessName;
+
+                    const description = document.createElement("p");
+                    description.textContent = `Description: ${business.businessDescription}`;
+
+                    const category = document.createElement("p");
+                    category.textContent = `Category: ${business.category}`;
+
+                    const status = document.createElement("p");
+                    status.textContent = `Status: ${business.status}`;
+                    status.className = "status";
+
+                    const actions = document.createElement("div");
+                    actions.className = "actions";
+
+                    const approveBtn = document.createElement("button");
+                    approveBtn.textContent = "Approve";
+                    approveBtn.disabled = business.status === "Approved";
+                    approveBtn.addEventListener("click", () => {
+                        fetch(`/businesses/${business.businessId}/approve`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Approve failed");
+                                alert("Business approved!");
+                                fetchBusinesses();
+                                renderRecentUpdate(business.businessName, "Business", "Approved");
+
+                            })
+                            .catch(() => alert("Failed to approve business."));
+                    });
+
+                    const rejectBtn = document.createElement("button");
+                    rejectBtn.textContent = "Reject";
+                    rejectBtn.disabled = business.status === "Rejected";
+                    rejectBtn.addEventListener("click", () => {
+                        fetch(`/businesses/${business.businessId}/reject`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Reject failed");
+                                alert("Business rejected!");
+                                fetchBusinesses();
+                                renderRecentUpdate(business.businessName, "Business", "Rejected");
+
+                            })
+                            .catch(() => alert("Failed to reject business."));
+                    });
+
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+
+                    card.appendChild(name);
+                    card.appendChild(description);
+                    card.appendChild(category);
+                    card.appendChild(status);
+                    card.appendChild(actions);
+
+                    businessSection.appendChild(card);
+                    main.appendChild(businessSection);
+                });
+            }
+            function renderProviders(providers) {
+
+                providerSection.innerHTML = "";
+                const title2 = document.createElement("h1");
+                title2.textContent = "Pending Provider Approvals";
+                providerSection.appendChild(title2);
+
+                providers.forEach(provider => {
+                    const card = document.createElement("div");
+                    card.className = "user-card";
+
+                    const name = document.createElement("h3");
+                    name.textContent = provider.fullName;
+
+
+                    const status = document.createElement("p");
+                    status.textContent = `Status: ${provider.state}`;
+                    status.className = "status";
+
+                    const actions = document.createElement("div");
+                    actions.className = "actions";
+
+                    const approveBtn = document.createElement("button");
+                    approveBtn.textContent = "Approve";
+                    approveBtn.disabled = provider.state === "Approved";
+                    approveBtn.addEventListener("click", () => {
+                        fetch(`/providers/${provider.providerID}/approve`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Approve failed");
+                                alert("Provider approved!");
+                                fetchProviders();
+                                renderRecentUpdate(provider.fullName, "Provider", "Approved");
+
+                            })
+                            .catch(() => alert("Failed to approve provider."));
+                    });
+
+                    const rejectBtn = document.createElement("button");
+                    rejectBtn.textContent = "Reject";
+                    rejectBtn.disabled = provider.state === "Rejected";
+                    rejectBtn.addEventListener("click", () => {
+                        fetch(`/providers/${provider.providerID}/reject`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Reject failed");
+                                alert("Provider rejected!");
+                                fetchProviders();
+                                renderRecentUpdate(provider.fullName, "Provider", "Rejected");
+
+                            })
+                            .catch(() => alert("Failed to reject provider."));
+                    });
+
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+
+                    card.appendChild(name);
+                    card.appendChild(status);
+                    card.appendChild(actions);
+
+                    providerSection.appendChild(card);
+                    main.appendChild(providerSection);
+                });
+            }
+            function renderCustomers(customers) {
+
+
+                const title = document.createElement("h1");
+                title.textContent = "Pending Customer Approvals";
+                customerSection.appendChild(title);
+
+                customers.forEach(customer => {
+                    const card = document.createElement("div");
+                    card.className = "user-card";
+
+                    const name = document.createElement("h3");
+                    name.textContent = customer.custName;
+
+
+                    const status = document.createElement("p");
+                    status.textContent = `Status: ${customer.state}`;
+                    status.className = "status";
+
+                    const actions = document.createElement("div");
+                    actions.className = "actions";
+
+                    const approveBtn = document.createElement("button");
+                    approveBtn.textContent = "Approve";
+                    approveBtn.disabled = customer.status === "Approved";
+                    approveBtn.addEventListener("click", () => {
+                        fetch(`/customer/${customer.custId}/approve`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Approve failed");
+                                alert("Customer approved!");
+                                fetchCustomers();
+                                renderRecentUpdate(customer.custName, "Customer", "Approved");
+
+                            })
+                            .catch(() => alert("Failed to reject customer."));
+                    });
+
+                    const rejectBtn = document.createElement("button");
+                    rejectBtn.textContent = "Reject";
+                    rejectBtn.disabled = customer.status === "Rejected";
+                    rejectBtn.addEventListener("click", () => {
+                        fetch(`/customer/${customer.custId}/reject`, {
+                            method: 'PUT'
+                        })
+                            .then(response => {
+                                if (!response.ok) throw new Error("Reject failed");
+                                alert("Customer rejected!");
+                                fetchCustomers();
+                                renderRecentUpdate(customer.custName, "Customer", "Rejected");
+                            })
+                            .catch(() => alert("Failed to reject customer."));
+                    });
+
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+
+                    card.appendChild(name);
+
+                    card.appendChild(status);
+                    card.appendChild(actions);
+
+                    customerSection.appendChild(card);
+                    main.appendChild(customerSection);
+                });
+            }
+
+            function renderRecentUpdate(name, type, action) {
+                const updatesContainer = document.getElementById("recent-updates");
+
+                const update = document.createElement("div");
+                update.classList.add("update");
+
+                update.innerHTML = `
+                    <div class="message">
+                    <span class="material-symbols-outlined check-icon"> check_circle
+                    </span>
+                    <p><b>${name}</b> ${type} profile is ${action}</p>
+
+                    </div>
+                `;
+
+                updatesContainer.prepend(update);
+                if (updatesContainer.childNodes.length > 5) {
+                    updatesContainer.removeChild(updatesContainer.lastChild);
+                }
+            }
+
+
+        });
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
+
