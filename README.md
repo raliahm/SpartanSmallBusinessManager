@@ -16,7 +16,8 @@
 5. [Customer CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/Customer_crud_api)
 6. [Provider CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/Provider_CRUP_API)
 7. [System Admin CRUD API](https://github.com/raliahm/SpartanSmallBusinessManager/tree/reba-mathews)
-8. [Final Project Submission (MVC App)](https://github.com/raliahm/SpartanSmallBusinessManager/tree/final_mvc_app)
+8. [Provider MVC files](https://github.com/raliahm/SpartanSmallBusinessManager/tree/provider_mvc_app)
+9. [Final Project Submission (MVC App)](https://github.com/raliahm/SpartanSmallBusinessManager/tree/final_mvc_app)
 
 
 ## Description 
